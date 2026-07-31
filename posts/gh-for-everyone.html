@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="title" content="非程序员的 GitHub 实用指南">
+<meta name="date" content="2026-07-31">
+<meta name="tags" content="GitHub,教程,版本控制,博客">
+<title>非程序员的 GitHub 实用指南</title>
+<style>
+:root{
+  --bg:#f6f7f9; --paper:#ffffff; --text:#2b2f36; --muted:#6b7280;
+  --line:#e6e8ec; --brand:#3b5bdb; --brand-soft:#eef2ff;
+  --code-bg:#1e2127; --code-text:#e6e6e6;
+  --callout-bg:#eef6ff; --callout-line:#3b82f6;
+  --table-head:#f0f3ff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  line-height:1.85;font-size:16px;-webkit-font-smoothing:antialiased}
+.hero{background:linear-gradient(135deg,#3b5bdb,#5b7cfa);color:#fff;padding:54px 24px 40px;text-align:center}
+.hero h1{font-size:1.95rem;margin:0 0 10px;font-weight:800;letter-spacing:.5px}
+.hero .sub{margin:0;opacity:.92;font-size:.98rem}
+.hero .meta{margin-top:14px;font-size:.82rem;opacity:.85;letter-spacing:1px}
+.wrap{max-width:820px;margin:0 auto;padding:30px 22px 10px}
+.toc{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 22px;margin:26px 0 6px;
+  box-shadow:0 4px 18px rgba(59,91,219,.06)}
+.toc h2{margin:0 0 10px;font-size:1.02rem;color:var(--brand)}
+.toc ol{margin:0;padding-left:22px;columns:2}
+.toc li{margin:6px 0}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--brand)}
+h2{font-size:1.42rem;margin:42px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--brand-soft);color:#1f2430}
+h3{font-size:1.14rem;margin:28px 0 8px;color:#1f2430}
+p{margin:14px 0;color:#3a3f47}
+a{color:var(--brand)}
+ul,ol{margin:12px 0;padding-left:26px}
+li{margin:8px 0;color:#3a3f47}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;
+  background:var(--brand-soft);color:#3748b0;padding:2px 6px;border-radius:6px}
+pre.code{background:var(--code-bg);color:var(--code-text);border-radius:12px;padding:16px 18px;overflow:auto;
+  margin:16px 0;position:relative}
+pre.code code{background:transparent;color:inherit;padding:0;font-size:.85rem;line-height:1.6;white-space:pre}
+pre.code::before{content:attr(data-lang);position:absolute;top:8px;right:12px;font-size:.68rem;
+  color:#8b949e;text-transform:uppercase;letter-spacing:1px}
+.callout{display:flex;gap:12px;align-items:flex-start;background:var(--callout-bg);border-left:4px solid var(--callout-line);
+  border-radius:12px;padding:14px 18px;margin:20px 0}
+.callout .c-ico{font-size:1.2rem;line-height:1.6}
+.callout p{margin:0;color:#274060}
+table.quick{width:100%;border-collapse:collapse;margin:18px 0;background:var(--paper);
+  border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 4px 18px rgba(59,91,219,.06)}
+table.quick th,table.quick td{border-bottom:1px solid var(--line);padding:11px 16px;text-align:left}
+table.quick thead th{background:var(--table-head);color:#283593;font-weight:700}
+table.quick tbody tr:last-child td{border-bottom:none}
+.back-home{text-align:center;margin:40px 0 6px}
+.back-home a{display:inline-block;text-decoration:none;color:#fff;background:var(--brand);
+  padding:10px 24px;border-radius:999px;font-size:.95rem}
+.back-home a:hover{background:#2f4bc0}
+.foot{text-align:center;color:var(--muted);font-size:.8rem;padding:8px 0 44px}
+@media(max-width:640px){.hero h1{font-size:1.45rem}h2{font-size:1.2rem}body{font-size:15px}.toc ol{columns:1}}
+</style>
+</head>
+<body>
+<header class="hero">
+<h1>非程序员的 GitHub 实用指南</h1>
+<p class="sub">不写代码也能用好的云端备份与时光机</p>
+<div class="meta">2026-07-31 ｜ GitHub · 教程 · 版本控制 · 博客</div>
+</header>
+<main class="wrap">
+<nav class="toc"><h2>目录</h2><ol><li><a href="#s1">GitHub 到底是什么</a></li><li><a href="#s2">选工具：从 GitHub Desktop 开始</a></li><li><a href="#s3">创建仓库并发布</a></li><li><a href="#s4">命令行方式（进阶）</a></li><li><a href="#s5">日常三板斧：pull / add+commit / push</a></li><li><a href="#s6">换新电脑：clone</a></li><li><a href="#s7">commit message 怎么写</a></li><li><a href="#s8">六个常见坑</a></li><li><a href="#s9">速查表</a></li><li><a href="#s10">写在最后</a></li></ol></nav>
+<p>GitHub 对非程序员来说，核心价值就两点：<strong>云端备份</strong>和<strong>版本回退</strong>。不需要懂 Git 原理，不需要会写代码，会按步骤操作就够了。</p><h2 id="s1">GitHub 到底是什么</h2><p>搜 GitHub 出来的解释常常是「分布式版本控制系统」这类词，看着头大。简单理解成两样东西就行：</p><ul><li><strong>云端保险箱</strong>：本地写的东西推上去后，云端有一份完整备份。硬盘坏了、电脑丢了、被咖啡泼了都不怕，登录 GitHub 网站项目还在。</li><li><strong>时光机</strong>：每次提交，GitHub 都存一个快照，像游戏存档点，随时可以读档回到任意时间点。改炸了回到上个版本，上周能跑这周不行就回到上周。</li></ul><p>分支管理、代码审查、Pull Request 那些是程序员团队协作才需要的，个人使用不需要管。</p><h2 id="s2">选工具：从 GitHub Desktop 开始</h2><p>强烈建议非程序员从 GitHub Desktop 开始。去 desktop.github.com 下载安装，用 GitHub 账号登录即可。</p><h2 id="s3">创建仓库并发布</h2><p>仓库可以理解为项目文件夹在 GitHub 上的镜像：</p><ol><li>File → New Repository；</li><li>Name 填项目名（示例 <code>hospital-tools</code>），Local Path 选项目所在文件夹；</li><li>点 Create Repository；</li><li>左下角 Summary 写「首次提交」，点 Commit to main；</li><li>右上角 Publish Repository → Publish。</li></ol><p>整个过程不超过两分钟。它只是把文件复制一份到云端，不会动你本地的文件，可以放心操作。</p><div class="callout"><span class="c-ico">💡</span><p>这篇「指南」本身，就是依托 GitHub 搭建这个博客的过程中，踩过上面的坑之后总结出来的——你现在读到的文章，也正是用这套方法发布上去的。</p></div><h2 id="s4">命令行方式（进阶）</h2><p>如果以后想进阶，或有些操作 Desktop 做不了，可以试命令行：</p><pre class="code" data-lang="shell"><code># 进入项目目录
+cd C:\Users\Administrator\hospital-tools
+git init
+git add .
+git commit -m &quot;first commit&quot;
+git branch -M main
+git remote add origin https://github.com/你的用户名/hospital-tools.git
+git push -u origin main</code></pre><p>第一次 push 会弹浏览器授权，同意即可。命令就固定的这几条，多试几次就熟了。</p><h2 id="s5">日常三板斧：pull / add+commit / push</h2><ul><li>开工前 <code>git pull</code>：把云端最新版本拉到本地。</li><li>干完活 <code>git add .</code> 加 <code>git commit</code>：add 是把改动加入暂存，commit 是存档并写一句说明。</li><li>然后 <code>git push</code>：把存档推到云端。</li></ul><p>GitHub Desktop 上更简单：打开软件，Fetch origin 看云端有无更新，有就 Pull；改完写 Summary，Commit，再 Push origin。全程不用敲命令。</p><p><strong>铁律：先拉后推。</strong> 每次开始干活前先 pull，不管觉得有没有必要。忘了 pull 直接改、改完一 push，大概率会冲突。</p><h2 id="s6">换新电脑：clone</h2><p>新电脑第一次用，把项目拉下来即可：</p><pre class="code" data-lang="shell"><code>git clone https://github.com/你的用户名/hospital-tools.git</code></pre><p>之后仍是先 pull 后 push 那一套。多台电脑轮流干活时，只要每次开工前 pull、干完 push，各处的项目永远是最新的。</p><h2 id="s7">commit message 怎么写</h2><p>别写「修改」「更新」「aaaa」「test」这类记录，三天后你根本不知道改了啥。规则很简单：<strong>动词开头，说清改了什么</strong>。例如：</p><ul><li><code>fix: 修复病历导出乱码</code></li><li><code>add: 新增质控模块</code></li><li><code>update: 更新数据库配置</code></li></ul><p>花十秒钟写清楚，能省大量排查时间。</p><h2 id="s8">六个常见坑</h2><h3>坑 1：多设备同步冲突</h3><p>最容易出现。现象：电脑 A 改了 config.py 忘了 push，电脑 B 也改了 config.py 并 push，回到 A 一 pull 报错 <code>CONFLICT</code>，文件里出现一堆 <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> 和 <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> 标记。</p><p>原因是两台机器改了同一区域，Git 不知保留谁。处理：打开冲突文件，会看到这样的结构：</p><pre class="code" data-lang="text"><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+你在这台电脑上改的内容
+=======
+云端上的内容
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main</code></pre><p>手动选择保留哪段、删掉不要的，再把所有标记删干净。然后：</p><pre class="code" data-lang="shell"><code>git add config.py
+git commit -m &quot;resolve: 合并冲突&quot;
+git push</code></pre><p>预防只有一条：每台设备开工前先 pull，冲突率能降到接近零。</p><h3>坑 2：提交了大文件或敏感文件</h3><p><code>git add .</code> 后直接 push，可能遇到两类问题：</p><ul><li><strong>大文件</strong>：单个文件超过 GitHub 的 100MB 限制会报错（如 <code>data.db</code> 这类数据库文件）。</li><li><strong>敏感文件</strong>：<code>.env</code> 里常存数据库密码和 API 密钥，一旦推到公开仓库就等于泄露。</li></ul><p><strong>还没 push</strong>：撤回很简单，<code>git reset --soft HEAD~1</code> 会撤销最近一次提交，但文件改动都还在。把不该提交的文件删掉、配好 <code>.gitignore</code>、重新提交即可。</p><p><strong>已经 push 了敏感文件</strong>：三步走——① 立刻把仓库改为 private；② 马上更换泄露的密码和密钥，就当已经泄露；③ 配好 <code>.gitignore</code> 后重新提交。别存侥幸心理，网上爬虫比想象中快。</p><h3>坑 3：.gitignore 配晚了</h3><p><code>.gitignore</code> 是忽略清单，告诉 Git 哪些文件不管。若首次 commit 前忘了配，像 <code>node_modules</code> 这种几百 MB 的文件夹就进了仓库，之后每次 clone、push 都慢。</p><p>先创建 <code>.gitignore</code>，写上：</p><pre class="code" data-lang="text"><code>node_modules/
+*.db
+.env
+__pycache__/</code></pre><p>再把已追踪的文件从 Git 移除（只移除追踪，不删本地文件）：</p><pre class="code" data-lang="shell"><code>git rm -r --cached node_modules
+git add .gitignore
+git commit -m &quot;chore: 添加gitignore&quot;
+git push</code></pre><p><code>--cached</code> 很关键：只从 Git 追踪列表移除，不删你本地文件。</p><h3>坑 4：改了一堆不知道改了啥</h3><p>改了一下午想提交，却记不清动了哪些文件。直接 <code>git add .</code> 又怕把半成品一起提交。</p><p>提交前先看一眼：</p><pre class="code" data-lang="shell"><code>git status
+git diff</code></pre><p><code>status</code> 列出改了/新增/删除了哪些文件；<code>diff</code> 逐行显示具体改动。GitHub Desktop 里点文件名就能看对比，更直观。建议每次 commit 前都看一眼，多花十秒少出一堆问题。</p><h3>坑 5：想撤销但不会</h3><p>撤销方式取决于你做到哪一步：</p><ul><li><strong>已 commit 未 push，想撤销但保留改动</strong>：</li><li><strong>已 push</strong>：不能简单撤销，因为别人可能已拉取。安全做法是生成反向修改来抵消：</li><li><strong>想回到某个历史版本</strong>：先看历史：</li></ul><pre class="code" data-lang="shell"><code>git reset --soft HEAD~1</code></pre><p>—— 撤销最近一次提交但保留文件改动。</p><pre class="code" data-lang="shell"><code>git revert HEAD
+git push</code></pre><p><code>revert</code> 不删历史，新增一条「反向提交」，历史完整，不会搞乱别人代码。</p><pre class="code" data-lang="shell"><code>git log --oneline -5</code></pre><p>找到目标版本 commit ID，再：</p><pre class="code" data-lang="shell"><code>git reset --hard a1b2c3d
+git push --force</code></pre><p>注意：<code>--hard</code> 会丢掉该版本之后的所有改动，<code>--force</code> 会强制覆盖远程历史，非常危险，<strong>仅限个人仓库使用，团队项目绝对不要这么做</strong>。</p><h3>坑 6：token 过期或认证失败</h3><p>某天 push 突然报 <code>Support for password authentication was removed</code> 或 <code>403 Forbidden</code>，不是账号出问题——GitHub 从 2021 年起不再接受密码认证，必须用 Personal Access Token（PAT）代替密码，且 token 会过期。</p><p>处理：GitHub 头像 → Settings → Developer settings → Personal access tokens → Generate new token，权限勾选 <code>repo</code>，生成后复制那串 token，push 时粘贴它而不是密码。</p><p>Windows 上若旧 token 缓存导致认证失败：控制面板 → 凭据管理器 → Windows 凭据，找到 <code>git:https://github.com</code> 那条删掉，下次 push 重新输入新 token。token 有效期可直接设为 No expiration（对非程序员够用，只是安全性略低）。</p><h2 id="s9">速查表</h2><table class="quick"><thead><tr><th>时机</th><th>操作</th></tr></thead><tbody><tr><td>开工</td><td><code>git pull</code></td></tr><tr><td>提交前</td><td><code>git status</code> 看一眼</td></tr><tr><td>提交</td><td><code>git add .</code> 加 <code>git commit -m "fix: 说明"</code></td></tr><tr><td>下班</td><td><code>git push</code></td></tr><tr><td>出错</td><td>先 <code>git status</code>，别慌</td></tr></tbody></table><p>最后那条最重要：遇到没见过的报错，先 <code>git status</code> 看状态，再搜报错信息。绝大多数情况 status 就能告诉你答案，剩下复制报错去搜，基本都有人遇到过。</p><h2 id="s10">写在最后</h2><p>版本控制不该是程序员的专利。写论文改了二十稿、做 PPT 不如早上版本、两人同时改方案对不上——这些场景 GitHub 都能解决。它不只是云同步，更是给工作装了一台「时光机」：每次提交都是存档点，可回到任意时间点。</p><p>你不需要是程序员，不需要懂 Git 原理，花两个小时跟这篇走一遍，就能给自己的工作上一个保险。两个小时换一份「再也不怕丢东西」的底气，很划算。</p>
+<p class="back-home"><a href="../index.html">&larr; 返回首页</a></p>
+</main>
+<p class="foot">本文由原始文章排版生成 · 已弱化私人叙事，保留全部实操干货</p>
+</body>
+</html>
