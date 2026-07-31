@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="title" content="用 Node.js 写一个零依赖构建脚本">
+<meta name="date" content="2026-07-30">
+<meta name="tags" content="技术">
+<title>用 Node.js 写一个零依赖构建脚本</title>
+<style>
+  body {
+    max-width: 720px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    font-family: "Cascadia Code", "Fira Code", "SF Mono", Consolas, monospace;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #1a1a2e;
+    background: #f0f0f5;
+  }
+  h1 {
+    font-size: 1.6rem;
+    border-bottom: 3px solid #e94560;
+    padding-bottom: 0.5rem;
+    color: #16213e;
+  }
+  h2 { color: #e94560; font-size: 1.2rem; margin-top: 2rem; }
+  pre {
+    background: #16213e;
+    color: #a8e6cf;
+    padding: 1rem 1.2rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  code {
+    background: #e8e8f0;
+    padding: 0.15em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+  }
+  pre code { background: none; padding: 0; }
+  blockquote {
+    border-left: 4px solid #e94560;
+    margin: 1.5rem 0;
+    padding: 0.5rem 1rem;
+    background: #fff;
+    color: #555;
+  }
+  a { color: #e94560; }
+  .meta { color: #888; font-size: 0.85rem; margin-bottom: 2rem; }
+</style>
+</head>
+<body>
+<h1>用 Node.js 写一个零依赖构建脚本</h1>
+<p class="meta">2026-07-30 · 技术</p>
+
+<p>有时候你不需要一个框架。你需要的是一个 50 行的脚本，它做三件事：读文件、提取信息、生成页面。没有插件系统，没有主题引擎，没有 <code>node_modules</code> 里那两万个你不知道是什么的东西。</p>
+
+<h2>为什么不用现成的？</h2>
+
+<p>Hexo、Hugo、Jekyll 都是好东西。但它们解决的问题是"把 Markdown 变成网站"。如果你的文章本身就是完整的 HTML——自带样式、自带排版、自带灵魂——那套一层模板反而是削足适履。</p>
+
+<blockquote>
+  最好的构建工具，是那个你完全看得懂的构建工具。
+</blockquote>
+
+<h2>核心逻辑</h2>
+
+<p>整个脚本的核心就是一个正则：</p>
+
+<pre><code>const meta = (html, name) => {
+  const m = html.match(
+    new RegExp(`&lt;meta\\s+name="${name}"\\s+content="([^"]*)"`)
+  );
+  return m ? m[1] : '';
+};</code></pre>
+
+<p>从每篇文章的 <code>&lt;head&gt;</code> 里提取 title、date、tags。然后排序、生成列表、复制文件。完事了。</p>
+
+<h2>幂等性</h2>
+
+<p>构建脚本必须是幂等的。跑一次和跑十次，输出应该一模一样。这意味着每次构建前先清空输出目录，而不是"增量更新"。增量更新是 bug 的温床。</p>
+
+<p>这就是全部了。没有 <code>npm install</code>，没有配置文件，没有黑魔法。一个文件，五十行，你随时可以打开它看看它在干什么。</p>
+
+<p><a href="../index.html">← 返回首页</a></p>
+</body>
+</html>
