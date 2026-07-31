@@ -7,4 +7,5 @@
 - 红绿反向验证完成：故意错误时 17 pass/1 fail，恢复后 18/18 全绿。
 - Chromium 桌面与 375px 移动端回归通过，站内文章和标签导航正常，控制台零错误。
 - GitHub 已登录为 `rosebellwau8`；目标 `rosebellwau8/rosebellwau8.github.io` 经核验不存在。
-- 待办：提交完善内容、创建公开远端、推送、配置 `main/docs` Pages 并验证 HTTP 200。
+- 两次本地提交已完成；公开远端已创建并首次推送，默认分支为 `main`。
+- Pages API 已验证为 `built`、HTTPS 开启、来源 `main/docs`；本记录推送后执行最终 HEAD 与 HTTP 200 验收。
