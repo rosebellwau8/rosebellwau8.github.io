@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="title" content="一键发布：把 HTML 拖进去就上线">
+<meta name="date" content="2026-07-31">
+<meta name="tags" content="博客,发布,自动化,教程">
+<title>一键发布：把 HTML 拖进去就上线</title>
+<style>
+:root{
+  --bg:#f6f7f9; --paper:#ffffff; --text:#2b2f36; --muted:#6b7280;
+  --line:#e6e8ec; --brand:#3b5bdb; --brand-soft:#eef2ff;
+  --code-bg:#1e2127; --code-text:#e6e6e6;
+  --warn-bg:#fff8e6; --warn-line:#e0a800;
+  --note-bg:#eef6ff; --note-line:#3b82f6;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  line-height:1.85;font-size:16px;-webkit-font-smoothing:antialiased}
+.hero{background:linear-gradient(135deg,#3b5bdb,#5b7cfa);color:#fff;padding:54px 24px 40px;text-align:center}
+.hero h1{font-size:1.95rem;margin:0 0 10px;font-weight:800;letter-spacing:.5px}
+.hero .sub{margin:0;opacity:.92;font-size:.98rem}
+.hero .meta{margin-top:14px;font-size:.82rem;opacity:.85;letter-spacing:1px}
+.wrap{max-width:820px;margin:0 auto;padding:30px 22px 30px}
+.lead{font-size:1.12rem;font-weight:600;color:#1f2430;background:var(--brand-soft);
+  border-left:4px solid var(--brand);border-radius:0 12px 12px 0;padding:14px 18px;margin:26px 0}
+h2{font-size:1.42rem;margin:44px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--brand-soft);color:#1f2430}
+p{margin:14px 0;color:#3a3f47}
+a{color:var(--brand)}
+ul{margin:12px 0;padding-left:24px}
+li{margin:8px 0;color:#3a3f47}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;background:var(--brand-soft);color:#3748b0;padding:2px 6px;border-radius:6px}
+pre.code{background:var(--code-bg);color:var(--code-text);border-radius:12px;padding:16px 18px;overflow:auto;margin:16px 0;position:relative}
+pre.code code{background:transparent;color:inherit;padding:0;font-size:.85rem;line-height:1.6;white-space:pre}
+pre.code::before{content:attr(data-lang);position:absolute;top:8px;right:12px;font-size:.68rem;color:#8b949e;text-transform:uppercase;letter-spacing:1px}
+.warn{margin:18px 0;padding:14px 18px;border-radius:12px;border-left:4px solid var(--warn-line);background:var(--warn-bg)}
+.warn p{margin:0;color:#5a4a12}
+.back-home{text-align:center;margin:42px 0 6px}
+.back-home a{display:inline-block;text-decoration:none;color:#fff;background:var(--brand);padding:10px 24px;border-radius:999px;font-size:.95rem}
+.back-home a:hover{background:#2f4bc0}
+.foot{text-align:center;color:var(--muted);font-size:.8rem;padding:8px 0 44px}
+@media(max-width:640px){.hero h1{font-size:1.45rem}h2{font-size:1.2rem}body{font-size:15px}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+<h1>一键发布：把 HTML 拖进去就上线</h1>
+<p class="sub">博客发布已经实现「一键发布」</p>
+<div class="meta">2026-07-31 ｜ 博客 · 发布 · 自动化 · 教程</div>
+</header>
+
+<main class="wrap">
+
+<p class="lead">已经实现「一键发布」。</p>
+
+<h2>最简单的使用方法</h2>
+<ol>
+<li>找到 <code>发布博客.cmd</code>。</li>
+<li>把写好的 HTML 文件直接拖到它上面。</li>
+<li>脚本自动完成校验、复制、构建、Git 提交和推送。</li>
+</ol>
+<p>也可以双击该文件，然后粘贴 HTML 完整路径。</p>
+
+<h2>命令行方式</h2>
+<pre class="code" data-lang="powershell"><code>Set-Location E:\blog
+npm run publish -- &quot;C:\文章目录\my-article.html&quot;</code></pre>
+
+<h2>支持两个选项</h2>
+<pre class="code" data-lang="shell"><code># 只在本地构建，不推送
+npm run publish -- &quot;C:\文章目录\my-article.html&quot; --local
+
+# 覆盖同名文章
+npm run publish -- &quot;C:\文章目录\my-article.html&quot; --force</code></pre>
+
+<h2>安全措施</h2>
+<ul>
+<li>元数据错误时不会复制文章。</li>
+<li>默认拒绝覆盖同名文章。</li>
+<li>构建失败会恢复原文章。</li>
+<li>暂存区已有内容时停止，避免误提交。</li>
+<li><code>posts/</code> 有其他未发布改动时停止。</li>
+<li>推送失败会明确报错，可以处理后重试。</li>
+</ul>
+
+<h2>实现细节</h2>
+<p>核心代码在 <code>scripts/publish.js:113</code>，使用说明已写入 <code>README.md:54</code>。完整测试为 25/25 通过，包括真实的本地 Git 提交与推送测试。</p>
+
+<div class="warn">
+<p><strong>需要注意：</strong>当前这个 <code>E:\blog</code> 快照没有可识别的 <code>.git</code>。如果你实际使用时也是如此，自动推送会安全停止并提示先克隆远端仓库；<code>--local</code> 模式仍然可以使用。</p>
+</div>
+
+<p class="back-home"><a href="../index.html">&larr; 返回首页</a></p>
+
+</main>
+
+<p class="foot">本文由原始文本排版生成 · 内容未做增删</p>
+
+</body>
+</html>
