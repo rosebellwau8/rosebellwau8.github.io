@@ -123,6 +123,15 @@ test('generated metadata is HTML-escaped and article filenames are URL-encoded',
   assert.doesNotMatch(index, /<b>/);
 });
 
+test('generated index consistently uses the configured site name', () => {
+  const root = createFixture();
+  quietBuild(root);
+  const index = fs.readFileSync(path.join(root, 'docs', 'index.html'), 'utf8');
+
+  assert.match(index, /<title>jogtor的博客<\/title>/);
+  assert.match(index, /<h1>jogtor的博客<\/h1>/);
+});
+
 test('escapeHtml covers all HTML-significant characters', () => {
   assert.equal(escapeHtml(`&<>"'`), '&amp;&lt;&gt;&quot;&#39;');
 });

@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "node scripts/build.js",
+    "publish": "node scripts/publish.js",
     "test": "node --test",
     "check": "node --check scripts/build.js && node --test"
   }

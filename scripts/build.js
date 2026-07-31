@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const DEFAULT_ROOT = path.resolve(__dirname, '..');
+const SITE_NAME = 'jogtor的博客';
 const META_TAG_PATTERN = /<meta\b(?:[^>"']|"[^"]*"|'[^']*')*>/gi;
 const ATTRIBUTE_PATTERN = /([^\s=/>]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g;
 
@@ -171,13 +172,13 @@ function renderIndex(posts) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>博客</title>
+<title>${SITE_NAME}</title>
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
 <div class="container">
   <header>
-    <h1>博客</h1>
+    <h1>${SITE_NAME}</h1>
     <p class="subtitle">纯 HTML，零框架，写完就发。</p>
   </header>
   <main>
@@ -190,7 +191,7 @@ ${list}
   </footer>
 </div>
 </body>
-</html>`;
+</html>\n`;
 }
 
 function renderTagPage(tag, posts) {
