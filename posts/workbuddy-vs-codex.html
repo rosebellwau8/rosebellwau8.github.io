@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="title" content="WorkBuddy vs Codex：两个 AI 干活的工具，到底该选哪个？">
+<meta name="date" content="2026-08-01">
+<meta name="tags" content="AI,工具对比,WorkBuddy,Codex,效率">
+<title>WorkBuddy vs Codex：两个 AI 干活的工具，到底该选哪个？</title>
+<style>
+:root{
+  --bg:#0e1016; --paper:#171a24; --paper2:#1d2130;
+  --text:#e7e9f0; --muted:#9aa3b8; --line:#272c3c;
+  --brand:#7c8cff; --brand2:#a07bff;
+  --code-bg:#0a0c12; --code-text:#d7dce8;
+  --callout-bg:rgba(124,140,255,.10); --callout-line:#7c8cff;
+  --bad:#ff7a7a; --ok:#4ec9a8;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  line-height:1.85;font-size:16px;-webkit-font-smoothing:antialiased}
+.hero{background:linear-gradient(135deg,#2b2f63,#4a3a8a);color:#fff;padding:56px 24px 42px;text-align:center}
+.hero h1{font-size:2rem;margin:0 0 10px;font-weight:800;letter-spacing:.5px}
+.hero .sub{margin:0;opacity:.92;font-size:1rem}
+.hero .meta{margin-top:14px;font-size:.82rem;opacity:.85;letter-spacing:1px}
+.wrap{max-width:860px;margin:0 auto;padding:30px 22px 10px}
+.toc{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 22px;margin:26px 0 6px}
+.toc h2{margin:0 0 10px;font-size:1.02rem;color:var(--brand)}
+.toc ol{margin:0;padding-left:22px;columns:2}
+.toc li{margin:6px 0}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--brand)}
+h2{font-size:1.45rem;margin:42px 0 14px;padding-bottom:8px;border-bottom:2px solid rgba(124,140,255,.25);color:#f0f1f8}
+h3{font-size:1.16rem;margin:28px 0 8px;color:#dfe2f0}
+p{margin:14px 0;color:#cfd3e0}
+p.key{background:var(--callout-bg);border-left:3px solid var(--callout-line);border-radius:0 10px 10px 0;
+  padding:12px 16px;color:#e7e9f5}
+a{color:var(--brand)}
+a:hover{text-decoration:underline}
+ul,ol{margin:12px 0;padding-left:26px}
+li{margin:8px 0;color:#cfd3e0}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86em;
+  background:rgba(124,140,255,.16);color:#c3cbff;padding:2px 6px;border-radius:6px}
+.quote-box{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--brand);
+  border-radius:12px;padding:12px 18px;margin:20px 0}
+.quote-box .q-line{margin:6px 0;color:var(--muted);font-size:.92rem}
+.quote-box strong{color:#e7e9f5}
+hr.rule{border:none;border-top:1px solid var(--line);margin:36px 0}
+.bad{color:var(--bad);font-weight:700}
+.ok{color:var(--ok);font-weight:700}
+pre.code{background:var(--code-bg);color:var(--code-text);border-radius:12px;padding:18px 20px;overflow:auto;
+  margin:16px 0;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.85rem;line-height:1.7;white-space:pre}
+pre.code::before{content:attr(data-lang);position:absolute}
+.table-wrap{overflow-x:auto;margin:16px 0}
+table.dt{width:100%;border-collapse:collapse;background:var(--paper);
+  border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:.92rem}
+table.dt th,table.dt td{border-bottom:1px solid var(--line);padding:11px 15px;text-align:left;vertical-align:top}
+table.dt thead th{background:var(--paper2);color:#c3cbff;font-weight:700;white-space:nowrap}
+table.dt tbody tr:last-child td{border-bottom:none}
+.back-home{text-align:center;margin:40px 0 6px}
+.back-home a{display:inline-block;text-decoration:none;color:#fff;background:linear-gradient(135deg,#2b2f63,#4a3a8a);
+  padding:10px 24px;border-radius:999px;font-size:.95rem}
+.back-home a:hover{opacity:.9;text-decoration:none}
+.foot{text-align:center;color:var(--muted);font-size:.8rem;padding:8px 0 44px}
+@media(max-width:640px){.hero h1{font-size:1.5rem}h2{font-size:1.22rem}body{font-size:15px}.toc ol{columns:1}}
+</style>
+</head>
+<body>
+<header class="hero">
+<h1>WorkBuddy vs Codex：两个 AI 干活的工具，到底该选哪个？</h1>
+<p class="sub">广度优先 vs 深度优先，一张图说清你该选谁</p>
+<div class="meta">2026-08-01 ｜ AI · 工具对比 · WorkBuddy · Codex · 效率</div>
+</header>
+<main class="wrap">
+<nav class="toc"><h2>目录</h2><ol><li><a href="#s1">它们分别是什么？</a></li><li><a href="#s2">能帮你干什么？场景对比</a></li><li><a href="#s3">上手门槛：谁能用？</a></li><li><a href="#s4">定价对比</a></li><li><a href="#s5">数据在哪里跑？</a></li><li><a href="#s6">谁该选哪个？</a></li><li><a href="#s7">本质区别：一张图说清</a></li><li><a href="#s8">参考来源</a></li></ol></nav>
+<p class="key"><strong>一句话结论：</strong> WorkBuddy 是给所有职场人用的"AI 全能助手"，什么活都能接；Codex 是给程序员用的"AI 工程师"，只干写代码这一件事，但干得极深。如果你不写代码，Codex 跟你没关系；如果你要处理各种杂活，WorkBuddy 更对口。</p><hr class="rule"><h2 id="s1">它们分别是什么？</h2><h3>WorkBuddy：腾讯做的"AI 打工人"</h3><p>WorkBuddy 是腾讯出品的全场景 AI 办公工作台（注：工作台＝一个统一入口，把各种工具集合在一起）。它的定位不是"你问它答"的聊天机器人，而是一个能自己干活的 AI Agent（注：Agent＝代理人，你下指令，它自己规划步骤、调用工具、把活干完交给你）。</p><p>你用大白话说一句"帮我把这周的销售数据做成周报"，它就会自己拆解任务、打开表格、分析数据、排版成文档，最后交给你一份可以直接用的成果。</p><h3>Codex：OpenAI 做的"AI 程序员"</h3><p>Codex 是 OpenAI（就是做 ChatGPT 的那家公司）推出的云端编程 Agent。它只干一件事：软件工程。你给它一个任务，比如"把这个页面的加载速度优化一下"或者"修复登录模块的这个 bug（注：bug＝程序里的错误/缺陷）"，它会在云端一个独立的小环境里，自己读代码、改代码、跑测试（注：跑测试＝让程序自动检查改动有没有引入新问题），最后交给你一份代码变更。</p><p>它不是在你电脑上工作的，而是在 OpenAI 的服务器上，把你的整个代码仓库（注：代码仓库＝存放项目所有代码文件的地方，类似一个代码版的网盘）复制一份到隔离环境里操作。</p><hr class="rule"><h2 id="s2">能帮你干什么？场景对比</h2><p>这是两者差别最大的地方。</p><h3>WorkBuddy 能干的活</h3><p>WorkBuddy 覆盖三大类场景：</p><p class="key"><strong>日常办公：</strong> 写周报、整理会议纪要、汇总数据、批量处理文件、做 PPT、分析表格。这些占大多数职场人 60% 以上时间的杂活，它都能接。</p><p class="key"><strong>代码开发：</strong> 能做一些基础的编程辅助，但注意——这不是它的强项。它更像一个"什么都会一点"的通才。</p><p class="key"><strong>设计创意：</strong> 能生成图片、做简单的页面搭建、产出视频素材。</p><p>此外，它内置了 100 多个"领域专家"——你可以理解为预设好的专业角色，比如"招聘专家""法务专家""投研专家"，各自擅长不同领域的任务。还有一个叫 SkillHub 的市场，里面有 7 万多个现成技能可以直接调用。</p><h3>Codex 能干的活</h3><p>Codex 只干软件工程，但干得很深：</p><ul><li><strong>写新功能：</strong> 你描述需求，它读完整个项目的代码，理解架构，然后写出符合项目风格的新功能，打包成一份可直接合并的代码变更（程序员叫 PR，即 Pull Request，相当于"我改好了，请审阅合并"）。</li><li><strong>修 bug：</strong> 你贴一个报错信息或者描述一个异常行为，它自己定位问题、修复、验证。</li><li><strong>跑测试：</strong> 改完代码后自动运行项目的测试套件（注：测试套件＝一组自动检查程序，确保代码改动没有破坏原有功能），确认没有引入新问题。</li><li><strong>代码重构：</strong> 比如"把这个模块从旧框架迁移到新框架"。</li><li><strong>回答代码问题：</strong> "这个函数为什么这么写？""这段逻辑的边界条件是什么？"</li></ul><p>关键区别：Codex 操作的是整个代码仓库，不是单个文件。它理解项目的全局结构，改出来的东西能和现有代码融为一体。</p><h3>并行能力</h3><p>两者都支持"同时干多件事"：</p><ul><li>WorkBuddy 可以开多个 Agent 并行推进不同任务，比如一个在写周报，另一个在整理数据。</li><li>Codex 可以同时启动多个独立任务，每个在自己的隔离环境里跑，互不干扰。比如你可以同时让它修 3 个不同的 bug。</li></ul><hr class="rule"><h2 id="s3">上手门槛：谁能用？</h2><h3>WorkBuddy：零门槛</h3><p>下载客户端（或者直接在网页上体验），用自然语言说你要干什么就行。不需要会写代码，不需要懂任何技术概念。它的目标用户写得很明确：所有职场人，包括 HR、运营、行政、产品经理——完全非技术角色。</p><h3>Codex：有门槛</h3><p>要用 Codex，你需要：</p><ol><li><strong>有一个 GitHub 账号和代码仓库。</strong> GitHub 是程序员存放和管理代码的平台，如果你从来没有用过，说明 Codex 不是给你准备的。</li><li><strong>订阅 ChatGPT 付费套餐。</strong> 最便宜的 Plus 套餐每月 20 美元（约 145 元人民币），Pro 套餐每月 200 美元（约 1450 元）。</li><li><strong>能用英文描述技术需求。</strong> 虽然它也在支持中文，但核心场景是英文技术环境。</li></ol><p>简单说：如果你不知道"代码仓库"是什么，Codex 就不是你的工具。</p><hr class="rule"><h2 id="s4">定价对比</h2><div class="table-wrap"><table class="dt"><thead><tr><th></th><th>WorkBuddy</th><th>Codex</th></tr></thead><tbody><tr><td>费用模式</td><td>积分制（具体价格需官网查询）</td><td>包含在 ChatGPT 套餐中</td></tr><tr><td>最低月费</td><td>未公开（有免费体验入口）</td><td>$20/月（ChatGPT Plus）</td></tr><tr><td>高级方案</td><td>企业版（按需定价）</td><td>$200/月（ChatGPT Pro）</td></tr><tr><td>免费试用</td><td>有"在线体验"入口</td><td>无独立免费层</td></tr></tbody></table></div><p>WorkBuddy 的定价策略偏向"先试后买"，你可以直接在线体验再决定。Codex 没有独立的免费入口，你必须先是 ChatGPT 付费用户。</p><hr class="rule"><h2 id="s5">数据在哪里跑？</h2><p>这个问题对很多企业用户很关键。</p><p class="key"><strong>WorkBuddy：</strong> 有本地客户端模式。文件操作在你自己电脑的授权目录内进行，敏感数据可以不离开本地。同时也有云端助理模式，任务可以 7×24 小时在云端跑，你关了电脑也不影响。</p><p class="key"><strong>Codex：</strong> 纯云端。你的代码会被复制到 OpenAI 的服务器上的隔离环境（官方叫 sandbox，沙箱）中执行。这个沙箱没有外网访问权限——也就是说它不能偷偷把你的代码发到别处去。但代码确实离开了你的电脑，到了 OpenAI 的服务器上。</p><p>对于代码保密要求极高的团队（比如金融、军工），这一点需要认真评估。</p><hr class="rule"><h2 id="s6">谁该选哪个？</h2><p class="key"><strong>选 WorkBuddy 的人：</strong></p><ul><li>你的日常工作是各种杂活的混合：写文档、做表格、整理数据、偶尔需要点简单代码</li><li>你不会写代码，也不想学</li><li>你需要一个"什么都能扔给它"的万能入口</li><li>你在国内网络环境，需要稳定访问（WorkBuddy 是腾讯产品，无需翻墙）</li></ul><p class="key"><strong>选 Codex 的人：</strong></p><ul><li>你是软件工程师或者带开发团队</li><li>你有现成的代码项目需要维护、迭代、修 bug</li><li>你想让 AI 独立完成整个工程任务，而不只是给你建议</li><li>你已经是 ChatGPT 付费用户，网络环境可以稳定访问 OpenAI 服务</li></ul><p class="key"><strong>两个都不选的情况：</strong></p><ul><li>如果你只是想要"写代码时给点提示"，GitHub Copilot（注：另一个 AI 编程工具，嵌在编辑器里实时补全代码）更轻量、更即时。Codex 是"把整个任务扔给它"，不是"边写边帮"。</li><li>如果你只需要聊天问答、不需要 AI 真的去"干活"，普通 ChatGPT 对话就够了。</li></ul><hr class="rule"><h2 id="s7">本质区别：一张图说清</h2><pre class="code" data-lang=""><code>WorkBuddy = 广度优先
+  办公 ✓  代码 △（辅助级）  设计 ✓  数据分析 ✓
+  门槛：零
+
+Codex = 深度优先
+  办公 ✗  代码 ✓✓✓（工程级）  设计 ✗  数据分析 ✗
+  门槛：需要代码仓库 + 付费订阅</code></pre><p>一个是瑞士军刀，一个是手术刀。不存在"哪个更好"，只有"哪个更适合你手上的活"。</p><hr class="rule"><h2 id="s8">参考来源</h2><ol><li>WorkBuddy 官网首页 — <a href="https://www.workbuddy.ai/" target="_blank" rel="noopener">https://www.workbuddy.ai/</a> （2026-08-01 访问）</li><li>腾讯云 WorkBuddy 产品页 — <a href="https://cloud.tencent.com/product/workbuddy" target="_blank" rel="noopener">https://cloud.tencent.com/product/workbuddy</a> （2026-08-01 访问）</li><li>OpenAI Codex 官方发布介绍 — <a href="https://openai.com/index/introducing-codex/" target="_blank" rel="noopener">https://openai.com/index/introducing-codex/</a> （2025年5月发布，本次因网络限制未能在线复核）</li><li>OpenAI ChatGPT 定价页 — <a href="https://openai.com/chatgpt/pricing/" target="_blank" rel="noopener">https://openai.com/chatgpt/pricing/</a> （据2025年5月发布信息，本次因网络限制未能在线复核）</li><li>OpenAI Codex 帮助文档 — <a href="https://help.openai.com/en/articles/11369540-codex-in-chatgpt" target="_blank" rel="noopener">https://help.openai.com/en/articles/11369540-codex-in-chatgpt</a> （据2025年5月发布信息，本次因网络限制未能在线复核）</li></ol><div class="quote-box"><p class="q-line"><strong>透明声明：</strong> WorkBuddy 相关信息于 2026-08-01 从官网实时获取并验证。Codex 相关信息基于 OpenAI 2025 年 5 月官方发布内容，因当前网络环境无法访问 OpenAI 域名，未能在线复核。若 Codex 产品有重大更新，本文对应段落可能需要修订。</p></div>
+<p class="back-home"><a href="../index.html">&larr; 返回首页</a></p>
+</main>
+<p class="foot">本文由原始 Markdown 排版生成 · 暗色系列版</p>
+</body>
+</html>
