@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="title" content="个人品牌建站指南：先建立内容母体，再选择传播平台">
+<meta name="author" content="jogtor">
+<meta name="date" content="2026-08-03 07:21">
+<meta name="tags" content="个人品牌,建站,内容策略,公众号,知乎">
+<title>个人品牌建站指南：先建立内容母体，再选择传播平台</title>
+<style>
+:root{
+  --bg:#0f1117; --surface:#181b24; --surface-2:#20242f;
+  --text:#e8eaf0; --muted:#99a0b0; --border:#272b38;
+  --accent:#8b9cff; --accent-2:#5eead4;
+  --quote-bg:rgba(139,156,255,.08); --quote-line:#8b9cff;
+  --code-bg:#0b0d12; --code-text:#cdd3e0;
+  --bad:#ff8a8a; --ok:#7ee787;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  line-height:1.85;font-size:16px;-webkit-font-smoothing:antialiased}
+.hero{background:linear-gradient(135deg,#23264f,#3a2f63);color:#fff;padding:60px 24px 46px;text-align:center}
+.hero .kicker{display:inline-block;font-size:.78rem;letter-spacing:2px;color:#c3cbff;
+  border:1px solid rgba(195,203,255,.35);border-radius:999px;padding:4px 14px;margin-bottom:18px}
+.hero h1{font-size:2.05rem;margin:0 0 12px;font-weight:800;letter-spacing:.3px;line-height:1.4}
+.hero .sub{margin:0;opacity:.9;font-size:1.02rem;max-width:620px;margin-left:auto;margin-right:auto}
+.hero .meta{margin-top:16px;font-size:.8rem;opacity:.8;letter-spacing:1px}
+.wrap{max-width:860px;margin:0 auto;padding:30px 22px 10px}
+.toc{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 24px;margin:28px 0 10px}
+.toc h2{margin:0 0 12px;font-size:1.02rem;color:var(--accent);border:none;padding:0}
+.toc ol{margin:0;padding-left:22px;columns:2;column-gap:30px}
+.toc li{margin:7px 0;break-inside:avoid}
+.toc a{color:var(--text);text-decoration:none;font-size:.94rem}
+.toc a:hover{color:var(--accent)}
+h2{font-size:1.5rem;margin:46px 0 16px;padding-bottom:10px;border-bottom:2px solid rgba(139,156,255,.22);color:#f1f2f8}
+h2 .num{color:var(--accent);font-weight:800;margin-right:6px}
+h3{font-size:1.18rem;margin:30px 0 10px;color:#e2e5f2;padding-left:12px;border-left:3px solid var(--accent)}
+h4{font-size:1.02rem;margin:22px 0 8px;color:#d4d8e8}
+p{margin:14px 0;color:#d3d7e4}
+p.lead{font-size:1.06rem;color:#dfe2ee}
+strong{color:#f3f4fa;font-weight:700}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+ul,ol{margin:14px 0;padding-left:26px}
+li{margin:9px 0;color:#d3d7e4}
+ul li::marker{color:var(--accent)}
+ol li::marker{color:var(--accent);font-weight:600}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86em;
+  background:rgba(139,156,255,.15);color:#c3cbff;padding:2px 6px;border-radius:6px}
+blockquote{margin:20px 0;background:var(--quote-bg);border-left:4px solid var(--quote-line);
+  border-radius:0 12px 12px 0;padding:14px 20px;color:#e6e8f4;font-size:1.02rem}
+blockquote p{margin:6px 0;color:#e6e8f4}
+hr.rule{border:none;border-top:1px solid var(--border);margin:38px 0}
+.table-wrap{overflow-x:auto;margin:18px 0}
+table{border-collapse:collapse;width:100%;background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;font-size:.93rem}
+table th,table td{border-bottom:1px solid var(--border);padding:11px 15px;text-align:left;vertical-align:top}
+table thead th{background:var(--surface-2);color:#c3cbff;font-weight:700;white-space:nowrap}
+table tbody tr:last-child td{border-bottom:none}
+table tbody tr:hover{background:rgba(139,156,255,.05)}
+pre{background:var(--code-bg);color:var(--code-text);border:1px solid var(--border);border-radius:12px;
+  padding:18px 20px;overflow:auto;margin:16px 0;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.85rem;line-height:1.7;white-space:pre}
+.callout{background:rgba(94,234,212,.07);border:1px solid rgba(94,234,212,.25);border-radius:12px;
+  padding:14px 18px;margin:18px 0;color:#dffaf4;font-size:.96rem}
+.callout strong{color:var(--accent-2)}
+.back-home{text-align:center;margin:44px 0 6px}
+.back-home a{display:inline-block;text-decoration:none;color:#fff;background:linear-gradient(135deg,#23264f,#3a2f63);
+  padding:10px 24px;border-radius:999px;font-size:.95rem}
+.back-home a:hover{opacity:.9;text-decoration:none}
+.foot{text-align:center;color:var(--muted);font-size:.8rem;padding:10px 0 46px;margin-top:30px;
+  border-top:1px solid var(--border)}
+@media(max-width:640px){.hero h1{font-size:1.5rem}h2{font-size:1.24rem}body{font-size:15px}.toc ol{columns:1}}
+</style>
+</head>
+<body>
+<header class="hero">
+<span class="kicker">个人品牌 · 建站指南</span>
+<h1>个人品牌建站指南：先建立内容母体，再选择传播平台</h1>
+<p class="sub">不追全平台，先建立一套你能长期控制、可以积累的内容资产。</p>
+<div class="meta">作者：jogtor ｜ 写作时间：2026-08-03 07:21 ｜ 个人品牌 · 内容策略 · 建站</div>
+</header>
+<main class="wrap">
+<nav class="toc"><h2>目录</h2><ol>
+<li><a href="#s1">一、个人品牌究竟要建什么</a></li>
+<li><a href="#s2">二、"1＋1＋1"平台结构</a></li>
+<li><a href="#s3">三、真实的平台组合案例</a></li>
+<li><a href="#s4">四、五类创作者的平台配置</a></li>
+<li><a href="#s5">五、小白建站的三条技术路线</a></li>
+<li><a href="#s6">六、第一版需要七个部分</a></li>
+<li><a href="#s7">七、母稿如何进入不同平台</a></li>
+<li><a href="#s8">八、90 天启动计划</a></li>
+<li><a href="#s9">九、实例：医生兼 AI 实践者</a></li>
+<li><a href="#s10">十、最常见的十个错误</a></li>
+<li><a href="#s11">十一、何时扩展平台</a></li>
+<li><a href="#s12">十二、最终建议</a></li>
+</ol></nav>
+
+<p class="lead">很多人理解的"个人品牌建站"，是买一个域名、挑一套模板，再做一个漂亮的首页。网站上线以后，里面只有一段自我介绍、几篇旧文章和几个社交平台图标，过几个月便不再更新。</p>
+<p>真正有用的个人网站承担的是另一项任务：<strong>把散落在各个平台上的表达，组织成一份由自己控制、可以长期积累的内容资产。</strong></p>
+<p>对刚开始写作的人来说，最合理的起点也不是同时经营公众号、知乎、小红书、微博、B站和 YouTube，而是搭建一个最小系统：</p>
+<blockquote><p>一个自有网站，保存原件；一个主传播平台，寻找新读者；一个订阅入口，召回老读者。</p></blockquote>
+<p>这就是本文主推的"1＋1＋1"结构。它足够简单，一个人可以长期维护；也足够完整，未来无论增加视频、课程、产品还是自动分发，都不必推倒重来。</p>
+
+<hr class="rule">
+
+<h2 id="s1"><span class="num">一、</span>个人品牌究竟要建什么</h2>
+<p>个人品牌不是统一头像、固定颜色和一句响亮口号。那些属于识别系统，能够帮助别人记住你，却不能代替你的价值。</p>
+<p>一个可以持续生长的个人品牌，至少包含四层：</p>
+<div class="table-wrap"><table>
+<thead><tr><th>层级</th><th>要回答的问题</th><th>常见载体</th></tr></thead>
+<tbody>
+<tr><td>身份</td><td>你是谁，为什么值得听</td><td>关于页、个人经历、专业背景</td></tr>
+<tr><td>主题</td><td>你长期研究什么</td><td>栏目、标签、系列文章</td></tr>
+<tr><td>作品</td><td>你真正做过什么</td><td>文章、案例、代码、项目、课程</td></tr>
+<tr><td>关系</td><td>读者以后怎样找到你</td><td>公众号、邮件订阅、社交账号</td></tr>
+</tbody></table></div>
+<p>网站的作用，是把这四层放在同一个可检索、可引用、可持续更新的空间里。</p>
+<p>平台账号更像租来的门面。它可能带来人流，却会改变推荐规则、限制链接、调整内容格式，甚至关闭服务。个人网站更像档案馆和工作室：不保证每天有人经过，但作品的地址、结构和版本由作者自己决定。</p>
+<p>所以，建站的第一原则是：</p>
+<blockquote><p><strong>先确定什么内容值得成为长期资产，再考虑页面长什么样。</strong></p></blockquote>
+
+<hr class="rule">
+
+<h2 id="s2"><span class="num">二、</span>主推方案："1＋1＋1"平台结构</h2>
+
+<h3>1. 一个自有网站：内容母体</h3>
+<p>网站保存完整原文、项目记录、作者介绍和长期系列。它是唯一需要保持结构完整的版本，也应尽量使用自己的域名。</p>
+<p>适合放进网站的内容包括：</p>
+<ul>
+<li>完整文章与研究笔记；</li>
+<li>已经公开的项目复盘；</li>
+<li>方法论与系列目录；</li>
+<li>代码、工具和案例的说明页；</li>
+<li>演讲、采访、出版与合作记录；</li>
+<li>能代表作者阶段性判断的作品。</li>
+</ul>
+<p>网站不必追求日更。它首先要解决的是"以后还能找到"，其次才是"今天获得多少浏览"。</p>
+
+<h3>2. 一个主传播平台：接触陌生读者</h3>
+<p>个人网站通常缺少自然流量，所以需要选择一个拥有推荐、搜索或社区机制的平台。</p>
+<p>选择时不要问"哪个平台流量最大"，而要问三个问题：</p>
+<ol>
+<li>我的内容在这里是否符合读者预期？</li>
+<li>我是否愿意用这个平台的格式持续表达？</li>
+<li>这里出现的读者，是否可能继续阅读我的其他作品？</li>
+</ol>
+<p>常见对应关系如下：</p>
+<div class="table-wrap"><table>
+<thead><tr><th>内容类型</th><th>更适合的主传播平台</th></tr></thead>
+<tbody>
+<tr><td>深度问答、观点论证、专业解释</td><td>知乎</td></tr>
+<tr><td>经验清单、视觉卡片、生活化表达</td><td>小红书</td></tr>
+<tr><td>技术项目、开源工具、开发记录</td><td>GitHub＋技术社区</td></tr>
+<tr><td>演示、教程、知识讲解</td><td>B站或 YouTube</td></tr>
+<tr><td>行业快评、密集短观点</td><td>X、微博或即刻</td></tr>
+</tbody></table></div>
+<p>主传播平台只选一个。连续经营三个月以后，再依据真实数据决定是否增加第二个平台。</p>
+
+<h3>3. 一个订阅入口：召回认可你的读者</h3>
+<p>推荐算法擅长把内容送给可能感兴趣的陌生人，却不保证已经喜欢你的读者能看到下一篇。订阅入口解决的是"读者如何回来"。</p>
+<p>在中文环境中，公众号通常承担这一角色；在英文环境中，常见形式是 Email Newsletter。订阅渠道不必发布全部内容，精选反而更有价值。</p>
+<p>可以采用这样的分工：</p>
+<ul>
+<li>网站保存全部正式作品；</li>
+<li>主传播平台发布适合公共讨论的内容；</li>
+<li>公众号或 Newsletter 只发送本周、双周或本月最值得读的内容。</li>
+</ul>
+<p>这样，订阅读者收到的是经过选择的作品，而不是作者在多个平台上的流水账。</p>
+
+<h3>4. "＋0.5"：证据平台按需启用</h3>
+<p>有些个人品牌需要一个额外的证据层：</p>
+<ul>
+<li>程序员用 GitHub 证明自己真的写过代码；</li>
+<li>设计师用作品集证明视觉能力；</li>
+<li>研究者用论文、数据集或文献库证明研究过程；</li>
+<li>医生和行业专家用脱敏案例、流程图和项目复盘证明实践经验；</li>
+<li>独立开发者用产品页面和更新日志证明产品持续运行。</li>
+</ul>
+<p>这个平台不是固定更新任务。只有产生真实作品时才更新，所以称为"＋0.5"。</p>
+
+<hr class="rule">
+
+<h2 id="s3"><span class="num">三、</span>几种真实的平台组合，为什么有的能模仿，有的不能</h2>
+
+<h3>案例一：Simon Willison——网站是原件，其他平台负责送达</h3>
+<p>Simon Willison 长期以个人博客为内容核心，同时使用 Newsletter、GitHub、Mastodon 和 Bluesky。他的 GitHub 主页直接把这些入口并列出来；博客保存完整文章，GitHub 保存代码和实验，社交平台传播新内容，Newsletter 负责稳定送达。<a href="https://github.com/simonw" target="_blank" rel="noopener">Simon Willison 的 GitHub 主页</a></p>
+<p>这是一套很适合个人模仿的低成本结构：</p>
+<pre>个人网站：文章原件
+Newsletter：订阅读者
+社交平台：传播链接和短观点
+GitHub：代码、数据和实验</pre>
+<p>它的关键不在于使用了四个平台，而在于只有一个内容母体。其他平台各自承担单一职责，因此不会产生四份需要分别维护的原稿。</p>
+<p><strong>适合模仿者：</strong>技术作者、研究型作者、长期写作者。</p>
+
+<h3>案例二：阮一峰——固定栏目比"全平台运营"更有力量</h3>
+<p>阮一峰的网络日志长期保存文章，《科技爱好者周刊》固定每周五发布，并把完整内容开源在 GitHub，允许读者通过 Issue 投稿和推荐项目。个人网站的周刊分类已经形成数百篇连续档案，GitHub 仓库则保存正文与协作记录。<a href="https://www.ruanyifeng.com/blog/weekly/" target="_blank" rel="noopener">阮一峰的网络日志</a>、<a href="https://github.com/ruanyf/weekly" target="_blank" rel="noopener">周刊 GitHub 仓库</a></p>
+<p>这套组合说明：个人品牌未必需要覆盖最多的平台，<strong>固定主题、固定格式、固定交付时间</strong>更容易形成读者记忆。</p>
+<p><strong>适合模仿者：</strong>有持续资料来源，愿意做周刊、月报、案例观察或固定专栏的人。</p>
+<p>小白可以把"周刊"缩小为：</p>
+<ul>
+<li>每周一篇"本周工作记录"；</li>
+<li>每两周一篇"我真正用过的 AI 工具"；</li>
+<li>每月一篇"项目得失"；</li>
+<li>每月一篇"本月最值得保留的五个判断"。</li>
+</ul>
+<p>规律比频率更重要。月更但连续两年，通常比日更一个月更能形成品牌。</p>
+
+<h3>案例三：MacTalk——公众号负责关系，网站负责长期存在</h3>
+<p>池建强长期写公众号 MacTalk，同时保留个人博客，并把墨问发展为笔记发布、订阅和知识管理产品。今天看这套结构，公众号承担成熟读者触达，博客保存长期内容，墨问承载碎片笔记、订阅和产品关系。<a href="https://macshuo.com/" target="_blank" rel="noopener">MacTalk 个人博客</a></p>
+<p>中文创作者最值得借鉴的是两点：</p>
+<ol>
+<li>正式作品与碎片表达分开；</li>
+<li>公众号服务已经认可作者的人，不承担全部获客任务。</li>
+</ol>
+<p>但不能照搬他的完整组合。墨问是他自己创办的产品，公众号读者也来自十余年的积累。小白应借鉴职责分工，而不是复制平台名单。</p>
+<p><strong>适合模仿者：</strong>以中文长文为主，已经有少量稳定读者，希望逐渐形成订阅关系的人。</p>
+
+<h3>案例四：James Clear——网站、Newsletter 和产品形成闭环</h3>
+<p>James Clear 以个人网站保存文章，以固定结构的"3-2-1 Newsletter"触达读者：每期包含 3 个自己的想法、2 段他人引语和 1 个留给读者的问题。这个简单格式已经形成数百万订阅读者。<a href="https://jamesclear.com/3-2-1" target="_blank" rel="noopener">3-2-1 Newsletter</a></p>
+<p>他的网站还承担图书、课程和演讲的商业入口。内容不是为了给网站填充页面；网站把长期文章、订阅关系和产品组织到了一起。</p>
+<p><strong>适合模仿者：</strong>已有明确主题，未来希望出版、咨询、授课或开发知识产品的人。</p>
+<p>值得学习的是"固定栏目＋稳定送达"，不必追求他的规模。小白甚至可以从每月一次的"3 个观察＋2 个案例＋1 个问题"开始。</p>
+
+<h3>案例五：花叔——产品天然生成多平台素材</h3>
+<p>花叔目前使用公众号、个人网站、GitHub、B站、YouTube、小红书和 X。看上去是一个庞大的全平台矩阵，但他的内容来自真实产品：代码进入 GitHub，演示进入视频平台，截图和经验适合小红书，完整复盘进入公众号和网站，X 连接开发者。<a href="https://github.com/alchaincyf/huashu-design" target="_blank" rel="noopener">花叔的平台与项目入口</a></p>
+<p>这套组合成立，是因为一次产品开发可以自然产生多种素材，而不是因为"个人品牌必须全平台"。</p>
+<p><strong>适合模仿者：</strong>独立开发者、设计师、工具作者、能稳定产出可演示作品的人。</p>
+<p><strong>不适合模仿者：</strong>主要写深度文章，却需要为了经营视频平台额外学习录制、剪辑和镜头表达的人。</p>
+
+<h3>案例六：任易——广泛分发是成熟系统的结果</h3>
+<p>任易把文章发布到公众号、知乎、微博、头条号和百家号，并进一步建设浏览器控制、平台适配、长图生成、发布追踪和数据回查系统。这种结构追求的是覆盖和运营效率。</p>
+<p>它适合高产、已经验证内容价值、能够从多个平台获得读者或收入的人。对小白而言，五个平台意味着五套格式、五种读者预期和五组维护工作。自动分发也只有在手工流程已经稳定后才值得建设。</p>
+<p>正确的学习顺序是：</p>
+<pre>先形成内容母稿
+→ 再验证两个平台
+→ 再制定平台适配规则
+→ 再半自动写入草稿
+→ 最后考虑全自动分发</pre>
+<p><strong>适合模仿者：</strong>成熟自媒体、内容团队、已经有稳定发布量的个人作者。</p>
+
+<h3>案例七：Dan Shipper 与 Every——不要把团队模式误认成个人捷径</h3>
+<p>Dan Shipper 以 Every 为核心，持续发表 AI 专栏<code>Chain of Thought</code>，制作<code>AI &amp; I</code>播客，同时开发 AI 产品。Every 本身是一家内容与应用 AI 实验室，并非单人账号。<a href="https://danshipper.com/" target="_blank" rel="noopener">Dan Shipper 个人主页</a>、<a href="https://every.to/@danshipper" target="_blank" rel="noopener">Every 作者页</a></p>
+<p>网站、Newsletter、播客、视频、产品和社交平台同时运行，是因为背后已经有组织能力。小白若照搬平台组合，会同时进入写作、音频、视频和产品四种生产流程。</p>
+<p>可以借鉴他的"把公司和工作当作实验室"，不能照搬他的更新规模。</p>
+
+<hr class="rule">
+
+<h2 id="s4"><span class="num">四、</span>五类创作者，分别怎样配置平台</h2>
+
+<h3>A. 深度文字型：网站＋知乎＋公众号</h3>
+<p>这是本文最推荐的中文组合。</p>
+<pre>网站：全部正式文章和系列目录
+知乎：公共问题、观点论证、专业解释
+公众号：每周或每月精选
+小红书：只有天然适合卡片化时才发布</pre>
+<p><strong>适合：</strong>医生、教师、咨询师、研究者、知识型写作者、方法论作者。</p>
+
+<h3>B. 视觉经验型：网站＋小红书＋公众号</h3>
+<pre>网站：作品集、完整案例、服务介绍
+小红书：图片、过程、经验清单
+公众号：长故事、复盘和稳定读者</pre>
+<p><strong>适合：</strong>设计师、摄影师、手工创作者、生活方式作者。</p>
+
+<h3>C. 技术项目型：网站＋GitHub＋一个技术社区</h3>
+<pre>网站：为什么做、怎样做、项目复盘
+GitHub：代码、文档、版本和 Issue
+知乎/X/技术社区：传播与讨论</pre>
+<p><strong>适合：</strong>程序员、AI 工具作者、数据项目作者、开源贡献者。</p>
+
+<h3>D. 视频讲解型：网站＋一个视频平台＋订阅入口</h3>
+<pre>网站：视频目录、文字稿、资料下载
+B站或YouTube：主要内容
+公众号或Newsletter：新节目通知和精选摘要</pre>
+<p><strong>适合：</strong>课程型创作者、设备演示、软件教程、公开讲解者。</p>
+<p>小白只选 B站或 YouTube 中的一个作为主平台。等视频生产流程稳定后，再做无额外剪辑的同步分发。</p>
+
+<h3>E. 专业服务型：网站＋搜索型平台＋私域触达</h3>
+<pre>网站：专业身份、案例、服务范围、联系方式
+知乎/搜索引擎内容：回答潜在客户的问题
+公众号/邮件：持续建立信任</pre>
+<p><strong>适合：</strong>医生科普、律师、顾问、培训师、自由职业者。</p>
+<p>这一类型尤其要区分"提供知识"与"作出个别化专业判断"。医疗、法律和金融内容应明确边界，避免用公开文章替代正式服务。</p>
+
+<hr class="rule">
+
+<h2 id="s5"><span class="num">五、</span>小白建站的三条技术路线</h2>
+
+<h3>路线一：托管式建站——最省心</h3>
+<p>代表：WordPress.com、托管式博客或国内成熟建站服务。</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li>不需要管理服务器；</li>
+<li>后台直接写作；</li>
+<li>模板、备份和安全由平台处理；</li>
+<li>适合完全不想接触代码的人。</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>免费方案往往带平台标识或功能限制；</li>
+<li>自定义能力与导出能力需要提前检查；</li>
+<li>长期费用可能高于静态站。</li>
+</ul>
+<p>WordPress.com 可以免费开始，并提供内置托管；付费方案再增加域名和其他功能。<a href="https://wordpress.com/" target="_blank" rel="noopener">WordPress.com 官方介绍</a></p>
+<p><strong>适合：</strong>希望一小时内上线，先验证自己能否持续写作的人。</p>
+
+<h3>路线二：静态网站——本文主推的长期方案</h3>
+<p>代表：Astro、Hugo、Jekyll＋GitHub＋Cloudflare Pages 或 GitHub Pages。</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li>文章通常以 Markdown 文件保存，迁移容易；</li>
+<li>速度快，攻击面小，维护费用低；</li>
+<li>Git 天然保存版本历史；</li>
+<li>很适合 AI 辅助建站和批量处理内容；</li>
+<li>可以使用独立域名。</li>
+</ul>
+<p>Cloudflare Pages 免费方案目前提供每月 500 次构建、无限静态请求和带宽，足以支持普通个人网站。<a href="https://pages.cloudflare.com/" target="_blank" rel="noopener">Cloudflare Pages 官方定价</a> GitHub Pages 也支持 GitHub Free 的公开仓库与自定义域名。<a href="https://docs.github.com/articles/setting-up-a-custom-domain-with-pages" target="_blank" rel="noopener">GitHub Pages 自定义域名文档</a></p>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>初次配置域名、构建和 Git 需要学习；</li>
+<li>通常没有传统后台；</li>
+<li>评论、搜索、表单等功能需要单独选择方案。</li>
+</ul>
+<p><strong>适合：</strong>愿意借助 AI 和 Git 完成初次搭建，希望低成本长期控制内容的人。</p>
+
+<h3>路线三：Ghost 或自托管 WordPress——有明确商业需求后再用</h3>
+<p>Ghost 把网站、Newsletter、会员和付费订阅结合在一起，适合专业出版者；官方托管方案面向个人博客和 Newsletter，但存在持续月费。<a href="https://ghost.org/" target="_blank" rel="noopener">Ghost 官方介绍</a>、<a href="https://ghost.org/pricing/" target="_blank" rel="noopener">Ghost 官方价格</a></p>
+<p>自托管 WordPress 和 Ghost 拥有更强的后台、插件、会员及商业能力，但也带来服务器、安全更新、备份、邮件送达和故障处理。</p>
+<p><strong>适合：</strong>已经确认需要会员、付费订阅、多人编辑或复杂内容管理的人。</p>
+<p><strong>不适合：</strong>文章还没稳定写，却先花数周研究服务器和插件的人。</p>
+
+<h3>关于中国内地访问与备案</h3>
+<p>如果网站托管在中国内地服务器，需要办理 ICP 备案；托管在非中国内地服务器，一般不需要 ICP 备案。<a href="https://help.aliyun.com/zh/icp-filing/basic-icp-service/product-overview/icp-filing-application-for-enterprises-outside-the-chinese-mainland" target="_blank" rel="noopener">阿里云 ICP 备案说明</a></p>
+<p>这只是合规位置的区别，不代表境外托管在中国内地一定拥有同样的访问速度。面向内地读者时，应实际测试移动、联通、电信和手机网络的加载情况。不要为了暂时用不上"国内极速访问"，一开始就进入服务器和备案工程；也不要在决定商业化后仍忽略相应资质和平台规则。</p>
+
+<hr class="rule">
+
+<h2 id="s6"><span class="num">六、</span>一个合格的个人网站，第一版只需要七个部分</h2>
+
+<h3>1. 首页</h3>
+<p>回答三句话：</p>
+<ul>
+<li>我是谁；</li>
+<li>我长期写什么；</li>
+<li>第一次来的人从哪里开始读。</li>
+</ul>
+<p>不要用大段空泛宣言占满首屏。首页的核心任务是把读者送到作品。</p>
+
+<h3>2. 关于页</h3>
+<p>建议包含：</p>
+<ul>
+<li>一段简明身份介绍；</li>
+<li>为什么开始这个网站；</li>
+<li>长期关注的三到五个主题；</li>
+<li>有代表性的经历与项目；</li>
+<li>联系方式和内容边界。</li>
+</ul>
+<p>关于页不是简历全文。只保留能帮助读者理解作品的经历。</p>
+
+<h3>3. 文章页</h3>
+<p>每篇文章至少有：</p>
+<ul>
+<li>标题；</li>
+<li>发布日期和更新日期；</li>
+<li>摘要；</li>
+<li>正文；</li>
+<li>标签或所属系列；</li>
+<li>原始来源与参考资料；</li>
+<li>相关文章。</li>
+</ul>
+
+<h3>4. 主题或栏目页</h3>
+<p>栏目不是给网站装修用的。一个栏目应该代表作者愿意连续研究两年以上的问题。</p>
+<p>小白先设三到五个栏目。超过七个，通常说明分类标准还没想清楚。</p>
+
+<h3>5. 项目页</h3>
+<p>项目页回答：</p>
+<ul>
+<li>这个问题为什么值得解决；</li>
+<li>我做了什么；</li>
+<li>当前进展如何；</li>
+<li>有哪些结果、证据和限制；</li>
+<li>下一步是什么。</li>
+</ul>
+<p>失败或暂停项目也可以保留。真实演变比"每个项目都成功"更能建立信任。</p>
+
+<h3>6. 从这里开始</h3>
+<p>为新读者选择 5—10 篇代表作，按主题或阅读顺序排列。读者不应被迫从几百篇文章中自己寻找入口。</p>
+
+<h3>7. 订阅与联系</h3>
+<p>只提供你愿意长期维护的联系方式。没有必要同时放十个平台图标。</p>
+
+<hr class="rule">
+
+<h2 id="s7"><span class="num">七、</span>内容怎样从一篇母稿进入不同平台</h2>
+<p>不要为每个平台从零写一遍。先写平台无关的母稿，再做渠道适配。</p>
+<p>一篇母稿建议包含：</p>
+<pre>yaml
+content_id: 唯一内容编号
+title: 母稿标题
+summary: 文章摘要
+knowledge_line: 长期知识主线
+tags: 标签
+cover: 封面图
+status: draft/reviewed/published
+created_at: 创建日期
+updated_at: 更新日期</pre>
+<p>分发时再转换：</p>
+<div class="table-wrap"><table>
+<thead><tr><th>平台</th><th>主要调整</th></tr></thead>
+<tbody>
+<tr><td>网站</td><td>保留完整结构、参考资料和更新记录</td></tr>
+<tr><td>知乎</td><td>对准一个明确问题，强化论点和证据</td></tr>
+<tr><td>公众号</td><td>优化开头、阅读节奏与移动端排版</td></tr>
+<tr><td>小红书</td><td>提取一个传播矛盾，压缩成卡片或短篇</td></tr>
+<tr><td>视频</td><td>改成口语脚本，增加演示和场景</td></tr>
+</tbody></table></div>
+<p>母稿是内容原件，平台版是发行版本。这样可以避免同一个观点在五个平台演变成五份互不一致的文章。</p>
+
+<hr class="rule">
+
+<h2 id="s8"><span class="num">八、</span>一个适合小白的 90 天启动计划</h2>
+
+<h3>第 1—7 天：确定最小定位</h3>
+<p>完成四件事：</p>
+<ol>
+<li>写一句身份说明；</li>
+<li>确定三个长期主题；</li>
+<li>选择一个主传播平台；</li>
+<li>购买或确定域名。</li>
+</ol>
+<p>合格的定位句应当具体：</p>
+<blockquote><p>我是一名在基层医院工作的精神科医生，记录 AI 怎样进入临床工作、医院管理和个人知识系统。</p></blockquote>
+<p>它比"关注科技、成长与未来"更容易让读者理解。</p>
+
+<h3>第 8—21 天：上线最小网站</h3>
+<p>只做：首页、关于、文章、项目、从这里开始。</p>
+<p>先导入 5 篇代表作，不必迁移全部历史文章。确保：</p>
+<ul>
+<li>手机可以正常阅读；</li>
+<li>标题、日期和链接正确；</li>
+<li>每篇文章有稳定 URL；</li>
+<li>网站有基本备份；</li>
+<li>图片来源和个人隐私已经检查。</li>
+</ul>
+
+<h3>第 22—45 天：建立内容母稿</h3>
+<p>连续发布 6—10 篇，观察哪些主题最有材料、最容易持续。此时不要急着增加平台。</p>
+<p>每篇文章记录：</p>
+<ul>
+<li>内容 ID；</li>
+<li>知识主线；</li>
+<li>发布平台；</li>
+<li>发布时间；</li>
+<li>文章链接；</li>
+<li>后续可补充的案例；</li>
+<li>读者提出的好问题。</li>
+</ul>
+
+<h3>第 46—70 天：建立主传播渠道</h3>
+<p>把适合的文章发布到一个主平台，并观察：</p>
+<ul>
+<li>什么标题吸引了正确的读者；</li>
+<li>哪些评论暴露了论证缺口；</li>
+<li>哪些内容带来主页访问和关注；</li>
+<li>哪些高流量内容与长期定位无关。</li>
+</ul>
+<p>不要只看阅读量。一个能带来十位长期读者的专业回答，可能比十万次无关曝光更有价值。</p>
+
+<h3>第 71—90 天：增加订阅入口</h3>
+<p>建立公众号或 Newsletter，并发布第一期精选：</p>
+<ul>
+<li>本阶段最值得读的三篇文章；</li>
+<li>一段只写给订阅读者的近况；</li>
+<li>下一阶段准备研究的问题；</li>
+<li>网站与代表作入口。</li>
+</ul>
+<p>到 90 天结束时，再决定是否增加小红书、GitHub 或视频平台。</p>
+
+<hr class="rule">
+
+<h2 id="s9"><span class="num">九、</span>实例：一位医生兼 AI 实践者怎样搭建个人品牌</h2>
+<p>假设一位精神科医生同时负责医院管理，长期使用 AI 改造病历质控、知识触达和日常写作，也关注个人方法论、运动和工具。他的内容垂直度不算极高，但有一条稳定主线：<strong>一个普通专业人士怎样借 AI 扩大自己的能力边界。</strong></p>
+<p>适合他的结构是：</p>
+<pre>个人网站：长期母体
+├─ 工作记录：AI怎样进入真实工作
+├─ 项目：病历质控、知识库、小工具
+├─ 方法：判断、写作、学习和复盘
+└─ 思考：职业、技术与个人经验
+
+知乎：主传播平台
+├─ AI医疗争议
+├─ Agent与工具比较
+├─ 专业事实核查
+└─ 可被公共问题承载的观点文章
+
+公众号：精选触达
+├─ 完整度最高的长文
+├─ 阶段性项目总结
+└─ 有个人经历和叙事的文章
+
+小红书：选择性改编
+├─ 流程图
+├─ 清单卡
+└─ 一篇文章中的单一强观点
+
+GitHub：项目证据
+├─ 脱敏代码
+├─ Skill
+├─ 模板
+└─ 项目文档</pre>
+<p>这个人不需要立即经营 B站、微博、头条和百家号。视频会引入新的生产流程；广泛分发会增加维护，却未必带来匹配的读者。</p>
+<p>他的最低成本运行方式可以是：</p>
+<ol>
+<li>用 Markdown 写一份母稿；</li>
+<li>发布到静态个人网站；</li>
+<li>适合公共讨论的版本进入知乎；</li>
+<li>每周或每两周从中选择一篇进入公众号；</li>
+<li>只有出现天然可视化结构时，才转成小红书；</li>
+<li>只有形成可公开项目时，才更新 GitHub。</li>
+</ol>
+<p>这个系统没有要求每篇文章进入所有平台，也不需要立即开发自动发布工具。等到连续数月稳定向三个以上平台发布，重复操作真正成为负担，再考虑自动生成平台版本、自动写入草稿和人工确认发布。</p>
+
+<hr class="rule">
+
+<h2 id="s10"><span class="num">十、</span>小白最常见的十个错误</h2>
+
+<h3>1. 先研究模板，后考虑写什么</h3>
+<p>模板只能改善展示，不能产生持续内容。先确定代表作和栏目。</p>
+
+<h3>2. 把网站当作另一个同步平台</h3>
+<p>如果网站只是复制公众号文章，却没有目录、系列、更新记录和项目关系，它尚未成为内容母体。</p>
+
+<h3>3. 一开始注册所有平台</h3>
+<p>账号数量会制造"我已经开始"的错觉，随后转化为更新压力。先经营一个主渠道。</p>
+
+<h3>4. 每个平台都发完全相同的版本</h3>
+<p>平台读者进入内容的动机不同。同一母稿可以复用，标题、开头和结构需要适配。</p>
+
+<h3>5. 为了 SEO 写大量低价值文章</h3>
+<p>个人品牌依赖可信判断。大量拼凑内容可能带来搜索曝光，也会稀释作者形象。</p>
+
+<h3>6. 只看粉丝，不积累作品</h3>
+<p>粉丝是平台统计，作品才是跨平台资产。每季度至少形成一篇代表作或一个完整项目。</p>
+
+<h3>7. 过早设计付费体系</h3>
+<p>先证明有人持续需要你的免费内容，再建设课程、会员和付费订阅。</p>
+
+<h3>8. 没有备份和迁移方案</h3>
+<p>文章应保留 Markdown、Word 或其他可迁移原件。图片、元数据和发布链接也要保存。</p>
+
+<h3>9. 自动化早于流程稳定</h3>
+<p>如果连"哪篇文章该发哪个平台"都没有稳定规则，自动化只会加速混乱。</p>
+
+<h3>10. 让个人品牌反过来绑架个人</h3>
+<p>平台需要高频、热点和互动，作者未必需要。个人品牌的最终目的，是帮助作品找到合适的读者，而不是让作者永久服务于平台算法。</p>
+
+<hr class="rule">
+
+<h2 id="s11"><span class="num">十一、</span>何时才应该扩展平台</h2>
+<p>满足以下条件中的三个，再考虑增加新平台：</p>
+<ul>
+<li>已连续发布至少三个月；</li>
+<li>已形成十篇以上可代表自己的作品；</li>
+<li>主平台内容类型和读者反馈基本稳定；</li>
+<li>新平台能接触到明显不同且重要的读者；</li>
+<li>现有内容可以低成本转制；</li>
+<li>已经有人主动要求视频、邮件、课程或其他形式；</li>
+<li>新平台能够承接明确产品或服务；</li>
+<li>每周有稳定时间维护评论和更新。</li>
+</ul>
+<p>如果增加一个平台后，原有写作质量明显下降，说明扩展过早。</p>
+
+<hr class="rule">
+
+<h2 id="s12"><span class="num">十二、</span>最终建议：先成为一个有地址的作者</h2>
+<p>小白个人品牌建站可以压缩成四个动作：</p>
+<ol>
+<li>用独立域名建立一个简洁网站；</li>
+<li>选一个最匹配内容的传播平台；</li>
+<li>建立一个能召回读者的订阅入口；</li>
+<li>持续把真实作品放进同一套目录。</li>
+</ol>
+<p>最推荐的中文文字型组合是：</p>
+<blockquote><p><strong>个人网站＋知乎＋公众号，按需增加小红书或 GitHub。</strong></p></blockquote>
+<p>技术作者可以借鉴 Simon Willison 和阮一峰：网站与项目是原件，社交平台负责传播。中文长文作者可以借鉴 MacTalk：公众号负责关系，网站负责长期存在。产品型作者可以在真正产生作品以后，再借鉴花叔的多平台矩阵。任易式全网自动分发则应放在内容与流程都已经成熟之后。</p>
+<p>网站第一版不需要宏大。只要它拥有稳定地址、清楚身份、几个长期主题和五篇真正代表你的作品，就已经完成了最重要的工作：</p>
+<blockquote><p>让读者以后还能找到你，也让今天写下的东西不会随着信息流一起消失。</p></blockquote>
+
+<div class="callout"><strong>一句话收尾：</strong> 先有内容母体，再谈传播平台。地址稳定，作品才不会被时间冲走。</div>
+
+<p class="back-home"><a href="#top">&uarr; 返回顶部</a></p>
+</main>
+<p class="foot">本文由 Markdown 排版生成 · 深色系版 · 2026-08-03</p>
+</body>
+</html>
