@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>我让 AI 把脚本里的规矩抽成了 Skill，第二天坑全回来了</title>
+<meta name="title" content="我让 AI 把脚本里的规矩抽成了 Skill，第二天坑全回来了">
+<meta name="author" content="jogtor">
+<meta name="date" content="2026-08-02 08:41">
+<meta name="tags" content="技术,随笔">
+<style>
+  :root{
+    --paper:#f7f4ef;
+    --paper-2:#fdfbf7;
+    --ink:#1c1b19;
+    --ink-soft:#46433d;
+    --muted:#8c867b;
+    --line:#e6dfd3;
+    --accent:#d6452f;        /* 朱红：危险/翻车 */
+    --accent-soft:#f7e3dc;
+    --rail:#2f3e4e;          /* 铁轨色：脚本/硬约束 */
+    --rail-soft:#e7ecf1;
+    --sign:#9a6b1f;          /* 路标色：skill/软指导 */
+    --sign-soft:#f4ead4;
+    --good:#2f6b4f;
+    --good-soft:#e4efe7;
+    --maxw:760px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC","Noto Sans CJK SC",system-ui,-apple-system,sans-serif;
+    font-size:18px;
+    line-height:1.85;
+    letter-spacing:.01em;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  /* 阅读进度条 */
+  #progress{
+    position:fixed;top:0;left:0;height:3px;width:0%;
+    background:linear-gradient(90deg,var(--accent),#e8843f);
+    z-index:99;transition:width .1s linear;
+  }
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    position:relative;
+    padding:96px 24px 72px;
+    max-width:var(--maxw);
+    margin:0 auto;
+    text-align:left;
+  }
+  .kicker{
+    display:inline-block;
+    font-size:13px;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:700;
+    margin-bottom:22px;
+    padding-bottom:8px;
+    border-bottom:2px solid var(--accent);
+  }
+  h1.title{
+    font-family:"Songti SC","SimSun",Georgia,"Times New Roman",serif;
+    font-weight:700;
+    font-size:clamp(30px,6vw,46px);
+    line-height:1.3;
+    letter-spacing:.01em;
+    margin:0 0 18px;
+    color:var(--ink);
+  }
+  .dek{
+    font-size:clamp(17px,2.6vw,21px);
+    color:var(--ink-soft);
+    line-height:1.7;
+    margin:0 0 32px;
+    max-width:62ch;
+  }
+  .byline{
+    font-size:14px;color:var(--muted);letter-spacing:.04em;
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    margin:0 0 26px;
+  }
+  .byline .by-author{color:var(--ink-soft);font-weight:700;letter-spacing:.02em;}
+  .byline .dot{width:4px;height:4px;border-radius:50%;background:var(--muted);}
+
+  .divider{
+    max-width:var(--maxw);margin:0 auto;
+    border:0;border-top:1px solid var(--line);
+  }
+
+  /* ---------- 正文 ---------- */
+  main{padding:56px 0 40px;}
+  section{margin:0 0 56px;}
+  h2.sec{
+    font-size:clamp(23px,4vw,29px);
+    font-weight:700;
+    margin:0 0 6px;
+    display:flex;align-items:baseline;gap:14px;
+    letter-spacing:.01em;
+  }
+  h2.sec .num{
+    font-family:Georgia,serif;
+    font-size:.62em;
+    color:var(--accent);
+    font-weight:700;
+    flex:none;
+    border:1.5px solid var(--accent);
+    border-radius:50%;
+    width:1.9em;height:1.9em;
+    display:inline-flex;align-items:center;justify-content:center;
+  }
+  p{margin:0 0 22px;}
+  p.lead::first-letter{
+    font-family:"Songti SC",Georgia,serif;
+    font-size:3.4em;
+    float:left;
+    line-height:.82;
+    padding:6px 12px 2px 0;
+    color:var(--accent);
+    font-weight:700;
+  }
+  strong{color:var(--ink);font-weight:700;}
+  code.k{
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:1px 7px;
+    font-family:"SF Mono",Consolas,"Courier New",monospace;
+    font-size:.86em;
+    color:var(--rail);
+  }
+
+  /* 卡片：三处「等着」 */
+  .cards{display:grid;gap:16px;margin:26px 0 28px;}
+  .card{
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    border-left:4px solid var(--accent);
+    border-radius:10px;
+    padding:18px 22px;
+  }
+  .card .ct{font-weight:700;margin-bottom:6px;font-size:17px;}
+  .card .cb{margin:0;color:var(--ink-soft);font-size:16.5px;line-height:1.75;}
+
+  /* Pull quote */
+  blockquote.pull{
+    margin:40px 0;
+    padding:8px 0 8px 30px;
+    border-left:4px solid var(--accent);
+    font-family:"Songti SC",Georgia,serif;
+    font-size:clamp(22px,3.6vw,30px);
+    line-height:1.5;
+    color:var(--ink);
+    font-weight:700;
+    letter-spacing:.01em;
+  }
+  blockquote.pull .sub{
+    display:block;
+    font-family:"PingFang SC",sans-serif;
+    font-size:15px;font-weight:400;color:var(--muted);
+    margin-top:14px;letter-spacing:.02em;
+  }
+
+  /* 标签 chip */
+  .chips{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 26px;}
+  .chip{
+    font-size:14px;padding:5px 13px;border-radius:999px;
+    border:1px solid var(--line);background:var(--paper-2);
+    color:var(--ink-soft);
+  }
+  .chip.rail{border-color:var(--rail);color:var(--rail);background:var(--rail-soft);}
+  .chip.sign{border-color:var(--sign);color:var(--sign);background:var(--sign-soft);}
+
+  /* 表格 */
+  .table-wrap{overflow-x:auto;margin:24px 0 28px;border-radius:12px;border:1px solid var(--line);}
+  table{border-collapse:collapse;width:100%;min-width:560px;font-size:16px;background:var(--paper-2);}
+  thead th{
+    text-align:left;padding:16px 18px;font-weight:700;color:#fff;vertical-align:top;line-height:1.4;
+  }
+  thead th.dim{background:var(--ink-soft);width:30%;}
+  thead th.h-rail{background:var(--rail);}
+  thead th.h-sign{background:var(--sign);}
+  tbody td{padding:15px 18px;border-top:1px solid var(--line);vertical-align:top;line-height:1.7;}
+  tbody td.dim{font-weight:600;color:var(--ink);background:var(--paper);}
+  tbody td.c-rail{background:var(--rail-soft);color:var(--rail);}
+  tbody td.c-sign{background:var(--sign-soft);color:var(--sign);}
+  tbody tr:hover td{filter:brightness(.985);}
+
+  /* 用法说明 + 例子卡片 */
+  .note{
+    background:var(--paper-2);
+    border:1px dashed var(--line);
+    border-radius:12px;
+    padding:20px 24px;
+    margin:24px 0;
+    font-size:16.5px;color:var(--ink-soft);
+  }
+  .note b{color:var(--ink);}
+  .example{
+    border-radius:12px;padding:18px 22px;margin:16px 0;
+    border:1px solid var(--line);font-size:16.5px;line-height:1.75;
+  }
+  .example.rail{background:var(--rail-soft);border-left:4px solid var(--accent);}
+  .example.sign{background:var(--good-soft);border-left:4px solid var(--good);}
+  .example .et{font-weight:700;margin-bottom:6px;display:block;}
+  .example.rail .et{color:var(--accent);}
+  .example.sign .et{color:var(--good);}
+  .example .ticks{color:var(--accent);font-weight:700;}
+  .example.sign .ticks{color:var(--good);}
+
+  /* 收尾金句 */
+  .closer{
+    margin:44px 0 0;
+    padding:34px 30px;
+    background:linear-gradient(135deg,#fbf6ef,#f3ead9);
+    border:1px solid var(--line);
+    border-radius:14px;
+    text-align:center;
+  }
+  .closer .big{
+    font-family:"Songti SC",Georgia,serif;
+    font-size:clamp(20px,3.4vw,26px);
+    font-weight:700;line-height:1.55;color:var(--ink);margin:0 0 14px;
+  }
+  .closer .small{color:var(--ink-soft);font-size:16.5px;margin:0;line-height:1.7;}
+
+  footer{
+    max-width:var(--maxw);margin:40px auto 0;
+    padding:28px 24px 64px;border-top:1px solid var(--line);
+    color:var(--muted);font-size:13.5px;text-align:center;letter-spacing:.03em;
+  }
+
+  @media (max-width:560px){
+    body{font-size:17px;}
+    header.hero{padding:64px 22px 48px;}
+    .card,.note,.example,.closer{padding-left:18px;padding-right:18px;}
+    h2.sec .num{display:none;}
+  }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<header class="hero">
+  <span class="kicker">工程随笔</span>
+  <h1 class="title">我让 AI 把脚本里的规矩抽成了 Skill，第二天坑全回来了</h1>
+  <div class="byline">
+    <span class="by-author">jogtor</span><span class="dot"></span>
+    <span>2026 年 8 月 2 日 08:41</span>
+  </div>
+  <p class="dek">把踩坑踩出来的铁律从代码里抽出去，换成一份「建议书」——听起来很优雅，但火车从来不看路标。</p>
+</header>
+
+<hr class="divider" />
+
+<main class="wrap">
+
+  <section>
+    <h2 class="sec"><span class="num">01</span>事情是这样的</h2>
+    <p class="lead">我维护一个数据抓取脚本，跑了快半年。脚本本身不复杂——调接口、解析 JSON、入库，几百行。但它身上绑了十几条不成文的"规矩"，全是踩坑踩出来的。</p>
+    <p>举两条你最可能也踩过的。</p>
+    <p>第一条：某数据源的关键字段偶尔返回空值（<code class="k">null</code>）。脚本必须跳过这条记录，不能写默认值 0 进数据库。一旦 0 混进去，下游做数据分析的时候 0 被当成真实数值参与运算，一整批报表直接报废。而且这种错误当时发现不了——数据跑完了、入库了、一切正常。月底对账才看到偏差，已经没法重跑了。</p>
+    <p>第二条：数据源分页返回。接口一次只给 50 条，总页数在响应头里。你必须在脚本里循环把所有页取完再落盘。只取第一页？表面上看数据正常入库了，实际上少了七成记录。同样是月底才发现。</p>
+    <p>类似的东西还有十几条：时间戳必须统一转为 UTC 再存、某接口偶尔返回负数必须丢弃、特殊分类 ID 段要用另一套解析逻辑……每一条都是某次事故后加上去的，用 <code class="k">if</code> 判断、<code class="k">while</code> 循环、<code class="k">assert</code> 断言，硬编码在脚本里。丑是真的丑，但修好之后没再出过事。</p>
+  </section>
+
+  <section>
+    <h2 class="sec"><span class="num">02</span>翻车</h2>
+    <p>昨天抓数据时动了一个念头。</p>
+    <p>这些规矩，有些看起来挺"通用"的——比如说"遇到空字段就跳过"，这难道不是每个合格的程序员都会做的吗？为什么要像防贼一样写在代码里？</p>
+    <p>我想：是不是可以把这些规矩抽出来，写成 AI agent 的 skill（技能文件）？脚本只保留核心逻辑，规矩作为外挂指导，agent 帮我维护时自然就会遵守。代码瘦了，改起来也省心，不用每次在几百行里翻对应的 if。</p>
+    <p>我把这个想法丢给 agent。它非常笃定：完全可以。把硬编码规则抽成 skill，脚本会清爽不少，以后维护也更灵活。</p>
+    <p>我信了它的邪。</p>
+    <p>它帮我重构了脚本。删掉了那些 if 判空、while 分页、assert 校验，生成了一个 skill 文件，里面列出了所有规矩，每条都写得很清楚。代码肉眼可见地瘦了，少了快四十行，我还挺满意。</p>
+    <p>今天早上跑完数据，打开数据库一看，血压直接上来：空字段全部写成了 0，整整齐齐。分页只拉了第一页，少了四成多数据。时间戳还是原来的混搭时区，UTC 没统一。三条最硬的规矩，一条没守。</p>
+    <p>我打开 skill 文件再看了一遍——规则写得明明白白，没有任何歧义。但 agent 在抓数据的时候，就是没执行。</p>
+    <p>那一刻的心情不是愤怒，是一种"我刚才到底在想什么"的恍惚。我亲手把铁轨拆了，换成了路标，然后期待着火车能自己认识路……</p>
+  </section>
+
+  <section>
+    <h2 class="sec"><span class="num">03</span>为什么会这样</h2>
+    <p>冷静下来想，道理很简单。三句话就能说清。</p>
+    <p><strong>脚本是确定性执行。</strong>if 判断走到那行一定会求值，while 循环一定会转。代码没有"今天状态不好"，没有"我觉得这次可能不需要"。铁轨铺好，火车只能沿着走。</p>
+    <p><strong>Skill 是概率性指导。</strong>它是一段文本，放在上下文窗口（context window）里，等着 agent 读到它、理解它、然后决定执行它。问题就出在这三个"等着"上。</p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="ct">第一，agent 不一定读到</div>
+        <p class="cb">上下文窗口有长度限制。你的 skill 文件排在十几个文件、几千行代码的后面，注意力分配（attention）走到那里已经衰减。换个新会话，skill 可能因为加载策略不同而压根没出现。</p>
+      </div>
+      <div class="card">
+        <div class="ct">第二，读到了不一定理解对</div>
+        <p class="cb">"空字段必须跳过"——agent 很可能理解成"空字段给一个合理默认值"，因为在海量训练数据里，大多数场景确实该填默认值。你的特殊规矩恰好和通用经验相反。</p>
+      </div>
+      <div class="card">
+        <div class="ct">第三，理解了不一定执行</div>
+        <p class="cb">agent 生成代码时面对的是全景上下文——你的 prompt、项目结构、报错信息、上一条对话、系统指令。你的 skill 只是众多信号之一。其他信号更强的时候，它被淹没，完全正常。</p>
+      </div>
+    </div>
+
+    <p>这三层不确定性叠加在一起，等于你把"绝对不能出错"的事交给了一个每次都可能重新理解一遍的东西。</p>
+
+    <blockquote class="pull">
+      脚本是铁轨，skill 是路标。火车不看路标。
+      <span class="sub">再说一遍：这不是 skill 的 bug。Skill 的设计目标是"提高 agent 输出质量的概率"，不是"确保某条规则被无条件执行"。它是建议，是倾向，是"在其他条件允许且你恰好记得的前提下最好这样做"。把铁轨的活交给路标去干，翻车了不是路标的问题，是我的判断问题。</span>
+    </blockquote>
+  </section>
+
+  <section>
+    <h2 class="sec"><span class="num">04</span>那到底什么该放哪？</h2>
+    <p>翻车之后我整理了一个判断框架。现在每次想把一条规则从脚本里往外抽，先拿这张表过一遍。你也可以用它审视自己项目里散布在脚本、prompt、skill 文件、README 里那些不成文的规矩。</p>
+
+    <div class="chips">
+      <span class="chip rail">铁轨 · 入脚本（硬编码）</span>
+      <span class="chip sign">路标 · 入 Skill（软指导）</span>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="dim">判断维度</th>
+            <th class="h-rail">入脚本（硬编码）</th>
+            <th class="h-sign">入 Skill（软指导）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="dim">违反了会怎样</td><td class="c-rail">数据损坏、结果错误、不可逆</td><td class="c-sign">风格不佳、效率略低、可事后修复</td></tr>
+          <tr><td class="dim">是否需要每次无条件执行</td><td class="c-rail">是，没有例外</td><td class="c-sign">否，可随场景灵活调整</td></tr>
+          <tr><td class="dim">能否用 assert / 校验自动检测</td><td class="c-rail">能，一行断言就能卡住</td><td class="c-sign">不能，需人工判断好坏</td></tr>
+          <tr><td class="dim">执行者是谁</td><td class="c-rail">代码 / 脚本自己跑</td><td class="c-sign">AI agent 辅助生成或修改代码</td></tr>
+          <tr><td class="dim">是否依赖运行时上下文</td><td class="c-rail">不依赖，规则固定不变</td><td class="c-sign">依赖，需理解当前场景再决定</td></tr>
+          <tr><td class="dim">违反后多久能发现</td><td class="c-rail">很久以后才对账发现（最危险）</td><td class="c-sign">当场或很快就能看出来</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <b>用法很简单：</b>一条规矩，六个维度逐行对。只要有一个维度落在左列——"数据损坏""必须执行""能写断言""不依赖上下文""很久才发现"——别纠结，写进脚本。
+    </div>
+
+    <div class="example rail">
+      <span class="et">「空字段跳过」→ 必须进脚本</span>
+      违反导致数据损坏 <span class="ticks">✓</span>、每次必须执行 <span class="ticks">✓</span>、能写 assert <span class="ticks">✓</span>、不依赖上下文 <span class="ticks">✓</span>、月底才发现 <span class="ticks">✓</span>。六条全在左列，必须进脚本。
+    </div>
+
+    <div class="example sign">
+      <span class="et">「变量命名用驼峰」→ 适合放 Skill</span>
+      违反不坏数据 <span class="ticks">✓</span>、不需要强制 <span class="ticks">✓</span>、写不了断言 <span class="ticks">✓</span>、agent 写代码时顺手遵守就行 <span class="ticks">✓</span>。这是 skill 该干的活。
+    </div>
+
+    <p>如果你遇到一条规矩在左列和右列各中几个，比如"违反后数据会错但能自动修复"，先看第一个维度——违反后果的严重性。后果不可逆，其他全免谈。</p>
+  </section>
+
+  <section>
+    <h2 class="sec"><span class="num">05</span>后来我怎么做的</h2>
+    <p>我把删掉的三十多行代码一条一条加回去了。if、while、assert，原样恢复。丑就丑吧。小半年没出过事的东西，不需要变漂亮。</p>
+    <p>Skill 里只留了真正适合它的东西：代码风格偏好、注释用中文还是英文、文件命名是蛇形还是驼峰、"生成测试优先用 pytest 而非 unittest"——这类"做对了加分，做错了不致命"的柔性指导。</p>
+    <p>数据正确性不是风格问题。它不是加分项，是及格线。</p>
+
+    <div class="closer">
+      <p class="big">能让代码强制执行的，绝不让 agent 自觉遵守。</p>
+      <p class="small">agent 是非常好的同事。但你不能把数据库约束写在同事的便签纸上，然后期待它永远不会被风吹走。</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  本文由 jogtor 的踩坑记录整理 · 仅供技术随笔阅读
+</footer>
+
+<script>
+  // 阅读进度条
+  var bar=document.getElementById('progress');
+  function upd(){
+    var h=document.documentElement;
+    var sc=h.scrollTop||document.body.scrollTop;
+    var max=(h.scrollHeight-h.clientHeight)||1;
+    bar.style.width=(sc/max*100)+'%';
+  }
+  window.addEventListener('scroll',upd,{passive:true});
+  window.addEventListener('resize',upd);
+  upd();
+</script>
+</body>
+</html>
