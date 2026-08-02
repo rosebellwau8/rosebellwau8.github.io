@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="title" content="AI 前沿能力资料汇编（截至 2026-08）">
+<meta name="author" content="jogtor">
+<meta name="date" content="2026-08-02 20:51">
+<meta name="tags" content="AI,大模型,技术,资料汇编">
+<title>AI 前沿能力资料汇编（截至 2026-08）</title>
+<style>
+:root{
+  --bg:#0e1016; --paper:#161a22; --paper2:#1c212c; --text:#e6e8ee; --muted:#9aa3b2;
+  --brand:#7c8cff; --brand2:#a78bfa; --line:#2a3140;
+  --code-bg:#0b0d12; --code-text:#d6deeb;
+  --key-bg:rgba(124,140,255,.10); --key-line:#7c8cff;
+  --quote-bg:rgba(167,139,250,.10); --quote-line:#a78bfa;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  line-height:1.85;font-size:16px;-webkit-font-smoothing:antialiased}
+.hero{background:linear-gradient(135deg,#2a2350,#3b2f6e 60%,#243a6e);color:#fff;padding:54px 24px 40px;text-align:center}
+.hero h1{font-size:1.9rem;margin:0 0 10px;font-weight:800;letter-spacing:.5px}
+.hero .sub{margin:0;opacity:.9;font-size:.96rem}
+.hero .meta{margin-top:14px;font-size:.8rem;opacity:.82;letter-spacing:1px}
+.wrap{max-width:860px;margin:0 auto;padding:30px 22px 30px}
+.toc{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 22px;margin:26px 0 6px}
+.toc h2{margin:0 0 10px;font-size:1.02rem;color:var(--brand)}
+.toc ol{margin:0;padding-left:22px;columns:2;column-gap:30px}
+.toc li{margin:6px 0;break-inside:avoid}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--brand)}
+h2{font-size:1.4rem;margin:42px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--key-bg);color:#f2f3f7}
+h3{font-size:1.12rem;margin:28px 0 8px;color:#eef0f6}
+p{margin:14px 0;color:#cfd4de}
+a{color:var(--brand)}
+ul,ol{margin:12px 0;padding-left:24px}
+li{margin:8px 0;color:#cfd4de}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86em;background:var(--paper2);color:#c3b6ff;padding:2px 6px;border-radius:6px}
+pre.code{background:var(--code-bg);color:var(--code-text);border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;margin:16px 0}
+pre.code code{background:transparent;color:inherit;padding:0;font-size:.84rem;line-height:1.6;white-space:pre}
+.key{background:var(--key-bg);border-left:4px solid var(--key-line);border-radius:0 12px 12px 0;padding:14px 18px;margin:18px 0;font-size:1.02rem;color:#eef0ff}
+.key strong{color:#fff}
+.quote-box{background:var(--quote-bg);border-left:4px solid var(--quote-line);border-radius:0 12px 12px 0;padding:14px 18px;margin:18px 0;color:#dcdcf0;font-size:.95rem}
+.quote-box strong{color:#fff}
+table.dt{width:100%;border-collapse:collapse;margin:18px 0;font-size:.92rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+table.dt th,table.dt td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+table.dt th{background:var(--paper2);color:#fff;font-weight:700}
+table.dt td{color:#cfd4de}
+.back-home{text-align:center;margin:42px 0 6px}
+.back-home a{display:inline-block;text-decoration:none;color:#fff;background:linear-gradient(135deg,#7c8cff,#a78bfa);padding:10px 24px;border-radius:999px;font-size:.95rem}
+.back-home a:hover{opacity:.9}
+.foot{text-align:center;color:var(--muted);font-size:.8rem;padding:8px 0 44px}
+@media(max-width:640px){.hero h1{font-size:1.45rem}h2{font-size:1.2rem}body{font-size:15px}.toc ol{columns:1}}
+</style>
+</head>
+<body>
+<header class="hero"><h1>AI 前沿能力资料汇编（截至 2026-08）</h1><p class="sub">截至 2026-08 的公开资料汇编 · 信息密度高，但结论请按证据等级自行判断</p><div class="meta">2026-08-02 20:51 ｜ jogtor ｜ AI · 大模型 · 技术 · 资料汇编</div></header>
+<main class="wrap">
+<nav class="toc"><h2>目录</h2><ol><li><a href="#s1">结论先行（摘要）</a></li><li><a href="#s2">维度一：通用推理与写作</a></li><li><a href="#s3">维度二：编程能力</a></li><li><a href="#s4">维度三：Agent 自主性</a></li><li><a href="#s5">维度四：多模态</a></li><li><a href="#s6">维度五：长上下文与知识记忆</a></li><li><a href="#s7">维度六：价格与可及性</a></li><li><a href="#s8">附录</a></li></ol></nav>
+<blockquote class="quote-box">整理日期：2026-08-02 性质：AI 前沿能力<strong>资料汇编</strong>，信息来自公开报道与榜单，未经逐条独立核实，不宜以「已联网核实、每条均可复现」的尽调结论对外发布 范围：大模型 + Agent 能力，含多模态、长上下文；不含机器人硬件 语言：中文；每条结论附来源，但来源质量参差，请按文末证据等级自行判断</blockquote>
+<p>---</p>
+<h2 id="s1">结论先行（摘要）</h2>
+<div class="key"><strong>一句话总判断</strong>：截至 2026-08，AI 的「最强」已分不出唯一赢家——各维度最强分属不同模型，且不同评测口径不能直接横向比较。判断模型「够不够强」，关键看三件事：你派的活是几分钟级短任务（可尝试）还是数小时级长任务（别指望）；广告窗口和实际可用是两回事；以及你能否稳定访问到最强模型（中国大陆通常有地区、网络等接入限制）。</div>
+<ul><li><strong>推理 / 写作 / 编程</strong>：日常推理与写代码已达到很高水平，部分旧基准接近饱和；但头部差异是否「对使用有意义」取决于具体任务，不宜一概而论。</li><li><strong>Agent 自主性</strong>：短任务（分钟级）在部分基准上已超过报告的人类基线；长任务（数小时）可靠完成率仍然很低——这是当前公认的主要瓶颈。</li><li><strong>长上下文</strong>：广告 1M≠实际可用，真实可靠约在 200K 内，只有少数模型在 1M 处表现领先。</li><li><strong>价格</strong>：单次调用成本已较低（旗舰输出 $25–50 / 百万 token），但长上下文、长推理与多 Agent 工作流的总成本仍可能显著。</li><li><strong>大陆访问</strong>：三家最强官方 API 对中国大陆用户通常有地区、网络、账号与支付等限制，具体情况随渠道与政策变化。</li></ul>
+<p>---</p>
+<h2 id="s2">维度一：通用推理与写作</h2>
+<h3>最强水平结论</h3>
+<div class="key"><strong>截至 2026 年 8 月 2 日，以 Artificial Analysis 综合指数看，Claude Opus 5 以 61 分领先，Claude Fable 5 与 GPT-5.6 Sol 紧随其后（分别为 60、59 分）。榜首随模型与评测版本更新频繁变化，不宜据此认定唯一的「全能最强」；「写作第一」也只能限定在综合盲测偏好榜内，不能直接推出中文写作或专业写作第一。</strong></div>
+<ol><li><strong>推理 + 写作综合（第三方智能指数）</strong>：Claude Opus 5（61 分）列 Artificial Analysis 智能指数第 1，Claude Fable 5（60 分）第二，GPT-5.6 Sol（59 分）第三。Fable 5 在 2026-06-09 发布时曾排名第 1，但截至 8 月已被 Opus 5 反超。</li><li><strong>最难新推理基准 ARC-AGI-2</strong>：GPT-5.6 Sol 最大推理档 92.5%（2026-07-09 发布），是官方验证榜 SOTA；但 ARC-AGI-3（交互式自适应）全行业都很弱，最强 Claude Opus 5 也仅 30.2%——抽象流体推理仍是最短板的维度。</li><li><strong>博士级科学推理（GPQA Diamond）已接近饱和</strong>：Gemini 3.1 Pro 与 GPT-5.6 Sol 并列约 94%，人类博士专家基线约 70%，前 10 名挤在 90–94%——在样本量很小（约 200 题）的基准上，2 分的差距落在置信区间内，不能简单称为「噪声」或据此排座次。</li><li><strong>最难通识知识（Humanity&#x27;s Last Exam）</strong>：第三方实测最高 Claude Fable 5 无工具 53.3%；Claude Opus 5 官方自报 56.3%（未验证）。</li><li><strong>写作 / 对话（LMArena 盲测）</strong>：Claude Fable 5 约 1509 Elo 居首，但 LMArena 测的是用户对回答的综合偏好（受长度、语气、格式、话题分布与用户构成影响），不等于独立的写作能力测试；前 5 名差仅约 15–28 点，统计上接近平手。</li><li><strong>一句话总结</strong>：日常推理、写作、问答类任务，最强模型质量已明显高于平均水平；但「最高分」之间的差异在多数窄基准上已很小，且不同榜单口径不一，选哪个差别不大这一判断需结合具体任务。</li></ol>
+<h3>证据</h3>
+<ul><li>来源 1（综合指数）[C]：<a href="https://artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index" target="_blank" rel="noopener">Artificial Analysis 智能指数</a> | 2026-07 | 第三方聚合 | Opus 5=61、Fable 5=60、GPT-5.6 Sol=59</li><li>来源 2（ARC-AGI-2）[A]：<a href="https://arcprize.org/results/openai-gpt-5-6" target="_blank" rel="noopener">ARC Prize 官方验证页</a> | 2026-07-09 | ARC Prize 基金会独立验证 | Sol Max 92.5%；ARC-AGI-3 最强 Opus 5=30.2%</li><li>来源 3（GPQA）[C]：<a href="https://benchlm.ai/benchmarks/aagpqadiamond" target="_blank" rel="noopener">BenchLM AA-GPQA Diamond</a> | 2026-07-30 | 第三方聚合 | Gemini 3.1 Pro / GPT-5.6 Sol ≈94%</li><li>来源 4（HLE）[C]：<a href="https://benchlm.ai/benchmarks/aahle" target="_blank" rel="noopener">BenchLM AA-HLE</a> | 2026-07-30 | 第三方聚合 | Fable 5 无工具 53.3%</li><li>来源 5（LMArena）[C]：<a href="https://lmarena.ai/leaderboard" target="_blank" rel="noopener">LMArena 文本榜</a> | 2026-07 | 第三方众包盲测 | Fable 5=1509 Elo 第 1</li></ul>
+<p>---</p>
+<h2 id="s3">维度二：编程能力</h2>
+<h3>最强水平结论</h3>
+<div class="key"><strong>编程「最强」要分口径看：不同评测的数据集、scaffold（代理框架）与推理预算不同，分数不能直接拼成一条能力曲线；当前榜 97% 也只是某一口径下的结果，不是「截至 8 月的绝对最强」。</strong></div>
+<ol><li><strong>真实工程 issue 修复（SWE-bench Verified 当前榜）</strong>：当前榜上 Opus 5 约 97%、GPT-5.6 Sol 约 96.2%，但该榜高度饱和、区分度下降，且「厂商自选 scaffold」反映模型与优化代理栈的组合上限，不能直接等同于模型原生能力。</li><li><strong>更难、抗污染的 SWE-bench Pro</strong>：口径复杂，不同数据集 / scaffold / 模型配置下分数差异很大，Scale 标准化公开集最高已达 GPT-5.4 xHigh 的 59.1%；不同口径的分数不可直接相减比较（需同一模型版本、数据集、任务数、工具 / 重试 / 并行设置、推理预算均相同）。</li><li><strong>多语言代码编辑（Aider Polyglot）</strong>：GPT-5 high reasoning 88.0% 居首（改现有代码、跨文件改代码）[C 第三方]。</li><li><strong>终端 / agent 式编程</strong>：厂商宣传 88–92%（GPT-5.6 Sol Terminal-Bench 2.1 88.8%），独立复测约 83%（GPT-5.5 + Codex CLI 83.4%）。这些分数说明已达到「可交付构建脚本 / CI/CD / 重构」的工程水平，但基准环境、工具与预算固定，现实项目还包含需求澄清、环境差异、隐性约束与安全责任，仍有可观比例的专业任务失败。</li><li><strong>竞赛编程</strong>：Google 宣传 Gemini 3 Deep Think 3455 Elo（超过除 7 人外所有人类），独立实时追踪最高 DeepSeek V4 Pro 3206。</li><li><strong>一句话总结</strong>：写代码、改代码、自动化脚本已非常强且便宜；但涉及「多步 + 长时 + 无人复核」的工程任务，可靠度仍取决于具体口径，不能笼统说「已可交付」。</li></ol>
+<h3>评测口径对照</h3>
+<table class="dt"><thead><tr><th>评测口径</th><th>可以得出的结论</th></tr></thead><tbody><tr><td>同一旧版 mini-SWE-agent harness</td><td>便于比较当时模型</td></tr><tr><td>厂商自选 scaffold</td><td>反映模型与优化代理栈的组合上限</td></tr><tr><td>Scale 标准化 SWE-bench Pro</td><td>更适合比较复杂工程能力</td></tr><tr><td>当前 SWE-bench Verified 榜</td><td>已高度饱和，区分度下降</td></tr></tbody></table>
+<p>不能把不同日期、数据集、scaffold 和推理预算的分数拼成一条能力曲线。</p>
+<h3>证据</h3>
+<ul><li>来源 1（当前 SWE-bench Verified 榜）[C]：<a href="https://vals.ai/benchmarks/swebench" target="_blank" rel="noopener">Vals.ai 当前榜单</a> | 2026-08 | 第三方聚合 | Opus 5≈97%、GPT-5.6 Sol≈96.2%（高度饱和）</li><li>来源 2（SWE-bench Pro 口径）[C]：<a href="https://www.morphllm.com/swe-bench-pro" target="_blank" rel="noopener">morphllm.com SWE-bench Pro 榜</a> | 2026-06/07 | 厂商自测 vs Scale 标准化 | 口径复杂，分数不可直接相减</li><li>来源 3（Aider Polyglot）[C]：<a href="https://llm-stats.com/benchmarks/aider-polyglot" target="_blank" rel="noopener">llm-stats Aider Polyglot</a> | 2026-07 | 第三方 | GPT-5 88.0%</li><li>来源 4（终端 agent）[A]：<a href="https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/" target="_blank" rel="noopener">TechCrunch GPT-5.6 发布</a> | 2026-07-09 | 官方宣传 | Terminal-Bench 2.1 88.8%</li><li>来源 5（Codeforces）[C]：<a href="https://officechai.com/ai/google-gemini-3-deep-think-scores-3455-on-codeforces-is-now-better-than-all-but-7-human-programmers/" target="_blank" rel="noopener">officechai 报道</a> + <a href="https://benchlm.ai/benchmarks/codeforces" target="_blank" rel="noopener">benchlm.ai Codeforces</a> | 2026-02/07 | 官方 vs 独立追踪 | 3455 vs 3206</li></ul>
+<p>---</p>
+<h2 id="s4">维度三：Agent 自主性</h2>
+<h3>最强水平结论</h3>
+<div class="key"><strong>AI Agent 自主性的分水岭在「时长」与「评测口径」：在 OSWorld-Verified 这套桌面操作基准上，领先系统的成功率已超过该基准报告的人类基线；但「单一基准超人类基线」不能直接推广为「所有分钟级短任务都已超过人类」。长时任务（数小时）仍是公认的主要短板。</strong></div>
+<ol><li><strong>桌面 / 浏览器操作（短任务）</strong>：OSWorld-Verified 最强模型 85%，该基准报告的人类基线约 72.4%。需注意：排名对象通常是「模型 + 代理框架 + 工具配置」而非纯模型；人类基线采样方式可能与 AI 测试条件不同；且该基准团队曾强调其远未饱和，超过某个人类基线不等于到达任务上限。WebArena 最强约 71–74%，低于人类基线约 78%，说明不同 web 基准结论不一。</li><li><strong>单次能，重复不可靠</strong>：在 τ-bench 的重复运行测试中，Opus 4.8 的 pass@1 为 78%，而实测 pass^8 为 56%。pass^8 是实测指标（反映重复运行稳定性），不应简单理解为在「每次独立」假设下计算的 0.78^8（约 13.7%）；二者不矛盾。</li><li><strong>长时任务（数小时）是最大短板，但两个数字来自不同评测，需分开看</strong>：</li></ol>
+<p>- METR 主要测软件、ML、网络安全等可清晰验收的任务，其「时间视野」指人类专家完成该任务所需时间；按 50% 成功率算约 14.5 小时——这是「人类用时」，不等于「Agent 连续稳定运行 14.5 小时」。 - OSWorld 2.0 测真实电脑环境中的长流程操作，受界面状态、错误累积与环境恢复影响；真人中位 1.6 小时的任务，完整完成率约 20%。 - 两个数字针对不同任务类型与评测设定，可同时成立，但不能混为一谈。</p>
+<ol><li><strong>一句话总结</strong>：能较放心交给 agent 的是「单次几分钟内、失败可重试、有人抽查」的活；连续数小时无人监督的活，2026 年 8 月仍不能放心交给它。</li></ol>
+<h3>证据</h3>
+<ul><li>来源 1（OSWorld-Verified）[C]：<a href="https://benchlm.ai/benchmarks/osworld-verified" target="_blank" rel="noopener">BenchLM OSWorld-Verified 榜单</a> | 2026-07-30 | 第三方聚合 | Claude Mythos 5 / Fable 5 = 85%，Opus 4.8 = 83.4%，人类基线 72.4%</li><li>来源 1b（OSWorld-Verified 官方说明）[A]：<a href="https://xlang.ai/blog/osworld-verified" target="_blank" rel="noopener">xlang.ai OSWorld-Verified 介绍</a> | 官方 | 该基准远未饱和，超人类基线≠任务上限</li><li>来源 2（厂商自报 90.2%）[A]：<a href="https://www.infoq.cn/article/4hUcQzeCeKm0wqkc4Zdc" target="_blank" rel="noopener">InfoQ：实在 Agent 登顶 OSWorld</a> | 2026-07-27 | 官方宣传 | OSWorld（非 Verified 版本）90.2%</li><li>来源 3（pass^8 可靠性）[B]：<a href="https://contracollective.com/blog/gpt-5-5-vs-opus-4-8-vs-gemini-3-5-pro-tau-bench-tool-use-agent-2026" target="_blank" rel="noopener">Contra Collective τ-bench 实测</a> | 2026-07 | 第三方实测 | Opus 4.8 pass@1=78% / pass^8=56%</li><li>来源 4（长时任务 METR）[B]：<a href="https://metr.org/time-horizons/" target="_blank" rel="noopener">METR 长时自主评测</a> | 独立安全评测 | 50% 成功率≈14.5h 人类用时；80% 可靠≈1h</li><li>来源 5（OSWorld 2.0）[A]：<a href="https://arxiv.org/abs/2606.29537" target="_blank" rel="noopener">arXiv 2606.29537</a> | XLANG Lab | 学术基准 | Opus 4.8 完整完成率 20.6%</li><li>来源 6（Anthropic 内部）[A]：<a href="https://www.anthropic.com/research/measuring-agent-autonomy" target="_blank" rel="noopener">Anthropic 测量 Agent 自主性</a> | 2026-02-18 | 官方自报 | Claude Code 单轮时长 25→45 分钟，人工介入 5.4→3.3 次/会话</li></ul>
+<p>---</p>
+<h2 id="s5">维度四：多模态</h2>
+<h3>最强水平结论</h3>
+<div class="key"><strong>多模态最强的不是「一个全能模型」，而是分场景各占山头；视频生成赛道各家各有所长，「最强」需先明确评判标准。</strong></div>
+<ol><li><strong>图像理解 / 视觉问答</strong>：头部已饱和（MMMU-Pro 系约 83–85%），最强在 GPT-5.6 Sol、Gemini 3.5 Flash、Claude Opus 5 之间，差距约 2 个百分点——单看基准已分不出明显赢家。</li><li><strong>视频生成：Sora 已停服，赛道各家各有所长</strong>。OpenAI 已确认 Sora 消费者产品于 2026-04-26 停止服务。关于其成本与留存率，媒体出现过多种未经 OpenAI 证实的估算（包括每天约 100 万美元亏损、峰值基础设施成本约 1500 万美元），这些数字不宜作为确定事实。Google Veo 3.1 确实支持原生同步音频，也提供 4K 输出（部分文档将其描述为生成后升级或特定计费档），但「原生 4K + 原生同步音频 48kHz + 可扩展至 60 秒以上」中，需区分：模型直接生成 4K、生成后升级至 4K、单次生成时长、通过 extension 多次拼接形成更长视频。Google 当前开发者文档甚至建议一般视频生成优先使用 Gemini Omni Flash，把 Veo 3.1 用于场景扩展与末帧控制等特定需求。</li><li><strong>图像生成分场景三强</strong>：真实感 / 提示遵循选 FLUX.2 Pro，文字渲染与速度选 Imagen 4，艺术审美 + 原生 2K 选 Midjourney V8.1。没有全能王。</li><li><strong>语音 / 实时翻译</strong>：OpenAI GPT-Realtime-Translate（2026-05-07）支持 70+ 输入语言 → 13 输出语言实时同传；识别精度 Gemini 2.5 Pro LibriSpeech WER 2.3% 领先。</li><li><strong>一句话总结</strong>：多模态的「读」（图像理解）已经够用且趋于同质化；「造」（视频 / 图像生成）是内容创作赛道的事，对垂直应用的价值取决于具体场景，不能一律说「价值有限」。</li></ol>
+<h3>证据</h3>
+<ul><li>来源 1（Sora 停服）[A]：<a href="https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation" target="_blank" rel="noopener">OpenAI 帮助中心：Sora 停止服务</a> | 官方确认 | 消费者产品 2026-04-26 停止</li><li>来源 1b（Sora 成本口径）[D]：多家媒体估算（每天约 100 万美元亏损、峰值基础设施约 1500 万美元），未经 OpenAI 证实</li><li>来源 2（Veo 3.1）[A]：<a href="https://ai.google.dev/gemini-api/docs/video" target="_blank" rel="noopener">Google 视频生成文档</a> + <a href="https://deepmind.google/models/veo/" target="_blank" rel="noopener">Veo 官方页面</a> | 官方 | 原生音频；4K 输出与计费档需区分直接生成 / 升级</li><li>来源 3（MMMU-Pro 榜单）[C]：<a href="https://benchlm.ai/benchmarks/mmmuPro" target="_blank" rel="noopener">BenchLM MMMU-Pro</a> 及 <a href="https://llm-stats.com/benchmarks/mmmu-pro" target="_blank" rel="noopener">llm-stats</a> | 2026-07 | 第三方聚合 | Gemini 3.5 Flash 83.6% / GPT-5.5 83.2%</li><li>来源 4（图像生成分场景）[C]：<a href="https://aiwiki.ai/wiki/imagen_4" target="_blank" rel="noopener">Imagen 4</a>、<a href="https://melies.co/compare/gpt-image-1-5-vs-flux-2-pro" target="_blank" rel="noopener">FLUX.2 Pro 对比</a>、<a href="https://abduzeedo.com/node/89268" target="_blank" rel="noopener">Midjourney V8.1 评测</a> | 2025-11~2026-04 | 能力 = 官方、分数 = 第三方</li><li>来源 5（语音）[A]：<a href="https://techcrunch.com/2026/05/07/openai-launches-new-voice-intelligence-features-in-its-api/" target="_blank" rel="noopener">TechCrunch: OpenAI 语音智能</a> | 2026-05-07 | 官方 + 多家报道 | 70+ 输入 → 13 输出语言，$0.034/分钟</li></ul>
+<p>---</p>
+<h2 id="s6">维度五：长上下文与知识记忆</h2>
+<h3>最强水平结论</h3>
+<div class="key"><strong>广告窗口和实际可用是两回事：宣传上已到 1M–2M（开源 10M），但真实「多针检索」@1M 仅少数模型领先（约 74%–78%），且一项成绩不能代表长文推理、代码理解、总结与跨文档综合。</strong></div>
+<ol><li><strong>广告口径最大窗口</strong>：开源 Llama 4 Scout 标 10M；商用托管中 Gemini 3 Pro 标 2M 最大，Claude 旗舰和 GPT-5.5 标 1M。</li><li><strong>真实长上下文可用性（关键！）</strong>：严格多针测试 MRCR v2 8-needle @1M 下，Claude Opus 4.6 约 76–78.3% 领先，GPT-5.5 约 74%；Gemini 3.1 Pro 从短上下文的 85% 崩塌到 1M 的 26%。「可依赖」并无统一定义，74%–78% 通常也不能直接称为可靠；且这仅测多针检索，不代表全部长上下文任务。多数模型可靠上下文约在广告的 50–65%，「中间信息丢失」依然存在。</li><li><strong>单针测试已不能区分能力</strong>：needle-in-haystack @1M 主流普遍 &gt;95% 已饱和——厂商宣传「1M 窗口」很大程度是营销口径。</li><li><strong>跨会话知识记忆</strong>：官方宣传最强是 OpenAI ChatGPT 的「dreaming」（新记忆系统，2026-06 发布，事实召回 82.8%、偏好遵循 71.3%；OpenAI 官方页面更常用「dreaming」或「新记忆系统」，是否正式称「V3」需证据）。Claude / Gemini 是否具备同等跨会话持久记忆，需分别查阅其截至 8 月 2 日的官方文档，不能仅由 OpenAI 发布 Dreaming 推断竞争对手没有同类能力。</li><li><strong>知识截止</strong>：最新模型知识截止 2026-05（Claude Opus 5，2026-07-24 发布）；超过约 500K 上下文后，RAG 检索仍是主流方案。</li><li><strong>一句话总结</strong>：长上下文「能塞进去」不等于「能准确找到用起来」——超过 200K 的可靠工作负载，目前公开测试中 Opus 4.6 与 GPT-5.5 在 MRCR v2 上领先，但该结果不能直接推广到所有长上下文任务。</li></ol>
+<h3>证据</h3>
+<ul><li>来源 1（MRCR v2 @1M）[C]：<a href="https://ofox.ai/blog/long-context-llm-benchmarks-200k-tokens-2026/" target="_blank" rel="noopener">ofox.ai 长上下文评测</a> | 2026 | 第三方聚合 | Opus 4.6 78.3% / GPT-5.5 74.0% / Gemini 3.1 Pro 26.3%</li><li>来源 2（窗口口径）[C]：<a href="https://benchlm.ai/blog/posts/context-window-comparison" target="_blank" rel="noopener">benchlm.ai 上下文对比</a> | 2026 | 第三方聚合 | 广告 vs 有效窗口</li><li>来源 3（记忆 dreaming）[A]：<a href="https://openai.com/index/chatgpt-memory-dreaming/" target="_blank" rel="noopener">OpenAI 记忆公告</a> | 2026-06 | 官方 | 事实召回 67.9→82.8%；产品名以官方页面为准</li><li>来源 4（知识截止 / 模型卡）[A]：<a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-claude-opus-5.html" target="_blank" rel="noopener">AWS Claude Opus 5 模型卡</a> | 2026-07-24 | 官方 | 1M 上下文、知识截止 2026-05</li></ul>
+<p>---</p>
+<h2 id="s7">维度六：价格与可及性</h2>
+<h3>最强水平结论</h3>
+<div class="key"><strong>最强模型 API 定价在 $5–10 输入 / $25–50 输出（每百万 token）；价格持续下降但降的主要是次旗舰。中国大陆用户直接使用三家最强官方 API 通常受地区、网络、账号与支付等限制，具体情况随渠道与政策变化。</strong></div>
+<ol><li><strong>最强闭源旗舰 API 定价</strong>：Claude Fable 5 = $10/$50（1M 上下文）；Claude Opus 5 = $5/$25；OpenAI GPT-5.6 Sol = $5/$30；Gemini 3 Pro = $2/$12。</li><li><strong>价格在降，但降的是次旗舰</strong>：2026-07-30 起 OpenAI 对 GPT-5.6 Luna 降 80%（→$0.20/$1.20）、Terra 降 20%，旗舰 Sol 不降。宏观上 2025 下半年有效 token 均价 -39%，2026 年前 5 个月仅 -6%——经济型模型价格约每 1.1 年减半，旗舰层不跟跌。</li><li><strong>开放权重模型接近旗舰但不免费</strong>：能逼近旗舰的开放权重模型（GLM-5.1 754B、DeepSeek V4 Pro 1.6T 等）的部署需求取决于量化精度、参数规模、KV cache、上下文长度、并发与推理框架，不能由参数量直接推出唯一硬件需求；媒体测算旗舰级需 8×H200（约 860GB 显存）仅是一种配置示例。Llama 4 Scout 标称 10M 窗口，Meta 官方称其 Int4 量化后可装入单张 H100——再次说明「模型能运行」「跑满宣传窗口」「生产并发服务」是三个问题。另：「开源」宜改称「开放权重」，因许可证、训练数据与训练代码并不完全开放。</li><li><strong>中国大陆可及性（关键！）</strong>：三家最强官方 API 对中国大陆用户通常有支持地区、网络连通、账号注册与支付方式等限制；具体障碍因人而异，不等于所有 API 技术上均「无法直接访问」。主流合规路径含腾讯云 Agent 加速器（需明确其是官方转售、网络代理还是托管调用）、企业云渠道；第三方中转站涉及密钥泄露、数据合规、日志留存与敏感信息外流风险，不宜与官方 / 国产 API 并列为普通推荐路线，国产替代（DeepSeek / Qwen / GLM）是另一类选项。</li><li><strong>一句话总结</strong>：普通单轮调用的边际成本已经较低；长上下文、长推理与多 Agent 工作流的总成本仍可能显著，瓶颈不止在价格，也在「能否稳定访问 + 输出可靠性」。</li></ol>
+<h3>证据</h3>
+<ul><li>来源 1（官方定价）[A]：<a href="https://platform.claude.com/docs/en/pricing.md" target="_blank" rel="noopener">Anthropic 官方 claude-api 技能定价表</a> | 缓存 2026-06-24 | 官方 | Fable 5=$10/$50、Opus 5=$5/$25</li><li>来源 2（OpenAI 降价）[A]：<a href="https://www.infoworld.com/article/4203865/openai-drops-gpt-5-6-luna-and-terra-api-prices-by-up-to-80.html" target="_blank" rel="noopener">InfoWorld</a> + <a href="https://www.36kr.com/p/3918835009351298" target="_blank" rel="noopener">36氪</a> | 2026-07-30 | 官方公告转述 | Luna -80%、Terra -20%、Sol 不降</li><li>来源 3（价格趋势）[C]：<a href="https://www.yipitdata.com/resources/cloud-llm-pricing-trends" target="_blank" rel="noopener">YipitData LLM 定价趋势</a> | 2026-06 | 第三方独立数据 | 2025H2 -39%、2026 前 5 月 -6%</li><li>来源 4（开放权重硬件需求）[D]：<a href="https://dev.to/jovan_chan_9500711396d4e6/open-source-llm-shootout-2026-qwen36-vs-gemma-4-vs-llama-4-vs-glm-51-vs-deepseek-v4-which-fits-56nn" target="_blank" rel="noopener">dev.to 社区评测</a> | 2026 | 社区评测 | 部署需求取决于量化与框架，非唯一硬件</li><li>来源 5（大陆访问）[A]：<a href="https://cloud.tencent.com.cn/document/product/1817/129849" target="_blank" rel="noopener">腾讯云 Agent 加速器文档</a> | 官方文档 | 灰度中、需工单；性质需明确</li></ul>
+<p>---</p>
+<h2 id="s8">附录</h2>
+<h3>证据等级说明</h3>
+<table class="dt"><thead><tr><th>等级</th><th>来源</th></tr></thead><tbody><tr><td>A</td><td>官方模型卡、正式论文、基准官方榜单</td></tr><tr><td>B</td><td>方法公开、可重复运行的独立评测</td></tr><tr><td>C</td><td>聚合榜、专业媒体转述</td></tr><tr><td>D</td><td>博客、社区文章、二手报道</td></tr></tbody></table>
+<p>每项「最强」结论至少应有一个 A 级或 B 级来源；本报告部分结论目前仅达 C / D 级，已在各来源后标注，请自行判断。</p>
+<h3>「最强」比较的对象层级</h3>
+<p>为避免口径混乱，比较时应区分：1）基础模型能力；2）模型 + 统一工具框架；3）完整 Agent 产品；4）消费产品功能；5）研究 / 受限开放系统。</p>
+<h3>可复现性说明</h3>
+<p>本资料汇编所有来源均附链接供核对，但可靠性请按证据等级自行评估。</p>
+<p class="back-home"><a href="../index.html">&larr; 返回首页</a></p>
+</main>
+<p class="foot">本文由 Markdown 排版生成 · 内容未做增删</p>
+</body>
+</html>
