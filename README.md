@@ -23,14 +23,16 @@ docs/           构建输出及 GitHub Pages 发布目录
 
 ```html
 <meta name="title" content="文章标题">
-<meta name="date" content="2026-07-31">
+<meta name="author" content="jogtor">
+<meta name="date" content="2026-07-31 14:30">
 <meta name="tags" content="技术,随笔">
 ```
 
 规则：
 
-- `title` 和 `date` 必填；缺失时构建失败并指出文章文件和字段。
-- `date` 必须是真实存在的 `YYYY-MM-DD` 日期。
+- `title`、`author` 和 `date` 必填；缺失时构建失败并指出文章文件和字段。
+- `author` 固定为 `jogtor`。
+- `date` 必须是真实存在的 `YYYY-MM-DD HH:MM` 日期时间（精确到分钟）。
 - `tags` 可选，多个标签以英文逗号分隔；重复标签会自动去重。
 - meta 属性顺序不受限制，属性值支持单双引号。
 - 标题和标签会作为纯文本转义，标签文件名会转换为安全的 ASCII 名称。

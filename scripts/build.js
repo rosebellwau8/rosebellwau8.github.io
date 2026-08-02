@@ -52,14 +52,19 @@ function isLeapYear(year) {
 }
 
 function isValidDate(value) {
-  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+  const match = /^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2})$/.exec(value);
   if (!match) return false;
 
   const year = Number(match[1]);
   const month = Number(match[2]);
   const day = Number(match[3]);
+  const hours = Number(match[4]);
+  const minutes = Number(match[5]);
   const days = [31, isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  return month >= 1 && month <= 12 && day >= 1 && day <= days[month - 1];
+  return month >= 1 && month <= 12
+    && day >= 1 && day <= days[month - 1]
+    && hours >= 0 && hours <= 23
+    && minutes >= 0 && minutes <= 59;
 }
 
 function compareText(a, b) {
@@ -91,17 +96,24 @@ function ensureDir(dir) {
 
 function validatePost(file, html) {
   const title = extractMeta(html, 'title').trim();
+  const author = extractMeta(html, 'author').trim();
   const date = extractMeta(html, 'date').trim();
   const rawTags = extractMeta(html, 'tags');
 
   if (!title) {
     throw new Error(`${file}: missing required meta field "title"`);
   }
+  if (!author) {
+    throw new Error(`${file}: missing required meta field "author"`);
+  }
+  if (author !== 'jogtor') {
+    throw new Error(`${file}: author must be "jogtor", got "${author}"`);
+  }
   if (!date) {
     throw new Error(`${file}: missing required meta field "date"`);
   }
   if (!isValidDate(date)) {
-    throw new Error(`${file}: invalid date "${date}"; expected a real YYYY-MM-DD date`);
+    throw new Error(`${file}: invalid date "${date}"; expected YYYY-MM-DD HH:MM`);
   }
 
   const tags = [...new Set(rawTags.split(',').map(tag => tag.trim()).filter(Boolean))];
@@ -111,7 +123,7 @@ function validatePost(file, html) {
     }
   }
 
-  return { file, title, date, tags };
+  return { file, title, author, date, tags };
 }
 
 function collectSite(root) {

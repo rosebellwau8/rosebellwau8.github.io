@@ -25,9 +25,10 @@ afterEach(() => {
   fixtureRoots = [];
 });
 
-function postHtml({ title = 'Article', date = '2026-01-01', tags = 'tech', meta = null } = {}) {
+function postHtml({ title = 'Article', author = 'jogtor', date = '2026-01-01 12:00', tags = 'tech', meta = null } = {}) {
   const metadata = meta || [
     `<meta name="title" content="${title}">`,
+    `<meta name="author" content="${author}">`,
     `<meta name="date" content="${date}">`,
     `<meta name="tags" content="${tags}">`,
   ].join('\n');
@@ -88,29 +89,48 @@ test('extractMeta supports reversed attributes, extra attributes, and single quo
   assert.equal(extractMeta(html, 'title'), 'Hello');
 });
 
-test('date validation accepts leap days and rejects impossible dates', () => {
-  assert.equal(isValidDate('2024-02-29'), true);
-  assert.equal(isValidDate('2023-02-29'), false);
-  assert.equal(isValidDate('2026-13-01'), false);
-  assert.equal(isValidDate('2026-7-01'), false);
+test('date validation accepts valid datetime and rejects impossible dates', () => {
+  assert.equal(isValidDate('2024-02-29 14:30'), true);
+  assert.equal(isValidDate('2026-01-01 00:00'), true);
+  assert.equal(isValidDate('2026-01-01 23:59'), true);
+  assert.equal(isValidDate('2023-02-29 12:00'), false);
+  assert.equal(isValidDate('2026-13-01 12:00'), false);
+  assert.equal(isValidDate('2026-01-01'), false);
+  assert.equal(isValidDate('2026-01-01 24:00'), false);
+  assert.equal(isValidDate('2026-01-01 12:60'), false);
 });
 
 test('build rejects a missing required title with the source filename', () => {
   const root = createFixture({
-    posts: { 'bad.html': postHtml({ meta: '<meta name="date" content="2026-01-01">' }) },
+    posts: { 'bad.html': postHtml({ meta: '<meta name="author" content="jogtor"><meta name="date" content="2026-01-01 12:00">' }) },
   });
   assert.throws(() => quietBuild(root), /bad\.html: missing required meta field "title"/);
 });
 
+test('build rejects a missing required author with the source filename', () => {
+  const root = createFixture({
+    posts: { 'bad.html': postHtml({ meta: '<meta name="title" content="T"><meta name="date" content="2026-01-01 12:00">' }) },
+  });
+  assert.throws(() => quietBuild(root), /bad\.html: missing required meta field "author"/);
+});
+
+test('build rejects a wrong author value', () => {
+  const root = createFixture({
+    posts: { 'bad.html': postHtml({ author: 'someone-else' }) },
+  });
+  assert.throws(() => quietBuild(root), /bad\.html: author must be "jogtor"/);
+});
+
 test('build rejects an invalid calendar date with the source filename', () => {
-  const root = createFixture({ posts: { 'bad-date.html': postHtml({ date: '2026-02-30' }) } });
+  const root = createFixture({ posts: { 'bad-date.html': postHtml({ date: '2026-02-30 12:00' }) } });
   assert.throws(() => quietBuild(root), /bad-date\.html: invalid date/);
 });
 
 test('generated metadata is HTML-escaped and article filenames are URL-encoded', () => {
   const metadata = [
     `<meta content='<b>&"quote"' name='title'>`,
-    `<meta content='2026-01-01' name='date'>`,
+    `<meta content='jogtor' name='author'>`,
+    `<meta content='2026-01-01 12:00' name='date'>`,
     `<meta content='<tag&' name='tags'>`,
   ].join('\n');
   const root = createFixture({ posts: { 'hello #1.html': postHtml({ meta: metadata }) } });
@@ -188,9 +208,9 @@ test('articles and stylesheet are copied byte for byte', () => {
 
 test('posts sort by descending date and then ascending filename', () => {
   const root = createFixture({ posts: {
-    'b.html': postHtml({ title: 'B', date: '2026-01-01' }),
-    'new.html': postHtml({ title: 'New', date: '2026-02-01' }),
-    'a.html': postHtml({ title: 'A', date: '2026-01-01' }),
+    'b.html': postHtml({ title: 'B', date: '2026-01-01 12:00' }),
+    'new.html': postHtml({ title: 'New', date: '2026-02-01 12:00' }),
+    'a.html': postHtml({ title: 'A', date: '2026-01-01 12:00' }),
   } });
   quietBuild(root);
   const index = fs.readFileSync(path.join(root, 'docs', 'index.html'), 'utf8');
@@ -202,7 +222,7 @@ test('posts sort by descending date and then ascending filename', () => {
 test('all generated internal href targets exist', () => {
   const root = createFixture({ posts: {
     'one #.html': postHtml({ title: 'One', tags: 'tech,随笔' }),
-    'two.html': postHtml({ title: 'Two', date: '2025-01-01', tags: 'tech' }),
+    'two.html': postHtml({ title: 'Two', date: '2025-01-01 12:00', tags: 'tech' }),
   } });
   quietBuild(root);
   const docs = path.join(root, 'docs');
@@ -221,7 +241,7 @@ test('all generated internal href targets exist', () => {
 test('repeated builds are byte-for-byte idempotent', () => {
   const root = createFixture({ posts: {
     'one.html': postHtml({ title: 'One', tags: 'tech,随笔' }),
-    'two.html': postHtml({ title: 'Two', date: '2025-01-01' }),
+    'two.html': postHtml({ title: 'Two', date: '2025-01-01 12:00' }),
   } });
   quietBuild(root);
   const first = manifest(path.join(root, 'docs'));

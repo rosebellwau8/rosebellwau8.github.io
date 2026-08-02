@@ -18,12 +18,13 @@ afterEach(() => {
   fixtureRoots.length = 0;
 });
 
-function articleHtml({ title = '自动发布测试', date = '2026-07-31', tags = '测试' } = {}) {
+function articleHtml({ title = '自动发布测试', date = '2026-07-31 12:00', tags = '测试' } = {}) {
   return `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="title" content="${title}">
+<meta name="author" content="jogtor">
 <meta name="date" content="${date}">
 <meta name="tags" content="${tags}">
 <title>${title}</title>
