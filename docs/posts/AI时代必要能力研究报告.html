@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="title" content="AI 时代必要能力研究报告">
+<meta name="author" content="jogtor">
+<meta name="date" content="2026-08-04 00:22">
+<meta name="tags" content="AI,能力,职场,研究报告">
+<title>AI 时代必要能力研究报告</title>
+<style>
+:root{
+  --bg:#0e1016; --paper:#161a23; --paper2:#1c2230; --text:#e6e9f0;
+  --muted:#9aa3b2; --line:#2a3140; --brand:#8b9bff; --brand2:#b794f6;
+  --code-bg:#0a0c12;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  line-height:1.85;font-size:16px;-webkit-font-smoothing:antialiased}
+.hero{background:linear-gradient(135deg,#1a1f3a,#2a1f4a 60%,#3a2350);color:#fff;padding:56px 24px 40px;text-align:center;border-bottom:1px solid var(--line)}
+.hero h1{font-size:2rem;margin:0 0 12px;font-weight:800;letter-spacing:.5px;background:linear-gradient(90deg,#c7d0ff,#d9b8ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero .sub{margin:6px 0;opacity:.9;font-size:.95rem}
+.hero .meta{margin-top:14px;font-size:.8rem;opacity:.7;letter-spacing:.5px}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 30px}
+.toc{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 22px;margin:26px 0 6px;column-count:2;column-gap:28px}
+.toc h2{margin:0 0 10px;font-size:1rem;color:var(--brand);column-span:all}
+.toc ol{margin:0;padding-left:20px}
+.toc li{margin:6px 0;break-inside:avoid}
+.toc a{color:var(--muted);text-decoration:none}
+.toc a:hover{color:var(--brand)}
+h2{font-size:1.5rem;margin:46px 0 14px;padding-bottom:8px;border-bottom:2px solid rgba(139,155,255,.25);color:#fff;scroll-margin-top:20px}
+h3{font-size:1.18rem;margin:30px 0 8px;color:#dfe4ff;scroll-margin-top:20px}
+p{margin:14px 0;color:#d4d9e4}
+a{color:var(--brand)}
+a:hover{color:var(--brand2)}
+ul,ol{margin:12px 0;padding-left:24px}
+li{margin:8px 0;color:#d4d9e4}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86em;background:rgba(139,155,255,.15);color:#c7d0ff;padding:2px 6px;border-radius:6px}
+pre.code{background:var(--code-bg);color:#e6e6e6;border:1px solid var(--line);border-radius:12px;padding:18px;overflow:auto;margin:18px 0;line-height:1.6;font-size:.85rem;white-space:pre}
+strong{color:#fff;font-weight:700}
+.key{background:linear-gradient(135deg,rgba(139,155,255,.12),rgba(183,148,246,.10));border:1px solid rgba(139,155,255,.3);border-left:4px solid var(--brand);border-radius:12px;padding:14px 18px;margin:18px 0;color:#eaf0ff;font-size:1.02rem}
+.key strong{color:#fff}
+blockquote.meta-box{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--brand2);border-radius:12px;padding:14px 18px;margin:20px 0;color:var(--muted);font-size:.92rem}
+blockquote.meta-box p{margin:6px 0;color:var(--muted)}
+table.dt{width:100%;border-collapse:collapse;margin:18px 0;font-size:.9rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+table.dt th{background:var(--paper2);color:#cdd5ff;text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-weight:600}
+table.dt td{padding:9px 12px;border-bottom:1px solid var(--line);color:#d4d9e4;vertical-align:top}
+table.dt tr:last-child td{border-bottom:none}
+table.dt a{color:var(--brand)}
+.back-home{text-align:center;margin:42px 0 6px}
+.back-home a{display:inline-block;text-decoration:none;color:#fff;background:linear-gradient(135deg,#6a5acd,#8b5cf6);padding:10px 24px;border-radius:999px;font-size:.95rem}
+.back-home a:hover{filter:brightness(1.1)}
+.foot{text-align:center;color:var(--muted);font-size:.8rem;padding:8px 0 44px}
+del{opacity:.6}
+@media(max-width:680px){.hero h1{font-size:1.5rem}h2{font-size:1.25rem}body{font-size:15px}.toc{column-count:1}}
+</style>
+</head>
+<body>
+<header class="hero">
+<h1>AI 时代必要能力研究报告</h1>
+<p class="sub">面向通用知识工作者的能力实操手册</p>
+<div class="meta">2026-08-04 00:22 ｜ AI · 能力 · 职场 · 研究报告</div>
+</header>
+<main class="wrap">
+<nav class="toc"><h2>目录</h2><ol><li><a href="#s1">一、结论先行</a></li><li><a href="#s2">二、能力模型：四环闭环，而非单向依赖</a></li><li><a href="#s3">三、逐环拆解</a></li><li><a href="#s4">四、能力自测表（四环 × 三档）</a></li><li><a href="#s5">五、30 天实践产物与效果验收</a></li><li><a href="#s6">六、必须直面的三组张力</a></li><li><a href="#s7">七、学习资源总览（只列实际打开验证过的）</a></li><li><a href="#s8">附录 A：四环 ↔ 来源对照表（溯源用）</a></li><li><a href="#s9">附录 B：来源总表（20 条；S7 删除，S18/S19 不承担正文论证、留存于信源台账）</a></li><li><a href="#s10">附录 C：已知局限与受限记录（如实报告）</a></li><li><a href="#s11">版本记录</a></li></ol></nav>
+<blockquote class="meta-box"><p>面向通用知识工作者的能力实操手册</p><p>调研基期：2026-08-03；本版修订：2026-08-04（版本记录见文末）</p><p>信源约定：全部来源实际打开核对（访问日期见附录 B）；证据按「证据类型」标注而非粗分级，各类型能证明什么见附录 B 标准表</p></blockquote>
+<h2 id="s1">一、结论先行</h2>
+<div class="key"><strong>核心判断：AI 时代，决定知识工作者能否有效利用 AI 的，已经不只是工具操作，还包括在真实领域中定义问题、组织人机协作、验证结果并承担责任。</strong></div>
+<p>若希望表述更有力度，可以进一步说：AI 普及之后，单纯的工具操作会迅速贬值；更难复制的是上述四项能力。——这是本报告的框架判断，不是任何一项调查直接证明的事实。</p>
+<p>支撑判断的三个事实（均已收紧至来源可支撑的范围）：</p>
+<ol><li><strong>AI 素养正在成为门槛。</strong> Microsoft 2025 年报告援引 LinkedIn 数据（经 Forbes 报道转述）称 AI literacy 是 2025 年需求最高的技能 [S6，转述链]；独立于该排名，WEF 调查本身将「AI 与大数据」列为增长最快的技能、66% 的领导者表示不会雇佣没有 AI 技能的人 [S2/S3/S5，劳动力调查]。</li><li><strong>当前 AI 使用以任务级增强为主，但只能得出有限结论。</strong> Anthropic 对 Claude.ai 对话的分析显示 57% 的使用属于增强、43% 属于自动化，未观察到某个职业的全部任务被覆盖；样本仅限 Claude.ai Free/Pro、编程用途过度代表、不能代表整个 AI 使用市场（附录 C），据此不能判断就业替代的总体规模 [S9/S23，平台行为数据]。</li><li><strong>与 AI 形成互补的能力仍被雇主普遍列为核心技能。</strong> WEF 调查中 70% 的公司认为分析式思维不可或缺，韧性、领导力与社交影响力位列最重要技能前三 [S3，劳动力调查]。注意：这是「重要性排名」，不等同于「招聘需求已上升」或「工资溢价已上升」——后两者需要人才缺口、招聘难度或薪酬数据，本报告未取得此类证据。</li></ol>
+<div class="key"><strong>一句话策略：围绕「定义问题 → 组织 AI 生产 → 验证取舍 → 推动采用」的闭环建立能力，让每一轮反馈进入下一轮的问题定义。</strong></div>
+<h2 id="s2">二、能力模型：四环闭环，而非单向依赖</h2>
+<p>能力不是一张平铺清单，也不是一条单行道。本报告提出「四环工作模型」：一次可靠的人机工作沿四个环节推进，并把落地的反馈送回下一轮定义——</p>
+<pre class="code"><code>问题环（定义正确的问题）→ 生产环（组织 AI 完成工作）→ 控制环（验证、取舍并担责）
+   ↑                                                        ↓
+   └────────────── 落地环（表达、协作并推动采用）←───────────┘
+        └──────── 持续学习与韧性：贯穿四环的长期保障 ────────┘</code></pre>
+<table class="dt"><thead><tr><th>环</th><th>回答的问题</th><th>能力点</th><th>主要来源</th></tr></thead><tbody><tr><td>问题环</td><td>该解决什么、该问什么</td><td>领域知识、目标与约束识别、问题拆解、创造性地框定问题</td><td>S4、S13、S15、S16</td></tr><tr><td>生产环</td><td>怎样把活交给 AI</td><td>会用（AI 素养）→ 会表达（上下文与提示）→ 会委派（编排），由浅入深；创造性地生成方案</td><td>S2、S3、S5、S6、S9</td></tr><tr><td>控制环</td><td>结果能不能用、该不该用</td><td>事实核验、质量评估、偏见识别、伦理红线、对结果负责</td><td>S3、S4、S6、S23、S10–S12、S14、S15</td></tr><tr><td>落地环</td><td>成果如何进入现实</td><td>表达与说服、协调、领导、创造性地推动采纳</td><td>S2、S3、S5、S8</td></tr></tbody></table>
+<div class="key"><strong>为什么是闭环而不是单向依赖</strong>：创造既参与问题定义（框定新问题），也参与方案生成（生产环），还参与推动采纳（落地环），不属于任何单一环节；持续学习为每一环补充新输入，韧性保证四环在变化中持续运转，二者是贯穿项。<strong>领域知识是问题环与控制环共同依赖的基础资产</strong>：定义问题靠它提出正确的问法，验证结果靠它识别违背常识的输出。</div>
+<div class="key"><strong>为什么把「定义问题」放在第一位</strong>：判断力不是悬空存在的——临床工作者能识别医学建议中的危险遗漏，靠的是诊疗知识；数据研究者能发现字段口径错误，靠的是对数据来源与业务语境的理解；质控人员能判断某条规则是误报，靠的是规范与真实流程经验。没有领域能力，「批判性思维」会退化成泛泛地问一句「有没有反面观点」，「编排 AI」只会把错误的流程自动化。</div>
+<h2 id="s3">三、逐环拆解</h2>
+<h3>问题环｜定义正确的问题</h3>
+<div class="key"><strong>是什么</strong>：在一个真实领域中识别目标与约束、拆解问题、把模糊需求变成可验收的任务定义，并创造性地框定「值得解的问题」。</div>
+<p><strong>为什么重要</strong></p>
+<ul><li>麦肯锡 2022 年全球 AI 调研发现：AI 相关岗位中「转译员」尤为关键——他们「知道应该提出哪些业务问题，并将业务问题翻译成 AI 解决方案」，需要 π 型技能（通用管理＋AI 与业务双纵深）；当时中国企业仅 6% 招聘过转译员（领先国家 14%）[S16，企业调查，2022 年口径]。</li><li>中国国务院《教育发展"十五五"规划》把「增强提出问题、解决问题的能力」与人工智能素养并列为培养目标 [S15，政策文件]。</li><li>新华社特写引述深圳职业技术大学校长许建领：学生核心竞争力「不再是单一的操作技能，而是复杂问题解决能力、'AI+技能'复合素养和可持续学习的自驱力」[S13，专家发言]。</li><li>Microsoft 列出的 AI 时代核心能力包含「复杂问题解决」[S4，劳动力调查]。</li></ul>
+<div class="key"><strong>怎么练（围绕产物）</strong></div>
+<ol><li>为你最常做的一类工作写「一页任务书」：目标、输入、约束、风险、验收标准——写给 AI 用，也写给自己用。</li><li>建立领域「错误库」：每次发现 AI 或流程出错，记下错在哪、为什么、领域里的判断依据是什么。</li><li>每接一个新任务，先列出「这件事里 AI 不可能知道的事」（隐性约束、口径、责任边界），再动手。</li><li>定期把你的领域判断「讲给外行听」，讲到对方能复述判断依据为止。</li></ol>
+<h3>生产环｜组织 AI 完成工作</h3>
+<div class="key"><strong>是什么</strong>：一条由浅入深的能力链——会用（AI 素养）→ 会表达（提供上下文、写提示、迭代反馈）→ 会委派（拆解流程、编排多个 AI 任务）；在链条之上，用创造性思维生成 AI 给不出的方案。</div>
+<p><strong>为什么重要</strong></p>
+<ul><li>WEF：AI 与大数据居增长最快技能第一；三分之二雇主计划招聘具备特定 AI 技能的人才 [S2/S3，劳动力调查]。</li><li>Microsoft 2024 调查：75% 知识工作者已在使用生成式 AI；66% 领导者不招没有 AI 技能的人；71% 宁愿选有 AI 技能但经验较浅的候选人 [S5，劳动力调查]。</li><li>Microsoft 2025 报告给出「思考伙伴」技能清单：与 AI 迭代、知道何时委派、带着上下文与意图 prompting、优化输出而非接受初稿、知道何时反驳与引导 [S6，劳动力调查]；并预计 5 年内团队将承担构建多智能体系统（42%）、训练 agents（41%）、管理 agents（36%）等工作 [S6]。</li><li>Anthropic 数据中「指令式委派、反馈循环、任务迭代」已是常见人机协作模式——委派本身是一种可练的技能 [S9/S23，平台行为数据]。</li></ul>
+<div class="key"><strong>怎么练（围绕产物）</strong></div>
+<ol><li>维护一张「AI 任务清单」：每项真实任务同时记录纯人工耗时、AI 辅助耗时、返工量与错误数——这是生产环的基础账本。</li><li>为高频场景沉淀提示模板：目标、背景、约束、输出格式四件套；像给新同事交代工作一样给 AI 上下文（呼应问题环的任务书）。</li><li>把一个每周重复的流程（周报、数据整理、信息追踪）拆成步骤，逐步交给 AI，做成一条可重复执行的人机工作流。</li><li>主动学 AI 的能力边界：它能做什么、不能做什么、哪些场景必须人工（仅 39% 使用者接受过公司 AI 培训，等不来 [S5]）。</li></ol>
+<h3>控制环｜验证、取舍并担责</h3>
+<div class="key"><strong>是什么</strong>：事实核验、质量评估、偏见识别、伦理红线，以及最终对结果负责。AI 越强，这一环越关键——因为采纳与担责无法外包。</div>
+<p><strong>为什么重要</strong></p>
+<ul><li>WEF：分析式思维仍是雇主最看重的核心技能（70% 的公司认为不可或缺）[S3，劳动力调查]。</li><li>Microsoft 的能力清单明确要求「发现弱推理或漏洞」「知道何时反驳、引导或调整 AI」「评估 AI 生成的内容」「检查偏见」[S4/S6，劳动力调查]。</li><li>Anthropic 将验证（Validation）列为 AI 增强的一种使用方式；论文正文明确它是增强各类别中最小的一类（「Validation was the smallest category」，且几乎集中在语言翻译任务）[S23，正式论文]。据论文 Figure 7 图值，验证约占增强使用的 2.8%（任务迭代约 31.3%、学习约 23.3%；图值未能以文本形式提取，但三者之和与正文增强总数 57% 一致）。对话占比低不意味着不重要：在高风险工作中，验证的价值不能仅以使用占比衡量——这正是控制环要由人守住的原因。</li><li>UNESCO 学生与教师 AI 能力框架均把「Ethics of AI」列为独立核心维度 [S10–S12，国际组织规范框架]；中国两份政策文件要求「强化数据安全、人工智能算法和伦理安全」「强化人工智能伦理规范和安全监管」[S14/S15，政策文件]。</li><li>判断与拍板是人的保留职责：「AI 可以计算风险，只有人能决定哪个风险值得冒」[S8，专家观点]。</li></ul>
+<div class="key"><strong>怎么练（围绕产物）</strong></div>
+<ol><li>建立「分场景核验清单」：不同输出类型（对外发布、内部决策、客户交付）各配抽查规则——查什么、抽多少、谁负责。</li><li>重要数字与引文一律回源头核验；记录「AI 出错档案」并按类型归因（事实错/逻辑错/偏见/过度自信）。</li><li>建立数据红线：哪些数据不喂给 AI（个人隐私、客户机密、未公开经营数据），写成「数据分级表＋禁止上传清单」。</li><li>练习「故意反驳」：对 AI 方案主动找反面证据，再决策。</li><li>对外披露 AI 参与：署名与披露合规检查纳入发布流程。</li></ol>
+<h3>落地环｜表达、协作并推动采用</h3>
+<div class="key"><strong>是什么</strong>：把前三环的成果带进人与组织的世界——表达与说服、协调分歧、领导团队采纳新做法，并创造性地让成果被接受。</div>
+<p><strong>为什么重要</strong></p>
+<ul><li>WEF：领导力与社会影响力、创造性思维均位列增长最快技能；领导力位列最重要技能前三 [S2/S3，劳动力调查]。</li><li>沟通是 2024 年 LinkedIn 全球需求第一的技能（LinkedIn 数据）[S8，转述]；「5Cs」框架将 Curiosity、Courage、Creativity、Compassion、Communication 列为人类优势能力（专家观点，非实证结论）[S8]。</li><li>Microsoft：随着 AI 普及，管理、关系建立、谈判等人类技能更突出 [S5]；47% 领导者把技能提升列为首要人力战略 [S6，劳动力调查]。</li></ul>
+<div class="key"><strong>怎么练（围绕产物）</strong></div>
+<ol><li>表达：把复杂结论讲给外行听，讲到对方能复述为止；产物是一次被采纳的提案或说明。</li><li>协调：每月主动做一件「只有人能做的协调」（化解分歧、促成跨部门合作、给客户坏消息），事后复盘。</li><li>领导：若带团队，把 AI 使用规范与培训安排纳入团队例会议程。</li><li>采纳：为新方法设计一次「小范围试点 → 展示结果 → 进入流程」的路径，而不是一次演示。</li></ol>
+<h3>贯穿项｜持续学习与韧性（四环的长期保障）</h3>
+<p><strong>为什么重要</strong></p>
+<ul><li>学习侧：WEF 预计到 2030 年 59/100 劳动者需要培训，85% 雇主把提升员工技能列为应对计划之首；39% 的关键技能五年内变化 [S3，劳动力调查]。AI 也是学习的加速器：学习（Learning）是增强使用中的主要模式之一（论文 Figure 7 图值约 23.3%，仅次于任务迭代）[S23，正式论文]——但按控制环规则，学来的东西同样要核验。</li><li>韧性侧：WEF 中 Resilience, flexibility and agility 同时进入「增长最快」第 5 与「最重要」第 2 [S2/S3]；Microsoft 领导者调查中 flexibility 位列未来最重要技能 [S4，劳动力调查]。背景：到 2030 年岗位变动相当于现有岗位的 22%，文职类岗位下降最快 [S3]——变化是常态，四环能力需要在变化中持续兑现。</li></ul>
+<div class="key"><strong>怎么练</strong>：验收标准不是「上完课」，而是「一项被工作实际采用的新方法」；每半年做一次「任务脆弱性自检」（我的哪些任务可被自动化，参照任务级暴露研究 [S17，正式论文]）；主动接陌生任务当训练负荷；为关键技能准备相邻岗位的 B 计划；把每次返工写成短复盘。</div>
+<h2 id="s4">四、能力自测表（四环 × 三档）</h2>
+<p>以下为实践工具，不属于标准化量表；行为描述提炼自 S4、S6、S10–S12、S15、S16 等来源的能力要求，用于自查与团队盘点，不用于招聘筛选。</p>
+<table class="dt"><thead><tr><th>环</th><th>入门</th><th>胜任</th><th>精通</th></tr></thead><tbody><tr><td>问题环</td><td>能说出任务的目标与输入</td><td>能写一页任务书：目标、输入、约束、风险、验收标准</td><td>错误库/案例库持续积累并被复用；能指出 AI 输出中违背领域常识的假设</td></tr><tr><td>生产环</td><td>能用 AI 完成一项真实任务并记录结果</td><td>会提供上下文、迭代与反驳；知道何时委派、何时收回 [S6]</td><td>有一条可复跑的人机工作流；能指导他人使用</td></tr><tr><td>控制环</td><td>能发现 AI 输出中的明显事实错误</td><td>会回源头核验、找弱推理、写反馈；有场景化核验清单 [S4/S6]</td><td>数据分级与红线成文；对外输出有披露规范；能举出拦错实例</td></tr><tr><td>落地环</td><td>能借助 AI 完成创意初稿并讲清楚</td><td>能跨角色说服与协调 [S5/S8]</td><td>组织团队的 AI 采用与技能建设；成果被实际采纳 [S6]</td></tr></tbody></table>
+<h2 id="s5">五、30 天实践产物与效果验收</h2>
+<p>有产物不等于有能力：任务书可能写得很差，工作流可能只能跑一次。因此每项产物配最低验收条件，把「产物验收」升级为「效果验收」。</p>
+<table class="dt"><thead><tr><th>能力方向</th><th>30 天可交付产物</th><th>最低验收条件</th></tr></thead><tbody><tr><td>AI 任务清单（生产环）</td><td>一张真实任务清单</td><td>同时记录纯人工耗时、AI 辅助耗时、返工量和错误数</td></tr><tr><td>问题定义（问题环）</td><td>一页任务书：目标、输入、约束、风险、验收标准</td><td>交给别人或 AI 执行一次，记录歧义和遗漏</td></tr><tr><td>人机工作流（生产环）</td><td>一条可重复执行的人机工作流</td><td>至少重复运行 3 次，结果基本稳定</td></tr><tr><td>核验清单（控制环）</td><td>一份分场景核验清单</td><td>至少拦下一次真实错误，并记录漏检或误报</td></tr><tr><td>错误库（问题环）</td><td>一个持续积累的案例库、规则库或错误库</td><td>后续任务中至少复用一条经验</td></tr><tr><td>数据红线（控制环）</td><td>数据分级表和禁止上传清单</td><td>至少一次真实场景中按清单做出拦截/放行/脱敏决定</td></tr><tr><td>新方法（落地环）</td><td>一项被工作实际采用的新方法</td><td>实际进入工作流程，而非只做一次演示</td></tr></tbody></table>
+<p>建议节奏（经验性建议，无研究依据，可自调）：先做「任务清单＋任务书」（第 1–2 周），再做「工作流＋核验清单」（第 3–4 周），错误库与数据红线从第一天起随手记。</p>
+<h2 id="s6">六、必须直面的三组张力</h2>
+<p>本报告的多数来源（WEF、Microsoft、LinkedIn、Anthropic、麦肯锡）均为推动 AI 应用的机构，整体倾向乐观。为平衡，主动讨论三组张力：</p>
+<h3>1. 增强与替代并存</h3>
+<p>同一份 WEF 报告既显示三分之二雇主计划招聘 AI 人才，也显示 <strong>40% 的雇主预计会在 AI 可自动化的环节减少用工</strong>、50% 计划按 AI 重新调整业务 [S3，劳动力调查]。Anthropic 样本中 57% 增强、43% 自动化的结构 [S9/S23，平台行为数据] 说明替代发生在任务粒度。<strong>增强还是替代，取决于任务性质、技术能力、组织选择和个人能力；领域与控制能力有助于提高工作者处于增强一侧的机会，但不能单独决定结果。</strong></p>
+<h3>2. 能力赋能与能力退化并存</h3>
+<p>上行面：AI 是学习的加速器——学习是增强使用中的主要模式之一 [S23，正式论文]。下行面：判断外包、写作弱化、虚假的理解感都是真实风险；教育者的警告是「成功的 AI+教育不是让学生依赖 AI 获取答案」[S13，专家发言]。<strong>诚实标注：关于「AI 使用导致批判性思维下降」的定量研究，本次调研在网络环境内未能打开核实（附录 C），该方向暂以定性讨论呈现，不引用未经核实的数字。</strong></p>
+<h3>3. 资深员工受益与初级岗位受损并存</h3>
+<p>乐观证据：77% 的领导者表示借助 AI，早期职业人才将承担更多责任 [S5，劳动力调查]。悲观面：文职与入门类岗位在 WEF 预测中下降最快（收银、行政助理、数据录入等）[S3]；「新人失去通过低难度工作积累经验的阶梯」这一担忧在可及权威来源中尚无直接定量证据，列为未决问题。<strong>含义：初级工作者尤其要主动补问题环（错误库、任务书）与控制环（核验能力），把原本靠年限积累的验证经验提前显性化。</strong></p>
+<h2 id="s7">七、学习资源总览（只列实际打开验证过的）</h2>
+<table class="dt"><thead><tr><th>资源</th><th>提供方</th><th>对应环</th><th>说明</th></tr></thead><tbody><tr><td>Coursera《AI For Everyone》</td><td>DeepLearning.AI / Andrew Ng [S20]</td><td>生产环入门</td><td>约 7 小时；AI 边界、组织内找机会、与 AI 团队合作、AI 伦理；可 Join for Free，证书需付费</td></tr><tr><td>Coursera《Generative AI for Everyone》</td><td>DeepLearning.AI / Andrew Ng [S21]</td><td>生产环</td><td>生成式 AI 原理、提示构建、项目生命周期、岗位影响与负责任 AI</td></tr><tr><td>edX 人工智能专题页</td><td>edX [S22]</td><td>生产环/控制环</td><td>含 Microsoft《AI for Business Users》、IBM《Generative AI for Everyone》、MIT Sloan《AI: Implications for Business Strategy》</td></tr><tr><td>UNESCO《AI competency framework for students / for teachers》</td><td>UNESCO [S11/S12]</td><td>控制环（伦理）</td><td>官方页提供多语言文档链接（经 UNESCO 数字图书馆获取）；学生框架 4 领域 12 能力（Understand→Apply→Create），教师框架 5 维度 15 能力（Acquire→Deepen→Create）</td></tr><tr><td>WEF《Future of Jobs Report 2025》digest</td><td>World Economic Forum [S3]</td><td>趋势校准</td><td>技能需求类调查每年更新，建议每 12 个月复核一次</td></tr></tbody></table>
+<p>未打开验证的课程链接（如 Google AI Essentials，404）一律不采信。</p>
+<h2 id="s8">附录 A：四环 ↔ 来源对照表（溯源用）</h2>
+<table class="dt"><thead><tr><th>环／能力点</th><th>溯源编号</th></tr></thead><tbody><tr><td>问题环：问题定义与转译</td><td>S4、S13（专家发言）、S15、S16</td></tr><tr><td>生产环：会用/会表达</td><td>S2、S3、S4、S5、S6</td></tr><tr><td>生产环：会委派/编排</td><td>S6、S9/S23、S16</td></tr><tr><td>控制环：核验与判断</td><td>S3、S4、S6、S23</td></tr><tr><td>控制环：伦理与责任</td><td>S10、S11、S12、S14、S15</td></tr><tr><td>落地环：表达/说服/协调</td><td>S4、S5、S6、S8</td></tr><tr><td>落地环：领导与采纳</td><td>S2、S3、S5、S6</td></tr><tr><td>贯穿：持续学习</td><td>S2、S3、S23</td></tr><tr><td>贯穿：韧性与适应力</td><td>S2、S3、S4、S17</td></tr></tbody></table>
+<h2 id="s9">附录 B：来源总表（20 条；S7 删除，S18/S19 不承担正文论证、留存于信源台账）</h2>
+<table class="dt"><thead><tr><th>编号</th><th>来源</th><th>机构</th><th>证据类型</th><th>日期</th><th>URL</th></tr></thead><tbody><tr><td>S1</td><td>The Future of Jobs Report 2025 出版物页</td><td>World Economic Forum</td><td>劳动力调查（报告入口页）</td><td>2025-01</td><td><a href="https://www.weforumasia.cn/publications/the-future-of-jobs-report-2025/" target="_blank" rel="noopener">https://www.weforumasia.cn/publications/the-future-of-jobs-report-2025/</a></td></tr><tr><td>S2</td><td>The jobs of the future – and the skills you need to get them</td><td>World Economic Forum</td><td>劳动力调查</td><td>2025-01-08</td><td><a href="https://www.weforumasia.cn/stories/jobs-and-the-future-of-work/future-of-jobs-report-2025-jobs-of-the-future-and-the-skills-you-need-to-get-them/" target="_blank" rel="noopener">https://www.weforumasia.cn/stories/jobs-and-the-future-of-work/future-of-jobs-report-2025-jobs-of-the-future-and-the-skills-you-need-to-get-them/</a></td></tr><tr><td>S3</td><td>Future of Jobs Report 2025 Digest（关键发现）</td><td>World Economic Forum</td><td>劳动力调查</td><td>2025-01-07</td><td><a href="https://www.weforumasia.cn/publications/the-future-of-jobs-report-2025/digest/" target="_blank" rel="noopener">https://www.weforumasia.cn/publications/the-future-of-jobs-report-2025/digest/</a></td></tr><tr><td>S4</td><td>Work Trend Index 2023: Will AI Fix Work?</td><td>Microsoft</td><td>劳动力调查</td><td>2023-05-09</td><td><a href="https://www.microsoft.com/en-us/worklab/work-trend-index/will-ai-fix-work" target="_blank" rel="noopener">https://www.microsoft.com/en-us/worklab/work-trend-index/will-ai-fix-work</a></td></tr><tr><td>S5</td><td>Work Trend Index 2024: AI at Work Is Here. Now Comes the Hard Part</td><td>Microsoft &amp; LinkedIn</td><td>劳动力调查</td><td>2024-05-08</td><td><a href="https://www.microsoft.com/en-us/worklab/work-trend-index/ai-at-work-is-here-now-comes-the-hard-part" target="_blank" rel="noopener">https://www.microsoft.com/en-us/worklab/work-trend-index/ai-at-work-is-here-now-comes-the-hard-part</a></td></tr><tr><td>S6</td><td>Work Trend Index 2025: The Year the Frontier Firm Is Born</td><td>Microsoft</td><td>劳动力调查（其中「AI literacy 最急需」一句为援引 LinkedIn、链接指向 Forbes 报道，该句按转述链对待）</td><td>2025-04-23</td><td><a href="https://www.microsoft.com/en-us/worklab/work-trend-index/2025-the-year-the-frontier-firm-is-born" target="_blank" rel="noopener">https://www.microsoft.com/en-us/worklab/work-trend-index/2025-the-year-the-frontier-firm-is-born</a></td></tr><tr><td><del>S7</del></td><td>已删除（编号保留不复用）</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>S8</td><td>The essential human skills for AI success? Focus on the 5Cs</td><td>Microsoft WorkLab / LinkedIn（Roslansky &amp; Raman，《Open to Work》书摘）</td><td>专家观点</td><td>2026-04-08</td><td><a href="https://www.microsoft.com/en-us/worklab/the-essential-human-skills-for-ai-success-focus-on-the-5cs" target="_blank" rel="noopener">https://www.microsoft.com/en-us/worklab/the-essential-human-skills-for-ai-success-focus-on-the-5cs</a></td></tr><tr><td>S9</td><td>The Anthropic Economic Index（公告页）</td><td>Anthropic</td><td>平台行为数据（样本限制见附录 C）</td><td>2025-02-10</td><td><a href="https://www.anthropic.com/news/the-anthropic-economic-index" target="_blank" rel="noopener">https://www.anthropic.com/news/the-anthropic-economic-index</a></td></tr><tr><td>S10</td><td>UNESCO AI competency frameworks 解读页</td><td>UNESCO</td><td>国际组织规范框架</td><td>2024-09-03</td><td><a href="https://www.unesco.org/en/articles/what-you-need-know-about-unescos-new-ai-competency-frameworks-students-and-teachers" target="_blank" rel="noopener">https://www.unesco.org/en/articles/what-you-need-know-about-unescos-new-ai-competency-frameworks-students-and-teachers</a></td></tr><tr><td>S11</td><td>AI competency framework for students</td><td>UNESCO</td><td>国际组织规范框架</td><td>2024-08-08（更新 2026-01-16）</td><td><a href="https://www.unesco.org/en/articles/ai-competency-framework-students" target="_blank" rel="noopener">https://www.unesco.org/en/articles/ai-competency-framework-students</a></td></tr><tr><td>S12</td><td>AI competency framework for teachers</td><td>UNESCO</td><td>国际组织规范框架</td><td>2024-08-08（更新 2026-01-16）</td><td><a href="https://www.unesco.org/en/articles/ai-competency-framework-teachers" target="_blank" rel="noopener">https://www.unesco.org/en/articles/ai-competency-framework-teachers</a></td></tr><tr><td>S13</td><td>2026年中国AI发展趋势前瞻（清华官网转载）</td><td>新华社</td><td>新闻特写（能力相关引文位于第六部分，系受访专家许建领发言与特写叙述，非调查数据）</td><td>2026-01-28</td><td><a href="https://www.tsinghua.edu.cn/info/1182/124190.htm" target="_blank" rel="noopener">https://www.tsinghua.edu.cn/info/1182/124190.htm</a></td></tr><tr><td>S14</td><td>教育强国建设规划纲要（2024－2035年）</td><td>中共中央、国务院</td><td>政策文件</td><td>2025-01-19</td><td><a href="https://www.gov.cn/zhengce/202501/content_6999913.htm" target="_blank" rel="noopener">https://www.gov.cn/zhengce/202501/content_6999913.htm</a></td></tr><tr><td>S15</td><td>教育发展"十五五"规划</td><td>国务院</td><td>政策文件</td><td>2026-06-29</td><td><a href="https://www.gov.cn/zhengce/content/202606/content_7073640.htm" target="_blank" rel="noopener">https://www.gov.cn/zhengce/content/202606/content_7073640.htm</a></td></tr><tr><td>S16</td><td>麦肯锡全球人工智能最新调研：AI在中国企业的落地进展如何？中国AI往哪发力？</td><td>McKinsey（mckinsey.com.cn）</td><td>企业调查（页面未显示发布日期，正文明确基于 2022 年全球 AI 调研；仅承担问题定义/转译能力的方向性证据）</td><td>基于 2022 调研</td><td><a href="https://www.mckinsey.com.cn/%e9%ba%a6%e8%82%af%e9%94%a1%e5%85%a8%e7%90%83%e4%ba%ba%e5%b7%a5%e6%99%ba%e8%83%bd%e6%9c%80%e6%96%b0%e8%b0%83%e7%a0%94%ef%bc%9aai%e5%9c%a8%e4%b8%ad%e5%9b%bd%e4%bc%81%e4%b8%9a%e7%9a%84%e8%90%bd%e5%9c%b0/" target="_blank" rel="noopener">https://www.mckinsey.com.cn/%e9%ba%a6%e8%82%af%e9%94%a1%e5%85%a8%e7%90%83%e4%ba%ba%e5%b7%a5%e6%99%ba%e8%83%bd%e6%9c%80%e6%96%b0%e8%b0%83%e7%a0%94%ef%bc%9aai%e5%9c%a8%e4%b8%ad%e5%9b%bd%e4%bc%81%e4%b8%9a%e7%9a%84%e8%90%bd%e5%9c%b0/</a></td></tr><tr><td>S17</td><td>GPTs are GPTs: An Early Look at the Labor Market Impact Potential of LLMs</td><td>Eloundou et al.（arXiv 2303.10130）</td><td>正式论文</td><td>2023-03-17（v5 2023-08-21）</td><td><a href="https://export.arxiv.org/abs/2303.10130" target="_blank" rel="noopener">https://export.arxiv.org/abs/2303.10130</a></td></tr><tr><td>S20</td><td>课程：AI For Everyone</td><td>Coursera / DeepLearning.AI</td><td>学习资源页</td><td>访问 2026-08-03</td><td><a href="https://www.coursera.org/learn/ai-for-everyone" target="_blank" rel="noopener">https://www.coursera.org/learn/ai-for-everyone</a></td></tr><tr><td>S21</td><td>课程：Generative AI for Everyone</td><td>Coursera / DeepLearning.AI</td><td>学习资源页</td><td>访问 2026-08-03</td><td><a href="https://www.coursera.org/learn/generative-ai-for-everyone" target="_blank" rel="noopener">https://www.coursera.org/learn/generative-ai-for-everyone</a></td></tr><tr><td>S22</td><td>Artificial Intelligence 学习专题页</td><td>edX</td><td>学习资源页</td><td>访问 2026-08-03</td><td><a href="https://www.edx.org/learn/artificial-intelligence" target="_blank" rel="noopener">https://www.edx.org/learn/artificial-intelligence</a></td></tr><tr><td>S23</td><td>Which Economic Tasks are Performed with AI? Evidence from Millions of Claude Conversations</td><td>Handa et al.（arXiv 2503.04761，Anthropic Economic Index 论文全文）</td><td>正式论文（平台行为数据研究）</td><td>2025-02-11，访问 2026-08-04</td><td><a href="https://export.arxiv.org/abs/2503.04761" target="_blank" rel="noopener">https://export.arxiv.org/abs/2503.04761</a> （全文经 <a href="https://ar5iv.labs.arxiv.org/html/2503.04761" target="_blank" rel="noopener">https://ar5iv.labs.arxiv.org/html/2503.04761</a> 打开）</td></tr></tbody></table>
+<h3>证据类型标准</h3>
+<table class="dt"><thead><tr><th>类型</th><th>能证明什么</th></tr></thead><tbody><tr><td>劳动力调查</td><td>雇主态度、预期和技能排名</td></tr><tr><td>平台行为数据</td><td>特定平台上的真实使用结构</td></tr><tr><td>政策文件</td><td>政策方向和规范要求</td></tr><tr><td>正式论文</td><td>经过公开审查的方法与结论</td></tr><tr><td>国际组织规范框架</td><td>规范参考与国际共识</td></tr><tr><td>专家观点</td><td>提供解释框架，不能证明普遍事实</td></tr><tr><td>新闻特写</td><td>承载受访者观点与现场叙述，按专家观点对待</td></tr><tr><td>作者框架</td><td>用于组织行动，不属于外部证据（如本报告的四环模型、自测表、产物表）</td></tr><tr><td>学习资源页</td><td>仅证明资源存在，不作论证证据</td></tr></tbody></table>
+<h2 id="s10">附录 C：已知局限与受限记录（如实报告）</h2>
+<ol><li><strong>S9/S23（Anthropic Economic Index）样本限制</strong>：仅覆盖 Claude.ai Free/Pro（不含 API/Team/Enterprise）；不确定对话是否真用于工作；Claude 以编码见长，编码用途可能被高估；不能代表整个 AI 使用市场。本报告引用该数据时均已附加这些限制。</li><li><strong>S23 图值</strong>：增强各模式的精确占比（任务迭代约 31.3%、学习约 23.3%、验证约 2.8%）出自论文 Figure 7 图值，文本版未能提取，系人工核对图值得出；论文正文可直接验证的表述为「Validation was the smallest category」与增强/自动化总数 57%/43%，图值与总数自洽。</li><li><strong>S6 中「AI literacy 是 2025 最急需技能」的归属</strong>：原文为「according to LinkedIn」，链接指向 Forbes 报道；Forbes 原文在本网络环境连接被拒，未能直接打开，故该句按转述链对待，不作为微软一手调查结论。</li><li><strong>S16 时效</strong>：基于 2022 年全球 AI 调研，页面未显示发布日期；仅承担「问题定义/转译能力受组织重视」的方向性证据。</li><li><strong>S13 引文性质</strong>：能力相关引文均位于文章第六部分（2026-08-03 逐字复核确认），属受访专家发言与特写叙述，非调查数据。</li><li><strong>张力 2 的证据缺口</strong>：关于「AI 使用导致批判性思维/能力退化」的定量研究未能在本网络环境打开核实，该方向按定性讨论呈现。</li><li><strong>张力 3 的证据缺口</strong>：「初级岗位阶梯消失」在可及权威来源中无直接定量证据，列为未决问题。</li><li><strong>来源可达性</strong>：OECD（oecd.org/oecd.ai）、ILO、IMF、LinkedIn 原站、unesdoc PDF 直取、arXiv 直连（经 export 镜像与 ar5iv 解决）、Forbes 在本环境不可达；相应一手内容未引用。</li><li><strong>时效边界</strong>：技能需求类调查（WEF、Microsoft、LinkedIn）每年更新，本报告结论以可及版本为准，建议 12 个月后复核 S3、S5、S6。</li><li><strong>S18/S19 处理</strong>：S18（非洲 AI 与工作白皮书）与 S19（HBR/Lakhani 观点文）不承担正文论证，已从附录 B 移出，留存于信源台账（sources.md）备查。</li></ol>
+<h2 id="s11">版本记录</h2>
+<ul><li>v1（2026-08-03）：初版，九项能力平铺。</li><li>v2（2026-08-03）：收紧 Anthropic 推论与「能力涨价」表述；澄清 AI literacy 归属；删 S7、修正 S16、复核 S13；新增领域能力、四层模型、自测表、30 天产物表、三组张力。</li><li>v3（2026-08-04）：四层改为四环闭环工作模型；证据分级改为证据类型；修正验证（Validation）占比表述并新增 S23 论文全文核对；收紧「稀缺」「决定」等强词；实践产物补充效果验收条件；清除修订过程痕迹；S18/S19 移出正文附录。</li></ul>
+<p class="back-home"><a href="../index.html">&larr; 返回首页</a></p><p class="foot">本文由原始 Markdown 排版生成 · 内容未做增删</p>
+</main>
+</body>
+</html>
