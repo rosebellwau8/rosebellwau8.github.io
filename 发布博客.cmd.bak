@@ -2,7 +2,7 @@
 chcp 65001 >nul
 cd /d "%~dp0"
 if "%~1"=="" goto missing
-node scripts\publish.js %*
+node scripts\publish.js "%~1"
 if errorlevel 1 goto failed
 echo.
 echo Publish command finished successfully.
@@ -11,7 +11,6 @@ goto success
 :missing
 echo.
 echo Drag one HTML file onto this launcher.
-echo Or run: %~nx0 "article.html" --force   (overwrite an existing post)
 goto failed
 
 :failed
