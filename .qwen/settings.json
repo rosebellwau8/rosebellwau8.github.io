@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(split *)",
+      "Bash(select-object *)",
+      "Bash('main_hanzi=' *)",
+      "Bash(get-filehash *)",
+      "Bash(format-list)"
+    ]
+  },
+  "$version": 4
+}
