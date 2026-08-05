@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 元数据：构建程序读取以下 meta 生成首页列表 -->
+<meta name="title" content="不写一行代码，手搓一个 AI 技能：workbuddy 和 codex 实操全程">
+<meta name="author" content="jogtor">
+<meta name="date" content="2026-08-05 07:57">
+<meta name="tags" content="AI,skill,workbuddy,codex,教程">
+<title>不写一行代码，手搓一个 AI 技能：workbuddy 和 codex 实操全程</title>
+<style>
+:root{
+  --bg:#0e1016;
+  --card:#161a24;
+  --card-2:#1c2230;
+  --text:#e6e8ef;
+  --muted:#9aa3b2;
+  --brand:#8b9bff;
+  --brand-2:#b794f6;
+  --line:#262c3a;
+  --ok:#5fd39a;
+  --no:#ff7a90;
+  --warn:#ffcf6b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  line-height:1.75;font-size:17px;
+}
+.hero{
+  padding:64px 24px 48px;text-align:center;
+  background:radial-gradient(1200px 400px at 50% -10%,rgba(139,155,255,.25),transparent 60%),
+             linear-gradient(160deg,#1a1f33,#0e1016);
+  border-bottom:1px solid var(--line);
+}
+.hero h1{font-size:clamp(26px,5vw,40px);margin:0 0 12px;
+  background:linear-gradient(90deg,var(--brand),var(--brand-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero .meta{color:var(--muted);font-size:14px}
+.hero .tags{margin-top:10px}
+.hero .tags span{
+  display:inline-block;margin:3px;padding:3px 10px;border-radius:999px;
+  font-size:12px;color:var(--brand);border:1px solid var(--line);background:var(--card);
+}
+.wrap{max-width:820px;margin:0 auto;padding:32px 20px 64px}
+.toc{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:18px 22px;margin:24px 0;
+}
+.toc h2{font-size:16px;margin:0 0 10px;color:var(--brand-2)}
+.toc ol,.toc ul{margin:0;padding-left:20px}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--brand)}
+h2{margin-top:40px;font-size:24px;border-left:4px solid var(--brand);padding-left:12px}
+h3.lead{margin-top:28px;font-size:19px;color:var(--brand-2);
+  border-left:3px solid var(--brand-2);padding-left:10px}
+.key{
+  background:linear-gradient(135deg,rgba(139,155,255,.12),rgba(183,148,246,.12));
+  border:1px solid var(--line);border-left:4px solid var(--brand);
+  border-radius:12px;padding:16px 20px;margin:20px 0;color:var(--text);
+}
+p{margin:16px 0}
+a{color:var(--brand)}
+code{background:var(--card-2);padding:2px 6px;border-radius:6px;font-size:.92em}
+pre{background:var(--card-2);border:1px solid var(--line);border-radius:12px;
+  padding:16px;overflow:auto}
+pre code{background:none;padding:0}
+table{width:100%;border-collapse:collapse;margin:20px 0;background:var(--card);
+  border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:10px 14px;text-align:left}
+th{background:var(--card-2);color:var(--brand-2)}
+blockquote{margin:18px 0;padding:12px 18px;border-left:4px solid var(--brand-2);
+  background:var(--card);color:var(--muted);border-radius:0 10px 10px 0}
+.note{font-size:14px;color:var(--muted);background:var(--card);
+  border:1px dashed var(--line);border-radius:10px;padding:12px 16px;margin:20px 0}
+.cite{font-size:.7em;vertical-align:super;color:var(--brand);text-decoration:none}
+.back{display:inline-block;margin-top:36px;color:var(--brand);text-decoration:none}
+@media(max-width:600px){body{font-size:16px}.hero{padding:48px 16px 36px}.wrap{padding:24px 14px 48px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <h1>不写一行代码，手搓一个 AI 技能：workbuddy 和 codex 实操全程</h1>
+  <div class="meta">2026-08-05 07:57 · jogtor</div>
+  <div class="tags"><span>AI</span><span>skill</span><span>workbuddy</span><span>codex</span><span>教程</span></div>
+</header>
+<main class="wrap">
+  <nav class="toc">
+    <h2>目录</h2>
+    <ol>
+      <li><a href="#s1">skill 到底是什么</a></li>
+      <li><a href="#s2">搓之前：确认环境</a></li>
+      <li><a href="#s3">手搓：weekly-report 诞生</a></li>
+      <li><a href="#s4">放进两个工具</a></li>
+      <li><a href="#s5">当场实测：codex 真的调用了它</a></li>
+      <li><a href="#s6">踩坑与心得</a></li>
+    </ol>
+  </nav>
+
+  <p>AI agent（workbuddy、codex、Qwen Code 这一类能干活的 AI）本事再大也是「通才」：它不知道你家周报长什么样，不知道你博客的排版规矩。想让它变成「懂你的专才」，不用写代码，答案是一个文件——skill（技能）。这篇全程真机实操：从零手搓一个「周报生成器」技能，放进 workbuddy 和 codex，当场调用验证。文中每条命令都是刚跑过的。</p>
+
+  <h2 id="s1">一、skill 到底是什么</h2>
+  <p>拆开看，一个 skill 就是「一个文件夹＋一个说明书」：</p>
+  <pre><code>weekly-report/          ← 技能文件夹，名字即技能名
+├── SKILL.md            ← 必须有，唯一的硬要求
+├── references/         ← 可选，参考资料
+└── assets/             ← 可选，模板、图片等素材</code></pre>
+  <p>核心全在 SKILL.md，开头是一段叫 frontmatter 的登记信息（用两行 <code>---</code> 包住），后面是正文：</p>
+  <pre><code>---
+name: weekly-report
+description: 把零散的工作记录整理成结构规范的周报。当用户说「写周报」「生成周报」时使用。
+---
+
+# 周报生成器
+（正文：这个技能干什么、按什么步骤干、有什么规矩）</code></pre>
+  <p>两个字段分工明确：</p>
+  <ul>
+    <li><strong>name</strong>：技能名，和文件夹同名。</li>
+    <li><strong>description</strong>：<strong>最要紧的一个字段</strong>。agent 不会通读你的正文，它靠这句话判断「用户现在的需求要不要叫这个技能」。写不清，技能就永远在睡觉。</li>
+  </ul>
+  <div class="key">实测发现，技能目录不止一个。本机 codex 启动时同时扫描了 <code>.codex\skills</code>（约 70 个技能）和 <code>.agents\skills</code>（多工具共享目录）；workbuddy 用 <code>.workbuddy\skills</code>，Qwen Code 用 <code>.qwen\skills</code>——三家格式完全同源，搓一个，处处能放。</div>
+  <table>
+    <thead><tr><th>工具</th><th>技能目录（本机实测）</th></tr></thead>
+    <tbody>
+      <tr><td>workbuddy</td><td><code>C:\Users\yuankang\.workbuddy\skills</code></td></tr>
+      <tr><td>codex CLI</td><td><code>C:\Users\yuankang\.codex\skills</code>（另扫描 <code>.agents\skills</code>）</td></tr>
+      <tr><td>Qwen Code</td><td><code>C:\Users\yuankang\.qwen\skills</code></td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="s2">二、搓之前：确认环境</h2>
+  <p>先确认 codex 在场：<code>codex --version</code>，本机输出 <code>codex-cli 0.146.0</code>。再用 <code>dir /b</code> 看两个技能目录，都有内容即就位。codex 目录里自带一个 <code>template-skill</code>，打开就是官方最小骨架——frontmatter 两行加一句「在下面写指令」，照着填即可。</p>
+
+  <h2 id="s3">三、手搓：weekly-report 诞生</h2>
+  <p>本次目标：让 AI 把零散的工作记录变成能直接上交的周报。新建文件夹 <code>weekly-report</code>，写 SKILL.md（真实生效版本，此处略有删节）：</p>
+  <pre><code>---
+name: weekly-report
+description: 把零散的工作记录整理成结构规范的周报。当用户说「写周报」「生成周报」「整理一下本周工作」「weekly report」「本周总结」时使用。先收集本周做的事，再按固定四段格式输出，突出进展与风险，不编造未完成的工作。
+agent_created: false
+---
+
+# 周报生成器
+
+## 步骤
+1. 收集素材：请用户提供本周做的事；素材不足就问，不许编。
+2. 归类：把事项归入「已完成 / 进行中 / 下周计划 / 风险与求助」四类。
+3. 按固定四段格式输出，每条一行，动词开头，写结果不写过程。
+
+## 要求
+- 每条不超过 40 字，能带数字就带数字（「修了 3 个 bug」优于「修复若干问题」）
+- 不夸大、不虚构；素材里没有的不写</code></pre>
+  <p>写的时候拿住三个要点：</p>
+  <h3 class="lead">description 要写「干什么＋什么话触发」</h3>
+  <p>对比机上一个真实技能：「把文章转换为符合博客规范的 HTML 文件……当用户要求转成 HTML、排版成 HTML、做成网页时触发」——功能和触发词都摆明了，agent 一听见关键词就会调用。只写「处理周报」四个字，agent 大概率想不起来你。</p>
+  <h3 class="lead">正文写步骤和禁令，不写散文</h3>
+  <p>agent 是把说明书当操作手册执行的，「素材不足就问，不许编」这种硬规矩，写一条生效一条。</p>
+  <h3 class="lead">格式输出要给定死的结构</h3>
+  <p>我规定了四段式模板，后面实测时它就一字不差地照办了。</p>
+  <p class="note">顺带一提：<code>agent_created: false</code> 是 workbuddy 端的附加字段，标记「这是人手搓的，不是 AI 生成的」，没有也不影响。</p>
+
+  <h2 id="s4">四、放进两个工具</h2>
+  <p>skill 不需要「安装」，把文件夹放进技能目录就生效。本机操作（两个工具各来一遍）：</p>
+  <pre><code>mkdir C:\Users\yuankang\.codex\skills\weekly-report
+copy SKILL.md C:\Users\yuankang\.codex\skills\weekly-report\
+dir /b C:\Users\yuankang\.codex\skills\weekly-report</code></pre>
+  <p>workbuddy 同理，目录换成 <code>C:\Users\yuankang\.workbuddy\skills</code>。没有注册、没有重启服务——文件到位，技能就位，下次会话即被加载。</p>
+
+  <h2 id="s5">五、当场实测：codex 真的调用了它</h2>
+  <p>一条命令验证，让 codex 用新技能写周报（素材随手给）：</p>
+  <pre><code>codex exec --sandbox read-only "使用 weekly-report 技能，帮我写一份本周周报（素材：本周完成了 skill 教程文章写作、weekly-report 技能搭建；进行中：红楼梦续写第二折 60%；下周计划：完成第86-90回）"</code></pre>
+  <p>日志显示它先主动读取了技能文件：<code>Get-Content ... .codex\skills\weekly-report\SKILL.md</code>，随后产出：</p>
+  <pre><code># 周报（2026-08-03 当周）
+
+## 本周完成
+- 完成 Skill 教程文章写作
+- 搭建 weekly-report 技能
+
+## 进行中
+- 推进《红楼梦》续写第二折，完成度 60%
+
+## 下周计划
+- 完成《红楼梦》续写第 86—90 回
+
+## 风险与求助
+- 无</code></pre>
+  <div class="key">四段格式、动词开头、无中生有的内容一个没有——正文里的规矩全部生效。本次调用消耗 11,438 tokens。</div>
+
+  <h2 id="s6">六、踩坑与心得</h2>
+  <p>实测路上捡到两个真坑，都值得一说。</p>
+  <h3 class="lead">坑一：frontmatter 坏了，技能静默失踪</h3>
+  <p>codex 启动日志里有一行报错：<code>failed to load skill ...\.agents\skills\video-frames-1.0.0\SKILL.md: missing YAML frontmatter delimited by ---</code>。这个技能文件还在目录里，但因为开头少了两行 <code>---</code> 包住的登记信息，加载直接失败。技能「装了但没人认」是最典型的静默故障——技能不灵时，先查 frontmatter 格式。</p>
+  <h3 class="lead">坑二：Windows 下的编码</h3>
+  <p>同一次实测里，codex 用 PowerShell 读取技能文件时，日志里中文成了乱码。稳妥起见：技能文件一律 UTF-8 保存，PowerShell 读取时加 <code>-Encoding UTF8</code>。</p>
+  <p>最后把心得压成五句话：</p>
+  <ol>
+    <li>一个文件夹＋一个 SKILL.md 就是一个技能，放进技能目录即生效，无需安装。</li>
+    <li>description 决定技能会不会被想起来：写清「干什么＋什么话触发」。</li>
+    <li>正文写步骤、写格式、写禁令，agent 照章办事。</li>
+    <li>技能不灵先查 frontmatter 两行 <code>---</code> 是否完整。</li>
+    <li>同一份 SKILL.md，workbuddy、codex、Qwen Code 通用——搓一次，三处可用。</li>
+  </ol>
+  <div class="key">把你每天重复交代 AI 的那套话写进一个 SKILL.md，这就是手搓 skill 的全部秘密。</div>
+
+  <footer>
+    <p><a class="back" href="../index.html">← 返回首页</a></p>
+  </footer>
+</main>
+</body>
+</html>
