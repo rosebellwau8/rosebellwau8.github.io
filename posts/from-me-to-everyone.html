@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 元数据：构建程序读取以下 meta 生成首页列表 -->
+<meta name="title" content="从“我电脑上能跑”到“别人敢每天用”">
+<meta name="author" content="jogtor">
+<meta name="date" content="2026-08-05 11:35">
+<meta name="tags" content="AI Agent,部署,工程复盘,医疗">
+<title>从“我电脑上能跑”到“别人敢每天用”</title>
+<style>
+:root{
+  --bg:#0e1016;
+  --card:#161a24;
+  --card-2:#1c2230;
+  --text:#e6e8ef;
+  --muted:#9aa3b2;
+  --brand:#8b9bff;
+  --brand-2:#b794f6;
+  --line:#262c3a;
+  --ok:#5fd39a;
+  --no:#ff7a90;
+  --warn:#ffcf6b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  line-height:1.85;font-size:17px;
+}
+.hero{
+  padding:64px 24px 48px;text-align:center;
+  background:radial-gradient(1200px 400px at 50% -10%,rgba(139,155,255,.25),transparent 60%),
+             linear-gradient(160deg,#1a1f33,#0e1016);
+  border-bottom:1px solid var(--line);
+}
+.hero h1{font-size:clamp(24px,5vw,38px);margin:0 0 14px;line-height:1.4;
+  background:linear-gradient(90deg,var(--brand),var(--brand-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero .meta{color:var(--muted);font-size:14px}
+.hero .subtitle{color:var(--text);font-size:18px;margin:14px auto 0;max-width:680px;
+  line-height:1.6;opacity:.92}
+.hero .tags{margin-top:14px}
+.hero .tags span{
+  display:inline-block;margin:3px;padding:3px 10px;border-radius:999px;
+  font-size:12px;color:var(--brand);border:1px solid var(--line);background:var(--card);
+}
+.wrap{max-width:820px;margin:0 auto;padding:32px 20px 64px}
+.toc{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:18px 22px;margin:24px 0;
+}
+.toc h2{font-size:16px;margin:0 0 10px;color:var(--brand-2)}
+.toc ol{margin:0;padding-left:22px}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--brand)}
+h2{margin-top:42px;font-size:23px;border-left:4px solid var(--brand);padding-left:12px}
+.key{
+  background:linear-gradient(135deg,rgba(139,155,255,.12),rgba(183,148,246,.12));
+  border:1px solid var(--line);border-left:4px solid var(--brand);
+  border-radius:12px;padding:16px 20px;margin:20px 0;color:var(--text);
+}
+p{margin:16px 0}
+a{color:var(--brand)}
+code{background:var(--card-2);padding:2px 6px;border-radius:6px;font-size:.92em}
+ul{margin:16px 0;padding-left:22px}
+li{margin:8px 0}
+.note{font-size:14px;color:var(--muted);background:var(--card);
+  border:1px dashed var(--line);border-radius:10px;padding:12px 16px;margin:20px 0}
+.back{display:inline-block;margin-top:36px;color:var(--brand);text-decoration:none}
+@media(max-width:600px){body{font-size:16px}.hero{padding:48px 16px 36px}.wrap{padding:24px 14px 48px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <h1>从“我电脑上能跑”到“别人敢每天用”</h1>
+  <div class="subtitle">一个 AI agent 工具第一次交给同事使用的复盘</div>
+  <div class="meta">作者：jogtor ｜ 写作时间：2026-08-05 11:35</div>
+  <div class="tags"><span>AI Agent</span><span>部署</span><span>工程复盘</span><span>医疗</span></div>
+</header>
+<main class="wrap">
+  <nav class="toc">
+    <h2>目录</h2>
+    <ol>
+      <li><a href="#s1">工具离开我的电脑以后</a></li>
+      <li><a href="#s2">上线前，我先让 agent 找麻烦</a></li>
+      <li><a href="#s3">五件事做完，才轮到复制</a></li>
+      <li><a href="#s4">部署当天，我按五步往前走</a></li>
+      <li><a href="#s5">几个差点把人带偏的小问题</a></li>
+      <li><a href="#s6">为什么这次仍然用共享盘</a></li>
+      <li><a href="#s7">我会留给下一次部署的清单</a></li>
+    </ol>
+  </nav>
+
+  <p>2026 年 8 月 5 日，我把 <code>MedConSys</code> 放进了医院共享盘。</p>
+  <p>这是一套病历质控工具，十几个 Python 组件连成一条文件处理流程。病历读进来，先脱敏，再按规则审核，最后生成报告。它没有数据库，此前一直在我的开发电脑上运行。这一天，我要把它交给三位医生试用。</p>
+  <p>实际部署操作不到半小时。旧目录改名，复制新版本，写入版本标识，再把几个关键文件读回来确认。事情做完以后回头看，最费工夫的部分都发生在复制之前。我们跑了 173 个测试，逐个检查了数据怎样流动，准备了八份管理文档，还在审查中翻出一个足以让三名用户互相污染数据的问题。</p>
+  <p>这次经历让我确认了一件事。一个工具能在开发者的电脑上运行，只说明它完成了最早的一段路。等别人真的把工作交给它，版本、数据、权限、出错后的处理办法都会找上门来。以前由开发者自己默默补上的缺口，此时一个也藏不住。</p>
+  <p>这篇复盘写的是医疗工具，遇到的问题却很常见。知识库助手、数据分析脚本、办公自动化程序，甚至一个给朋友做的网站，只要从“我自己用”走到“几个人每天用”，大多要过这一关。</p>
+
+  <h2 id="s1">工具离开我的电脑以后</h2>
+  <p>我自己用程序时，许多条件根本不会进入视线。</p>
+  <p>临时文件放在公共目录里，我不会和自己冲突。代码刚改过什么，我心里有数。程序报错了，我知道去哪看日志，也知道删掉哪个中间文件可以重跑。换成三个人同时使用，原来的方便会变成麻烦。</p>
+  <p>第一个问题是状态。两个人会不会写到同一个临时文件里，后启动的任务会不会盖掉前一个人的结果。</p>
+  <p>第二个问题是数据。每位医生能看到哪些病历，结果又会落到哪里，不能靠大家小心一点来保证。</p>
+  <p>第三个问题是版本。医生发来一张报错截图时，我得先知道他运行的是哪一版。这个问题答不上来，后面的排查很容易白忙。</p>
+  <p>第四个问题是出错后的路。开发者可以自己救场，普通用户只知道程序打不开了。他需要明确的反馈入口，我也需要一套判断标准，决定哪些问题马上修，哪些留到下一版。</p>
+  <p>这些事情单看都不新鲜。它们凑在一起，才构成了个人工具和组织工具之间的距离。</p>
+
+  <h2 id="s2">上线前，我先让 agent 找麻烦</h2>
+  <p>这次我把 AI agent 用在一个很合适的位置，让它做审查，让人作决定。</p>
+  <p>agent 可以逐个脚本追写入路径，查公共状态，核对规则文件、说明文档和测试断言。这样的工作琐碎，而且漏掉一处就可能留下问题。它不会嫌烦。</p>
+  <p>审查很快找到了本次最危险的隐患。审核主流程虽然有用户目录，运行时仍会读写一个公共目录。一个人使用时一切正常，两个人同时审核就可能把中间结果混在一起。我们原本已经准备接受“三人错峰使用”这个限制，修完读写路径以后，这条限制可以直接取消。</p>
+  <p>机器也有不该替人决定的事。有一条临床规则改过措辞，代码、测试和文档没有完全同步。旧说法要不要恢复，涉及规则本身怎样表达，这只能由人拍板。agent 能把不一致的地方找齐，却不该替临床人员决定哪句话才对。</p>
+  <p>我后来把这条分工记得很牢。穷举、比对、追路径的活交给 agent。规则取舍、风险接受和最终签字留给人。效率确实会高很多，责任也不会糊成一团。</p>
+
+  <h2 id="s3">五件事做完，才轮到复制</h2>
+  <p>我给准备上线的版本打了一个 git tag。标签固定了当时的代码，后面继续补部署文档也不会改变这份代码。部署前我还要再查一次工作区，确认代码和这个 tag 之间没有差异。</p>
+  <p>tag 只负责告诉我“当时是哪一版”。如果代码仓库没了，运行环境没法重建，数据也没有备份，一个标签救不了任何东西。想退回旧版，代码、环境、数据备份和版本标记都得在。</p>
+  <p>接着是测试。173 个用例全部跑过以后，我又核对了规则、代码、文档和测试。规则系统很怕一种安静的错误。程序按新规则运行，文档还在解释旧规则，测试又守着第三种说法。每一处单独看都像对的，用户最后却不知道该信谁。</p>
+  <p>然后查数据和状态。所有写入路径都要找出来，公共目录、临时文件、结果文件逐项看过去。按钮点得再熟，也测不出两个用户同时写入时会发生什么。这个环节得沿着程序实际的数据流查。</p>
+  <p>回滚也要提前摆好。部署时不覆盖旧目录，先把它改名保留。新版本出问题，把目录名换回来，旧版就能继续用。办法很朴素，第一次试运行尤其需要这种朴素。</p>
+  <p>最后才是运行规矩。第一批只开放已经稳定的功能。上线以后冻结核心代码，问题分成三档。会造成数据丢失或让人无法工作的，马上处理。严重但不阻断工作的，放进下一版。体验上的小毛病先记着。试运行期间连顺手挪个按钮都要忍住，因为每次改动都会让观察结果多一个解释。</p>
+  <p>为了让这些规矩不靠我的记忆维持，我准备了实施计划、检查清单、范围说明、备份方案、问题记录、指标记录、验收单和结构说明。共八份文件，跟着部署版本一起放进仓库。</p>
+
+  <h2 id="s4">部署当天，我按五步往前走</h2>
+  <p>第一步是验明版本。我用三条命令确认工作区干净，代码与 tag 没有差异，tag 之后的提交只改了文档。结果对不上，就不复制。</p>
+  <p>第二步是保留旧版。我把共享盘里的 <code>MedConSys</code> 改名为 <code>MedConSys_backup_old_v_before_test</code>。改名一次成功，回退的路也就留出来了。</p>
+  <p>第三步才是复制。我用 <code>robocopy</code> 同步整个目录，排除了 <code>.git</code>、<code>.venv</code> 和 <code>__pycache__</code> 等运行时不需要的内容。最终复制 1593 个文件，失败数为零。</p>
+  <p>镜像同步有个危险之处。目标目录里多出来的文件可能被删掉，所以动手前必须比较两边的数据区。我看了目录结构、文件数量和内容清单，确认共享盘里没有需要单独保留的生产数据，才开始同步。跳过这一步，等于拿真实数据试命令。</p>
+  <p>第四步是留下身份信息。我在共享盘根目录放了 <code>VERSION.txt</code>、部署日志和当时的目录快照。以后医生截图来问，我先看版本，不用靠猜。</p>
+  <p>第五步是回读。我把三个关键文件从共享盘重新读出来，确认内容正确，又核对了目标目录的文件数。复制工具说成功只算一条证据，目标端确实能读到才算完成。</p>
+  <p>程序也没有立刻同时交给三个人。我先在一台电脑上启动，建测试用户，跑一个小任务，确认结果进入这个用户自己的目录。单机通过以后再开第二台，随后才是第三台。一次只加一台，出了问题才分得清是部署、权限，还是用户隔离出了岔子。</p>
+
+  <h2 id="s5">几个差点把人带偏的小问题</h2>
+  <p>部署前曾经冒出四个失败测试。看到红色结果，很容易顺手把它们算到本次改动头上。我先用 <code>git stash</code> 暂存当前修改，再回到原始代码重跑。四个失败仍然能复现，这才确认它们是历史遗留。继续往下查，又找到了规则措辞更新后测试没有同步的问题。</p>
+  <p>这个顺序帮我省了不少时间。先查问题是不是本次引入的，再决定该在哪一版处理。否则一着急，很可能在稳定版本上继续改代码，把原因越搅越乱。</p>
+  <p>隐私检查器也报过警。它把“嗜睡”和“震颤”识别成了患者姓名，实际上这两个词是系统生成的症状标签。处理办法是让检查器认识这些标签。为了让报警消失而删掉数据，检查会变安静，问题却被藏起来了。</p>
+  <p>robocopy 的输出也制造过一次虚惊。顶部显示的目标路径像是少了一截目录。我没有马上重跑，而是换一种方式核对实际文件数和目录位置。文件完全吻合，那个错误位置也不存在，只是显示有点古怪。</p>
+  <p>这三件小事后来都变成了同一条习惯。工具给出可疑结果时，再找一种独立方法确认。盲信会出事，逢警报就大改也会出事。</p>
+
+  <h2 id="s6">为什么这次仍然用共享盘</h2>
+  <p>一说到多人使用，服务器和数据库很容易先跳进脑子里。我这次没有上。</p>
+  <p>MedConSys 本来就是文件处理流程，没有复杂的并发写入。三位医生各有自己的目录，修掉公共状态以后，共享盘已经能承接眼前的试运行。此时最大的未知也很具体。医生愿不愿意每天打开它，它到底能省多少时间，提示里有多少对工作有帮助。服务器回答不了这些问题。</p>
+  <p>共享盘还有一个好处，撤起来很轻。试运行效果不好，目录可以移走，数据和问题记录仍然留着。等用户从三人增加到十人，文件锁开始碍事，或者医院需要完整记录谁在什么时间改过什么，再升级架构会更踏实。细粒度权限和外部系统对接，也都是明确的升级信号。</p>
+  <p>架构应该跟着已经出现的麻烦长。眼前只有三个人，就先把三个人的数据隔开，把版本和回退管住，把真实使用情况记下来。将来的规模真来了，再为它付成本。</p>
+
+  <h2 id="s7">我会留给下一次部署的清单</h2>
+  <p>部署前要确认这些事。</p>
+  <ul>
+    <li>全量测试已经通过，规则、配置和文档能够互相对上</li>
+    <li>每个用户都有独立的写入路径，公共状态已经查清</li>
+    <li>稳定版本已经打 tag，代码和 tag 之间没有差异</li>
+    <li>数据区有自动备份，恢复方法也实际走过</li>
+    <li>第一批开放什么、不开放什么，已经写进范围说明</li>
+  </ul>
+  <p>复制时再看一遍。</p>
+  <ul>
+    <li>旧版本改名保留，不直接覆盖</li>
+    <li><code>.git</code>、虚拟环境和缓存等无关目录不复制</li>
+    <li>复制后核对文件数，并读回几个关键文件</li>
+    <li>根目录能看到版本、部署时间和操作记录</li>
+    <li>先验收一台，再一台一台增加用户</li>
+  </ul>
+  <p>上线以后，问题记录要真的有人维护。阻断工作的问题才热修，其余问题进入下一版或继续积累。试运行阶段我最关心三个数，一次审核省了多少时间，有效提醒占多少，以及医生会不会主动打开工具。</p>
+  <p>最后这个数最难看，也最诚实。</p>
+  <p>部署当天那半小时很顺。改名、复制、写标识、回读，几步就结束了。它之所以顺，是因为风险已经在前面被一项项找出来。173 个测试、一次数据流审查、八份文档，还有几次停下来重新核对，都花在了那个进度条出现以前。</p>
+  <div class="key">工具放进共享盘，只代表我已经交出去。等三位医生第二天愿意自己点开它，它才算真的进入工作。</div>
+
+  <footer>
+    <p><a class="back" href="../index.html">← 返回首页</a></p>
+  </footer>
+</main>
+</body>
+</html>
