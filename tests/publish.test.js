@@ -58,12 +58,12 @@ test('parseArgs supports one-command local publishing and overwrite opt-in', () 
   });
 });
 
-test('Windows drag-and-drop launcher remains ASCII-only and forwards the dropped path directly', () => {
+test('Windows launcher remains ASCII-only and forwards all arguments', () => {
   const launcher = fs.readFileSync(path.join(__dirname, '..', '发布博客.cmd'));
   const text = launcher.toString('ascii');
 
   assert.equal([...launcher].every(byte => byte < 128), true);
-  assert.match(text, /node scripts\\publish\.js "%~1"/);
+  assert.match(text, /^node scripts\\publish\.js %\*$/m);
   assert.doesNotMatch(text, /ARTICLE_PATH/);
 });
 
