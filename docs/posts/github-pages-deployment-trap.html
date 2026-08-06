@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="title" content="我只是想发篇博客，结果把 GitHub Pages 修了四遍">
+<meta name="author" content="jogtor">
+<meta name="date" content="2026-08-07 06:15">
+<meta name="tags" content="GitHub Pages,GitHub Actions,部署,踩坑复盘,自动化">
+<title>我只是想发篇博客，结果把 GitHub Pages 修了四遍</title>
+<style>
+:root{
+  --bg:#f5f1e8;
+  --paper:#fffdf8;
+  --ink:#28241f;
+  --muted:#786f63;
+  --red:#c84630;
+  --green:#287a5b;
+  --line:#ded5c6;
+  --code:#272522;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Noto Serif SC","Source Han Serif SC","Songti SC",serif;
+  font-size:18px;line-height:1.95;
+}
+.hero{
+  padding:72px 22px 56px;text-align:center;color:#fffaf0;
+  background:linear-gradient(145deg,#29241f,#4c352d 58%,#8b3f31);
+}
+.hero h1{max-width:880px;margin:0 auto 18px;font-size:clamp(30px,6vw,52px);line-height:1.28;letter-spacing:.02em}
+.hero .subtitle{max-width:720px;margin:0 auto;color:#eadfd2;font-size:18px}
+.hero .meta{margin-top:20px;color:#cdbfb0;font-size:14px}
+.hero .tags{margin-top:18px}
+.hero .tags span{display:inline-block;margin:4px;padding:3px 11px;border:1px solid rgba(255,255,255,.24);border-radius:99px;font-size:12px}
+.wrap{max-width:800px;margin:0 auto;padding:48px 22px 72px;background:var(--paper);box-shadow:0 18px 70px rgba(74,55,38,.08)}
+p{margin:18px 0}
+.lead{font-size:21px;line-height:1.9}
+.break{font-size:26px;font-weight:700;letter-spacing:.08em;margin:34px 0;color:var(--red)}
+.section{margin-top:48px;font-size:23px;font-weight:700;color:var(--green)}
+.evidence{margin:28px 0;padding:20px 22px;border-left:5px solid var(--red);background:#f8eee8;border-radius:0 12px 12px 0}
+.result{margin:32px 0;padding:22px;border:1px solid #b9d6c8;background:#edf7f1;border-radius:14px;color:#205941;font-weight:700}
+.steps{margin:24px 0;padding:22px 26px;background:#f4f0e8;border:1px solid var(--line);border-radius:14px}
+.steps p{margin:10px 0}
+code{font-family:Consolas,"SFMono-Regular",monospace;background:#ece6dc;padding:2px 6px;border-radius:5px;font-size:.88em}
+pre{overflow:auto;background:var(--code);color:#f6efe4;padding:18px;border-radius:12px;line-height:1.65;font-size:14px}
+a{color:var(--red)}
+.note{color:var(--muted);font-size:15px}
+.ending{margin-top:44px;font-size:21px}
+.back{display:inline-block;margin-top:42px;text-decoration:none;font-family:system-ui,sans-serif;font-size:14px}
+@media(max-width:640px){body{font-size:17px}.hero{padding:52px 18px 42px}.wrap{padding:34px 17px 56px}.lead{font-size:19px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <h1>我只是想发篇博客，结果把 GitHub Pages 修了四遍</h1>
+  <div class="subtitle">一次从重复推送、十分钟超时，到单流水线部署的真实踩坑复盘</div>
+  <div class="meta">作者 jogtor ｜ 2026-08-07 06:15</div>
+  <div class="tags"><span>GitHub Pages</span><span>GitHub Actions</span><span>部署</span><span>踩坑复盘</span><span>自动化</span></div>
+</header>
+
+<main class="wrap">
+  <p class="lead">事情是这样的。</p>
+
+  <p class="lead">我只是想发一篇《奥德赛》的观影背景指南。</p>
+
+  <p>文章提交了，代码推上去了，GitHub Actions 也开始转圈。一切看起来都很正常。然后十分钟过去，GitHub Pages 给了我一个红叉。</p>
+
+  <p>第一次看到红叉，我的思路非常朴素。纯静态站点嘛，会不会是 GitHub 默认拿 Jekyll 去处理，处理出问题了？于是加了一个 <code>.nojekyll</code>。</p>
+
+  <p>又是十分钟。</p>
+
+  <p>红叉。</p>
+
+  <p>那就不用默认发布，改成自定义 GitHub Actions。checkout、配置 Pages、上传 artifact、调用 <code>deploy-pages</code>，标准四件套，安排得明明白白。</p>
+
+  <p>又是十分钟。</p>
+
+  <p>还是红叉。</p>
+
+  <p>然后我干了一件现在回头看很有喜剧效果的事。我把部署等待时间改成了 30 分钟，心想十分钟不够，那我多给你一点时间，总行了吧。</p>
+
+  <p>GitHub Actions 很礼貌地回了我一句，最大值就是十分钟，超出的部分自动砍掉。</p>
+
+  <p class="break">给我一下子整不会了。</p>
+
+  <p>短短一个小时，仓库里多了四个提交。修复纯静态发布、改用自定义工作流、延长等待时间、移除无效超时配置。提交信息一个比一个像是已经解决了，线上部署一个比一个坚定地失败。</p>
+
+  <p>坦率的讲，这类事故最容易把人带进一个坑。你看到一个红色结果，就想赶紧改点什么。改完再推，推完再等，十分钟后继续红，再改点什么。</p>
+
+  <p>配置文件慢慢变成了许愿池。</p>
+
+  <p>但问题从来不会因为提交次数变多，就自己暴露出来。</p>
+
+  <p class="section">1，先别改，先确认到底是哪一层坏了</p>
+
+  <p>我开始往回翻 Git 记录和 Actions 日志。</p>
+
+  <p>很快发现，这次其实混着三件完全不同的事。</p>
+
+  <p>第一件是 Git 分叉。提交历史里至少出现了两条独立发布线，而一键发布脚本的动作顺序是 <code>git add</code>、<code>git commit</code>、<code>git push</code>。它提交前不拉远端，也不检查本地是不是落后。结果就是两个发布过程各自往前走，最后在 <code>docs/index.html</code> 和标签页上撞车。</p>
+
+  <p>第二件是 CI 失败。Windows 启动器为了支持 <code>--force</code>，从只转发第一个参数改成了转发全部参数，但测试还守着旧行为。代码其实是想改的，测试忘了跟上。CI 红得完全正确。</p>
+
+  <p>第三件才是 Pages。它和前两件没有因果关系，只是时间挨得太近，看上去像同一场灾难。</p>
+
+  <p>怎么证明呢？这里有一个特别关键的细节。</p>
+
+  <p>最后一次成功部署的提交是 <code>c45c0f4</code>。紧接着失败的合并提交是 <code>48c0d3b</code>。我比较了两个提交的 Git tree，完全一样。</p>
+
+  <div class="evidence">完全相同的网站文件，前一次发布成功，后一次发布失败。文章内容、HTML 结构、标签数量都没有变化。把锅继续甩给内容，已经说不通了。</div>
+
+  <p>再看日志，checkout 成功，Pages 配置成功，artifact 上传成功。真正卡住的是最后一步。部署状态一直停在 <code>deployment_in_progress</code>，每五秒查一次，整整查十分钟，然后超时取消。</p>
+
+  <p>这一下，排查范围就从整个项目缩到了一个点。</p>
+
+  <p>不是构建坏了。</p>
+
+  <p>是发布链路卡住了。</p>
+
+  <p class="section">2，真正危险的不是失败，是两条流水线同时往前跑</p>
+
+  <p>顺着 workflow 再看，我发现项目当时有两条互相不知道对方存在的流水线。</p>
+
+  <p>一条叫 CI。每次 push 后跑测试、重建网站、检查生成文件有没有漂移。</p>
+
+  <p>另一条叫 Deploy GitHub Pages。每次 push 后直接上传 <code>docs</code>，然后部署。</p>
+
+  <p>听起来各司其职，对吧？其实挺危险。</p>
+
+  <p>因为它们是并行触发的。CI 还没跑完，Pages 已经开始发了。历史记录里真的出现过 CI 失败，但 Pages 发布成功的情况。也就是说，质量检查像门口保安，部署像一个熟练翻墙的同事，保安拦不拦跟它没关系。</p>
+
+  <p>更麻烦的是，Pages workflow 的并发策略写着 <code>cancel-in-progress: false</code>。</p>
+
+  <p>如果短时间连续推四次，旧部署不会自动让路。它会继续占着队列，后面的新提交一个个排队。每个失败又固定耗十分钟。你以为自己在积极修复，GitHub 看见的是四份必须依次处理的过期工作。</p>
+
+  <p>这玩意最折磨人的地方就在这儿。手越快，恢复越慢。</p>
+
+  <p>所以这次没有再给 timeout 加数字，也没有再往 Pages 配置里塞一个新参数。我直接把两条流水线合成了一条。</p>
+
+  <pre><code>test-and-build
+  ↓
+run checks
+  ↓
+rebuild docs
+  ↓
+verify committed output
+  ↓
+upload artifact
+  ↓
+deploy pages</code></pre>
+
+  <p>部署 job 明确依赖测试和构建 job。前面任何一步红，后面都不会启动。</p>
+
+  <p>原来那条独立 Pages workflow 删除，只保留一个发布入口。</p>
+
+  <p>并发组按 workflow 和分支划分，同时把 <code>cancel-in-progress</code> 改成 <code>true</code>。同一分支来了新提交，旧运行直接取消，只让最新的继续。不同 Pull Request 仍然各跑各的，不互相伤害。</p>
+
+  <p>另外顺手把 <code>actions/checkout</code> 和 <code>actions/setup-node</code> 升到了 v6。旧版 action 当时已经在日志里提醒 Node 20 运行时淘汰，既然动这条流水线，就别继续背着旧运行时往前走。</p>
+
+  <p>说真的，这个改法一点都不炫。</p>
+
+  <p>但部署系统最重要的品质，本来就不是炫。</p>
+
+  <p>是因果关系清楚。</p>
+
+  <p class="section">3，修复不能靠想象，得让线上真的走一遍</p>
+
+  <p>本地先跑 <code>npm run check</code>，29 项测试全部通过。再跑构建，16 篇文章、43 个标签正常生成。接着检查 <code>docs</code>，确认现场重建后的产物和仓库提交完全一致。</p>
+
+  <p>这些只能证明代码没写坏。</p>
+
+  <p>Pages 能不能恢复，还得去 GitHub 上看。</p>
+
+  <p>修复提交推上去以后，GitHub 正确识别了新的合并 workflow，但那次 push 没有自动生成 run。仓库权限是开的，远端 main 也确实已经更新。说实话，这里我也不能假装自己知道 GitHub 为什么漏了这次触发。</p>
+
+  <p>不知道就是不知道。</p>
+
+  <p>我没有再制造一个空提交去撞运气，而是用 <code>workflow_dispatch</code> 手动运行同一个 main 提交。</p>
+
+  <p>然后整个链路开始一格一格变绿。</p>
+
+  <p>checkout 成功。</p>
+
+  <p>Node 24 成功。</p>
+
+  <p>29 项测试成功。</p>
+
+  <p>重建和产物一致性检查成功。</p>
+
+  <p>artifact 上传成功。</p>
+
+  <p>最后是 Pages deployment。之前每次都要卡满十分钟，这一次从排队、进行中到成功，只用了十几秒。</p>
+
+  <div class="result">Deployment 5785346742 成功。完整 workflow 31128850235 成功。公开首页返回 HTTP 200，也能看到最新发布的《奥德赛》文章。</div>
+
+  <p>到这里，才可以说修复完成。</p>
+
+  <p>不是 YAML 看起来对。</p>
+
+  <p>不是 GitHub 出现一个绿色图标。</p>
+
+  <p>是测试通过、部署记录成功、真实网页能打开，这三份证据互相对得上。</p>
+
+  <p class="section">4，下次再遇到，别陪红叉玩猜谜游戏</p>
+
+  <p>这次折腾完，我给自己留下了几条很土，但真的有用的规矩。</p>
+
+  <div class="steps">
+    <p><strong>一次 push 只允许一个发布入口。</strong> CI 和部署可以分 job，但必须在同一条因果链上。测试没有绿，部署就没有资格启动。</p>
+    <p><strong>同一分支永远只保留最新运行。</strong> 博客这种发布场景，旧提交没有排队价值。新提交来了，旧运行就该结束。</p>
+    <p><strong>看到失败先定位阶段。</strong> checkout、build、upload、deploy 是四种完全不同的问题。先看第一条真正的错误日志，再决定改哪里。</p>
+    <p><strong>不要用新 commit 当重试按钮。</strong> 只是想重跑，就点 Re-run jobs 或用 <code>workflow_dispatch</code>。多一个无意义提交，就多一份历史噪声和部署任务。</p>
+    <p><strong>生成文件冲突时重新构建。</strong> 保住 <code>posts</code> 里的源文章，再统一生成 <code>docs</code>。不要手工拼首页和标签页，那是在给下一次事故埋彩蛋。</p>
+    <p><strong>一键发布前先同步远端。</strong> 发布器应该先 fetch，确认本地没有落后，再构建和提交。否则 push 被拒绝只是早晚的事。</p>
+    <p><strong>验收要走到用户看到的网页。</strong> Actions 绿色不是终点。至少再查一次 deployment 状态和首页 HTTP 响应。</p>
+  </div>
+
+  <p>这几条里，我现在最看重第二条。</p>
+
+  <p>以前我对自动化的理解，很容易停在「让机器替我多做一点」。跑测试、打包、上传、发布，一条龙，听起来很爽。</p>
+
+  <p>但这次让我真正有感觉的是，好的自动化不只负责开始工作，也负责让过期的工作及时死掉。</p>
+
+  <p>人会舍不得。都跑一半了，要不再等等？都排上队了，要不让它跑完？可机器不应该有这种沉没成本。新提交已经替代旧提交，旧任务继续占资源，就只是在认真地完成一件已经没有价值的事。</p>
+
+  <p>你想想看，这其实不只适用于 GitHub Pages。</p>
+
+  <p>数据任务、内容发布、模型训练、日报生成，只要结果有明确的新旧关系，就应该问一句。旧任务还有完成的必要吗？</p>
+
+  <p>如果没有，取消它。</p>
+
+  <p>自动化的成熟，不是队列越来越长，而是系统越来越知道什么不必做。</p>
+
+  <p class="ending">回到最开始那篇《奥德赛》。</p>
+
+  <p>它只是一次普通的文章发布，却把 Git 分叉、过期测试、双流水线、部署积压和 Pages 超时一起翻了出来。红叉当然烦，四个看似修复的提交也确实有点尴尬。。。但把证据一层层对齐以后，这次坑没有白踩。</p>
+
+  <p>至少下一次再看到十分钟不动的转圈，我不会先去改 timeout 了。</p>
+
+  <p class="break">先停手。看日志。</p>
+
+  <p>这可能是整次故障里，最值钱的两句话。</p>
+
+  <p class="note">相关线上验证记录，GitHub Actions run 31128850235，Pages deployment 5785346742。</p>
+
+  <footer>
+    <a class="back" href="../index.html">← 返回首页</a>
+  </footer>
+</main>
+</body>
+</html>
