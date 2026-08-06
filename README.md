@@ -98,9 +98,11 @@ npm run check
 用户主页站点使用公开仓库 `<username>.github.io`：
 
 1. 将项目推送到仓库的 `main` 分支。
-2. 在仓库 Settings → Pages 中选择 `Deploy from a branch`。
-3. Branch 选择 `main`，目录选择 `/docs`。
-4. 保存并等待部署，访问 `https://<username>.github.io/`。
+2. 在仓库 Settings → Pages 中将 Source 选择为 `GitHub Actions`。
+3. 推送会先运行测试、语法检查、站点重建和产物一致性检查。
+4. 只有检查全部通过，工作流才会上传 `docs/` 并部署到 Pages。
+5. 同一分支连续推送时，新运行会取消旧运行，只部署最新提交。
+6. 等待工作流完成后，访问 `https://<username>.github.io/`。
 
 每次发布前运行 `npm run check && npm run build`，并提交最新的 `docs/`。
 
