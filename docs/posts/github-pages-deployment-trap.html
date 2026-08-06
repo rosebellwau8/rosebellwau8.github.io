@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="title" content="我只是想发篇博客，结果把 GitHub Pages 修了四遍">
 <meta name="author" content="jogtor">
-<meta name="date" content="2026-08-07 06:15">
+<meta name="date" content="2026-08-07 07:05">
 <meta name="tags" content="GitHub Pages,GitHub Actions,部署,踩坑复盘,自动化">
 <title>我只是想发篇博客，结果把 GitHub Pages 修了四遍</title>
 <style>
@@ -45,6 +45,9 @@ p{margin:18px 0}
 .steps p{margin:10px 0}
 code{font-family:Consolas,"SFMono-Regular",monospace;background:#ece6dc;padding:2px 6px;border-radius:5px;font-size:.88em}
 pre{overflow:auto;background:var(--code);color:#f6efe4;padding:18px;border-radius:12px;line-height:1.65;font-size:14px}
+.flow{margin:26px 0;display:flex;flex-direction:column;align-items:center}
+.flow .step{width:100%;max-width:340px;box-sizing:border-box;background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:10px;padding:11px 16px;font-family:Consolas,"SFMono-Regular",monospace;font-size:15px;color:var(--ink);text-align:center;box-shadow:0 2px 10px rgba(74,55,38,.07)}
+.flow .arrow{color:var(--muted);font-size:17px;line-height:1;padding:5px 0}
 a{color:var(--red)}
 .note{color:var(--muted);font-size:15px}
 .ending{margin-top:44px;font-size:21px}
@@ -56,7 +59,7 @@ a{color:var(--red)}
 <header class="hero">
   <h1>我只是想发篇博客，结果把 GitHub Pages 修了四遍</h1>
   <div class="subtitle">一次从重复推送、十分钟超时，到单流水线部署的真实踩坑复盘</div>
-  <div class="meta">作者 jogtor ｜ 2026-08-07 06:15</div>
+  <div class="meta">作者 jogtor ｜ 2026-08-07 07:05</div>
   <div class="tags"><span>GitHub Pages</span><span>GitHub Actions</span><span>部署</span><span>踩坑复盘</span><span>自动化</span></div>
 </header>
 
@@ -67,7 +70,7 @@ a{color:var(--red)}
 
   <p>文章提交了，代码推上去了，GitHub Actions 也开始转圈。一切看起来都很正常。然后十分钟过去，GitHub Pages 给了我一个红叉。</p>
 
-  <p>第一次看到红叉，我的思路非常朴素。纯静态站点嘛，会不会是 GitHub 默认拿 Jekyll 去处理，处理出问题了？于是加了一个 <code>.nojekyll</code>。</p>
+  <p>第一次看到红叉，我没多想。纯静态站点嘛，会不会是 GitHub 默认拿 Jekyll 去处理，处理出问题了？于是加了一个 <code>.nojekyll</code>。</p>
 
   <p>又是十分钟。</p>
 
@@ -79,7 +82,7 @@ a{color:var(--red)}
 
   <p>还是红叉。</p>
 
-  <p>然后我干了一件现在回头看很有喜剧效果的事。我把部署等待时间改成了 30 分钟，心想十分钟不够，那我多给你一点时间，总行了吧。</p>
+  <p>然后我干了件蠢事。我把部署等待时间改成了 30 分钟，心想十分钟不够，那我多给你一点时间，总行了吧。</p>
 
   <p>GitHub Actions 很礼貌地回了我一句，最大值就是十分钟，超出的部分自动砍掉。</p>
 
@@ -87,7 +90,7 @@ a{color:var(--red)}
 
   <p>短短一个小时，仓库里多了四个提交。修复纯静态发布、改用自定义工作流、延长等待时间、移除无效超时配置。提交信息一个比一个像是已经解决了，线上部署一个比一个坚定地失败。</p>
 
-  <p>坦率的讲，这类事故最容易把人带进一个坑。你看到一个红色结果，就想赶紧改点什么。改完再推，推完再等，十分钟后继续红，再改点什么。</p>
+  <p>这类事故最容易把人带进一个坑。你看到一个红色结果，就想赶紧改点什么。改完再推，推完再等，十分钟后继续红，再改点什么。</p>
 
   <p>配置文件慢慢变成了许愿池。</p>
 
@@ -105,21 +108,15 @@ a{color:var(--red)}
 
   <p>第三件才是 Pages。它和前两件没有因果关系，只是时间挨得太近，看上去像同一场灾难。</p>
 
-  <p>怎么证明呢？这里有一个特别关键的细节。</p>
-
   <p>最后一次成功部署的提交是 <code>c45c0f4</code>。紧接着失败的合并提交是 <code>48c0d3b</code>。我比较了两个提交的 Git tree，完全一样。</p>
 
   <div class="evidence">完全相同的网站文件，前一次发布成功，后一次发布失败。文章内容、HTML 结构、标签数量都没有变化。把锅继续甩给内容，已经说不通了。</div>
 
-  <p>再看日志，checkout 成功，Pages 配置成功，artifact 上传成功。真正卡住的是最后一步。部署状态一直停在 <code>deployment_in_progress</code>，每五秒查一次，整整查十分钟，然后超时取消。</p>
+  <p>再看日志，checkout 成功，Pages 配置成功，artifact 上传成功，只有部署状态一直停在 <code>deployment_in_progress</code>，每五秒查一次，整整查十分钟，然后超时取消。</p>
 
-  <p>这一下，排查范围就从整个项目缩到了一个点。</p>
+  <p>所以问题其实很明显：发布环节卡住了。</p>
 
-  <p>不是构建坏了。</p>
-
-  <p>是发布链路卡住了。</p>
-
-  <p class="section">2，真正危险的不是失败，是两条流水线同时往前跑</p>
+  <p class="section">2，比失败更难缠的，是两条流水线同时往前跑</p>
 
   <p>顺着 workflow 再看，我发现项目当时有两条互相不知道对方存在的流水线。</p>
 
@@ -139,17 +136,19 @@ a{color:var(--red)}
 
   <p>所以这次没有再给 timeout 加数字，也没有再往 Pages 配置里塞一个新参数。我直接把两条流水线合成了一条。</p>
 
-  <pre><code>test-and-build
-  ↓
-run checks
-  ↓
-rebuild docs
-  ↓
-verify committed output
-  ↓
-upload artifact
-  ↓
-deploy pages</code></pre>
+  <div class="flow">
+    <div class="step">test-and-build</div>
+    <div class="arrow">↓</div>
+    <div class="step">run checks</div>
+    <div class="arrow">↓</div>
+    <div class="step">rebuild docs</div>
+    <div class="arrow">↓</div>
+    <div class="step">verify committed output</div>
+    <div class="arrow">↓</div>
+    <div class="step">upload artifact</div>
+    <div class="arrow">↓</div>
+    <div class="step">deploy pages</div>
+  </div>
 
   <p>部署 job 明确依赖测试和构建 job。前面任何一步红，后面都不会启动。</p>
 
@@ -159,11 +158,7 @@ deploy pages</code></pre>
 
   <p>另外顺手把 <code>actions/checkout</code> 和 <code>actions/setup-node</code> 升到了 v6。旧版 action 当时已经在日志里提醒 Node 20 运行时淘汰，既然动这条流水线，就别继续背着旧运行时往前走。</p>
 
-  <p>说真的，这个改法一点都不炫。</p>
-
-  <p>但部署系统最重要的品质，本来就不是炫。</p>
-
-  <p>是因果关系清楚。</p>
+  <p>部署系统最重要的品质，是因果关系清楚。</p>
 
   <p class="section">3，修复不能靠想象，得让线上真的走一遍</p>
 
@@ -173,13 +168,13 @@ deploy pages</code></pre>
 
   <p>Pages 能不能恢复，还得去 GitHub 上看。</p>
 
-  <p>修复提交推上去以后，GitHub 正确识别了新的合并 workflow，但那次 push 没有自动生成 run。仓库权限是开的，远端 main 也确实已经更新。说实话，这里我也不能假装自己知道 GitHub 为什么漏了这次触发。</p>
+  <p>修复提交推上去以后，GitHub 正确识别了新的合并 workflow，但那次 push 没有自动生成 run。仓库权限是开的，远端 main 也确实已经更新。这里我也不能假装自己知道 GitHub 为什么漏了这次触发。</p>
 
   <p>不知道就是不知道。</p>
 
   <p>我没有再制造一个空提交去撞运气，而是用 <code>workflow_dispatch</code> 手动运行同一个 main 提交。</p>
 
-  <p>然后整个链路开始一格一格变绿。</p>
+  <p>然后整条流水线开始一格一格变绿。</p>
 
   <p>checkout 成功。</p>
 
@@ -197,11 +192,7 @@ deploy pages</code></pre>
 
   <p>到这里，才可以说修复完成。</p>
 
-  <p>不是 YAML 看起来对。</p>
-
-  <p>不是 GitHub 出现一个绿色图标。</p>
-
-  <p>是测试通过、部署记录成功、真实网页能打开，这三份证据互相对得上。</p>
+  <p>修好的标准是三份证据对得上：测试通过、部署记录成功、真实网页能打开。YAML 正确、图标变绿只是表面。</p>
 
   <p class="section">4，下次再遇到，别陪红叉玩猜谜游戏</p>
 
@@ -221,7 +212,7 @@ deploy pages</code></pre>
 
   <p>以前我对自动化的理解，很容易停在「让机器替我多做一点」。跑测试、打包、上传、发布，一条龙，听起来很爽。</p>
 
-  <p>但这次让我真正有感觉的是，好的自动化不只负责开始工作，也负责让过期的工作及时死掉。</p>
+  <p>但这次让我改观的是，好的自动化，开始工作要管，过期的工作也该及时死掉。</p>
 
   <p>人会舍不得。都跑一半了，要不再等等？都排上队了，要不让它跑完？可机器不应该有这种沉没成本。新提交已经替代旧提交，旧任务继续占资源，就只是在认真地完成一件已经没有价值的事。</p>
 
@@ -231,19 +222,35 @@ deploy pages</code></pre>
 
   <p>如果没有，取消它。</p>
 
-  <p>自动化的成熟，不是队列越来越长，而是系统越来越知道什么不必做。</p>
+  <p>自动化成熟起来，看的是系统学会杀掉过期的任务，队列反而越收越短。</p>
+
+  <p class="section">5，发这篇复盘时，触发又漏了一次</p>
+
+  <p>文章写完，轮到我自己把它发出去。</p>
+
+  <p>我把它提交成 33d6766 推了上去，顺带想看看，上次修好的自动触发到底灵不灵。结果 <code>gh run list --commit 33d6766</code> 回了一行空。GitHub 又把这次 push 的触发漏了。</p>
+
+  <p>workflow 状态是 active，远端代码也确实更新了。和上次一模一样，问题不在我这边，在 GitHub 的触发层。</p>
+
+  <p>我懒得再跟它较劲，直接用 <code>workflow_dispatch</code> 手动跑同一个提交。<code>gh workflow run ci.yml --ref main</code>，拿到运行 31129018432，test-and-build 开始转。</p>
+
+  <p>等它跑完，再去线上敲那篇文章的地址。HTTP 200，标题和正文都对，29 项测试全过，本地也和 origin/main 同步干净了。</p>
+
+  <p>这一轮下来，YAML 怎么写反而成了最次要的事。GitHub Actions 的 push 触发会偶发失灵，这事我拦不住，但它也拦不住我发文章。触发没起来，就手动 run 一下，文章照样上线。</p>
+
+  <p>以后改这篇，直接动 <code>posts/github-pages-deployment-trap.html</code>，重新构建、提交、推送，同一个网址会被覆盖。推送后 GitHub 没自动跑，就去 Actions 页面手动触发 CI and Deploy GitHub Pages。</p>
 
   <p class="ending">回到最开始那篇《奥德赛》。</p>
 
-  <p>它只是一次普通的文章发布，却把 Git 分叉、过期测试、双流水线、部署积压和 Pages 超时一起翻了出来。红叉当然烦，四个看似修复的提交也确实有点尴尬。。。但把证据一层层对齐以后，这次坑没有白踩。</p>
+  <p>它只是一次普通的文章发布，却把 Git 分叉、过期测试、双流水线、部署积压和 Pages 超时一起翻了出来。红叉当然烦，四个看似修复的提交也确实有点尴尬。但把证据一层层对上以后，这次坑没有白踩。</p>
 
   <p>至少下一次再看到十分钟不动的转圈，我不会先去改 timeout 了。</p>
 
   <p class="break">先停手。看日志。</p>
 
-  <p>这可能是整次故障里，最值钱的两句话。</p>
+  <p>这可能是这次故障里，最需要吸取的一个教训。</p>
 
-  <p class="note">相关线上验证记录，GitHub Actions run 31128850235，Pages deployment 5785346742。</p>
+  <p class="note">相关线上验证记录，GitHub Actions run 31128850235，Pages deployment 5785346742。发布本篇复盘时手动触发 run 31129018432，提交 33d6766。</p>
 
   <footer>
     <a class="back" href="../index.html">← 返回首页</a>
