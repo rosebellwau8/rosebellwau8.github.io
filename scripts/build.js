@@ -243,6 +243,7 @@ function writeOutput(site, outputDir) {
   ensureDir(tagsOutput);
   ensureDir(assetsOutput);
 
+  fs.writeFileSync(resolveInside(outputDir, '.nojekyll'), '', 'utf8');
   fs.copyFileSync(site.cssSource, resolveInside(assetsOutput, 'site.css'));
   for (const file of site.files) {
     fs.copyFileSync(path.join(site.postsDir, file), resolveInside(postsOutput, file));

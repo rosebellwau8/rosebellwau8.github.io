@@ -206,6 +206,15 @@ test('articles and stylesheet are copied byte for byte', () => {
   assert.equal(hash(path.join(root, 'docs-src', 'site.css')), hash(path.join(root, 'docs', 'assets', 'site.css')));
 });
 
+test('build marks the published site as static HTML', () => {
+  const root = createFixture();
+  quietBuild(root);
+  const marker = path.join(root, 'docs', '.nojekyll');
+
+  assert.equal(fs.existsSync(marker), true);
+  assert.equal(fs.readFileSync(marker, 'utf8'), '');
+});
+
 test('posts sort by descending date and then ascending filename', () => {
   const root = createFixture({ posts: {
     'b.html': postHtml({ title: 'B', date: '2026-01-01 12:00' }),
