@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="title" content="人生天地间">
+  <meta name="author" content="jogtor">
+  <meta name="date" content="2026-08-10 17:42">
+  <meta name="tags" content="文学,随笔">
+  <meta name="comments" content="false">
+  <meta name="description" content="《人生天地间》——从古诗十九首的苍凉，到为自己织就一张意义之网。">
+  <title>人生天地间｜Between Heaven and Earth</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css">
+  <style>
+    :root {
+      --paper: #e9e4d8;
+      --paper-deep: #d8d0bf;
+      --ink: #252823;
+      --ink-soft: #555a50;
+      --moss: #4b5f4d;
+      --moss-dark: #27372d;
+      --gold: #bd8a42;
+      --gold-light: #e0bd76;
+      --cinnabar: #9b4334;
+      --night: #121a18;
+      --line: rgba(47, 55, 48, .16);
+      --font-display: "LXGW WenKai", "STKaiti", "KaiTi", "华文楷体", serif;
+      --font-body: "LXGW WenKai", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", "SimSun", serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 12%, rgba(255,255,255,.66), transparent 26rem),
+        linear-gradient(115deg, rgba(75,95,77,.055), transparent 34%),
+        var(--paper);
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 2.0;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    ::selection { color: #f3ead8; background: var(--moss-dark); }
+
+    .article {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem 5rem;
+    }
+
+    .article-title {
+      margin: 0 0 1rem;
+      color: var(--moss-dark);
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(1.9rem, 4.5vw, 2.6rem);
+      line-height: 1.3;
+      letter-spacing: .06em;
+      text-align: center;
+    }
+
+    .byline {
+      margin: 0 0 3.2rem;
+      color: var(--ink-soft);
+      font-size: .82rem;
+      letter-spacing: .14em;
+      text-align: center;
+    }
+
+    .article p { margin: 0 0 1.45em; }
+    .soft { color: var(--ink-soft); }
+
+    .lamp-wrap {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 320px;
+      margin-top: 4rem;
+      text-align: center;
+    }
+    .lamp-glow {
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(224,189,118,.58), rgba(224,189,118,.09) 45%, transparent 72%);
+      animation: lamp 3s ease-in-out infinite;
+    }
+    .flame {
+      position: relative;
+      width: 18px;
+      height: 34px;
+      border-radius: 70% 30% 56% 44% / 68% 42% 58% 32%;
+      background: linear-gradient(#fff6c5 10%, #e6b04d 52%, #b85f2f);
+      box-shadow: 0 0 18px rgba(240,185,82,.8), 0 0 42px rgba(240,185,82,.35);
+      transform: rotate(4deg);
+      animation: flicker 2.2s ease-in-out infinite alternate;
+      z-index: 1;
+    }
+    .lamp-line {
+      position: absolute;
+      top: calc(50% + 37px);
+      width: 1px;
+      height: 58px;
+      background: linear-gradient(var(--gold), transparent);
+    }
+    .closing {
+      position: absolute;
+      top: calc(50% + 100px);
+      width: min(100%, 610px);
+      color: var(--moss-dark);
+      font-family: var(--font-display);
+      font-size: 1.02rem;
+      letter-spacing: .04em;
+      line-height: 1.85;
+    }
+
+    .back-home { margin: 0; padding: 1.4rem 1rem 3rem; text-align: center; }
+    .back-home a {
+      display: inline-block;
+      color: var(--moss-dark);
+      font-family: var(--font-display);
+      font-size: .94rem;
+      letter-spacing: .14em;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(75,95,77,.4);
+      padding-bottom: .18rem;
+      transition: color .25s ease, border-color .25s ease;
+    }
+    .back-home a:hover { color: var(--cinnabar); border-color: rgba(155,67,52,.55); }
+
+    @keyframes lamp { 50% { opacity: .7; transform: scale(1.12); } }
+    @keyframes flicker { 50% { transform: rotate(-4deg) scale(.94, 1.05); } }
+
+    @media (max-width: 660px) {
+      body { font-size: 16.5px; line-height: 1.95; }
+      .article { padding: 3.5rem 1.2rem 4rem; }
+      .article-title { font-size: 2rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="article">
+    <h1 class="article-title">人生天地间</h1>
+    <p class="byline">jogtor · 2026-08-10 17:42</p>
+
+    <p>“青青陵上柏，磊磊涧中石。人生天地间，忽如远行客。”</p>
+    <p>寥寥二十字，道尽天地恒常与浮生短暂，是《古诗十九首》中最动人心的生命叩问之一。</p>
+    <p>苍松立于山陵，四季常青；磐石卧于溪涧，万古不变。</p>
+    <p>天地万物皆有恒久姿态，而人居其间，不过匆匆一瞬。</p>
+    <p>这四句诗无一字悲戚，却自带苍凉辽阔，让人直面生命的短暂，生出深沉敬畏。</p>
+    <p>但我对这首诗的喜欢，到此为止。</p>
+
+    <p>我不喜欢它的斗酒娱乐、驱车策马，不喜欢洛中冠带、王侯第宅。</p>
+    <p class="soft">虽然我知道，这是时代局限，不是诗人的问题。</p>
+    <p>身处汉末乱世，朝政动荡、世道浑浊，诗人于报国无门、前路渺茫中窥透人生短促、世事虚妄，然后无助地陷入了时代的精神困境。</p>
+    <p>他看透了洛阳权贵的钻营与汲汲，高高又戚戚。</p>
+    <p>可他终究未能跳出时代局限。</p>
+    <p>他知道“下有陈死人”，却不能“吸取陈死人的血和肉”；</p>
+    <p>他倾心于青青的河畔草，却做不到坦然与欣然，大笑且歌唱。</p>
+    <p>他只能斗酒娱乐以处世，以宴游，以消遣，以应对内心的虚无与怅惘。</p>
+    <p>我在他短暂的欢愉中看到了无助，读出了辛酸。</p>
+    <p>而且这类句子，在古诗十九首中所在多有，比如“四顾何茫茫，东风摇百草”，比如“生年不满百，常怀千岁忧”。</p>
+    <p>读这类古诗，不可被动接纳其消极怅惘，要主动剥离其虚无颓败，使其能为己所用、滋养本心。</p>
+
+    <p>有时候读古诗十九首，会觉得像在读帕斯卡尔。</p>
+    <p>在帕斯卡尔看来，人只不过是一根苇草，是自然界最脆弱的东西。</p>
+    <p>天地浩浩，狂风百草，人在这宏大的世间，脆弱到不堪一击。</p>
+    <p>这是他与古诗同时道破的真相，似乎也是人无法规避的宿命。</p>
+    <p>但却未必。</p>
+    <p>因为帕斯卡尔的苇草，还有下半段：人是一根能思想的苇草。纵使宇宙毁灭了他，人仍然要比致他于死命的东西高贵得多，因为他知道自己要死亡，以及宇宙对他所具有的优势，而宇宙对此一无所知。</p>
+    <p>这份清醒和自知，恰是时代局限的解药，让人不再因生命短暂沉溺欢愉，不因人世无助消极沉沦，反而生出敬畏自持之心，最终读懂范仲淹“不以物喜，不以己悲”的千古襟怀。</p>
+
+    <p>但这千古襟怀，并不是唯一的人生答案。在它之外，更有一种温柔坚韧的凡人境界：常以己喜，常以物悲。</p>
+    <p>以己为喜，是接纳自我、感恩浮生，拥有与自己和解、取悦本心的能力；以物为悲，是心怀温热、共情万物，拥有体察世间冷暖、善待众生的柔软。</p>
+    <p>常常想起海子。这个柔软的灵魂，心怀极致的共情，热爱这珍贵的人间，憧憬春暖花开。</p>
+    <p>可他遍历黑夜、饱经困顿，太多荒芜与寒凉浸透人生，最终迎着那“无边的金帐”，走入了“如此荒凉”的世界。面朝大海的期许终成泡影，只余一场人间遗憾。</p>
+
+    <p>所以人一生的底气，从不依附境遇、托于外物，而是源于他为自己织就的意义之网。</p>
+    <p>这张网无关功名高低、宏图大小，不必迎合世俗标准，无需强求世人认同，它是完全自我、全然本心的精神归宿，让我们在世事浮沉中，始终有处可栖、有心可守。</p>
+    <p>这张意义之网，自有分寸、可收可放，适配人生所有境遇。</p>
+    <p>风浪平息、世事安稳时，它可以舒展松弛，容纳山河万象、人间烟火，让我们坦然拥抱世间所有美好；</p>
+    <p>东风骤起、风雨来袭、内心惶惑时，它可以收紧加密，收拢本心、守住自我，隔绝外界的喧嚣与荒芜。</p>
+    <p>网密一寸，心稳一分。</p>
+    <p>收紧方寸天地，护住心底的百草不被狂风摇落，守住心底的澄澈不被世俗裹挟。</p>
+
+    <div class="lamp-wrap" aria-label="守住心里的一盏灯">
+      <div class="lamp-glow" aria-hidden="true"></div>
+      <div class="flame" aria-hidden="true"></div>
+      <div class="lamp-line" aria-hidden="true"></div>
+      <p class="closing">哪怕身处迷茫困顿，哪怕周遭漆黑一片，也能牢牢护住心里那盏灯，留住最后一豆温热、一寸光明。</p>
+    </div>
+
+    <p>不必对抗天地、不必征服世事，只需守好自我的方寸意义，纵使人生如寄、浮生短暂，亦无愧来一遭天地之间……</p>
+  </main>
+
+  <p class="back-home"><a href="../index.html">← 返回首页</a></p>
+</body>
+</html>
