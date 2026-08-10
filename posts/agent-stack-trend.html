@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 元数据：构建程序读取以下 meta 生成首页列表 -->
+<meta name="title" content="聪明模型时代，prompt、skills和harness该何去何从？">
+<meta name="author" content="jogtor">
+<meta name="date" content="2026-08-10 12:24">
+<meta name="tags" content="AI,随笔">
+<title>聪明模型时代，prompt、skills和harness该何去何从？</title>
+<style>
+:root{
+  --bg:#0e1016;
+  --card:#161a24;
+  --card-2:#1c2230;
+  --text:#e6e8ef;
+  --muted:#9aa3b2;
+  --brand:#8b9bff;
+  --brand-2:#b794f6;
+  --line:#262c3a;
+  --ok:#5fd39a;
+  --no:#ff7a90;
+  --warn:#ffcf6b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  line-height:1.75;font-size:17px;
+}
+.hero{
+  padding:64px 24px 48px;text-align:center;
+  background:radial-gradient(1200px 400px at 50% -10%,rgba(139,155,255,.25),transparent 60%),
+             linear-gradient(160deg,#1a1f33,#0e1016);
+  border-bottom:1px solid var(--line);
+}
+.hero h1{font-size:clamp(26px,5vw,40px);margin:0 0 12px;
+  background:linear-gradient(90deg,var(--brand),var(--brand-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero .meta{color:var(--muted);font-size:14px}
+.hero .tags{margin-top:10px}
+.hero .tags span{
+  display:inline-block;margin:3px;padding:3px 10px;border-radius:999px;
+  font-size:12px;color:var(--brand);border:1px solid var(--line);background:var(--card);
+}
+.wrap{max-width:820px;margin:0 auto;padding:32px 20px 64px}
+.toc{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:18px 22px;margin:24px 0;
+}
+.toc h2{font-size:16px;margin:0 0 10px;color:var(--brand-2)}
+.toc ol,.toc ul{margin:0;padding-left:20px}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--brand)}
+h2{margin-top:40px;font-size:24px;border-left:4px solid var(--brand);padding-left:12px}
+h3.lead{margin-top:28px;font-size:19px;color:var(--brand-2);
+  border-left:3px solid var(--brand-2);padding-left:10px}
+.key{
+  background:linear-gradient(135deg,rgba(139,155,255,.12),rgba(183,148,246,.12));
+  border:1px solid var(--line);border-left:4px solid var(--brand);
+  border-radius:12px;padding:16px 20px;margin:20px 0;color:var(--text);
+}
+p{margin:16px 0}
+a{color:var(--brand)}
+code{background:var(--card-2);padding:2px 6px;border-radius:6px;font-size:.92em}
+pre{background:var(--card-2);border:1px solid var(--line);border-radius:12px;
+  padding:16px;overflow:auto}
+pre code{background:none;padding:0}
+table{width:100%;border-collapse:collapse;margin:20px 0;background:var(--card);
+  border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:10px 14px;text-align:left}
+th{background:var(--card-2);color:var(--brand-2)}
+blockquote{margin:18px 0;padding:12px 18px;border-left:4px solid var(--brand-2);
+  background:var(--card);color:var(--muted);border-radius:0 10px 10px 0}
+.note{font-size:14px;color:var(--muted);background:var(--card);
+  border:1px dashed var(--line);border-radius:10px;padding:12px 16px;margin:20px 0}
+.cite{font-size:.7em;vertical-align:super;color:var(--brand);text-decoration:none}
+.sources{background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:18px 22px;margin:28px 0}
+.sources h2{font-size:16px;margin:0 0 12px;color:var(--brand-2);border:none;padding:0}
+.sources ul{margin:0;padding-left:18px}
+.sources li{margin:8px 0;font-size:15px;color:var(--muted)}
+.back{display:inline-block;margin-top:36px;color:var(--brand);text-decoration:none}
+@media(max-width:600px){body{font-size:16px}.hero{padding:48px 16px 36px}.wrap{padding:24px 14px 48px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <h1>聪明模型时代，prompt、skills和harness该何去何从？</h1>
+  <div class="meta">2026-08-10 12:24 · jogtor</div>
+  <div class="tags"><span>AI</span><span>随笔</span></div>
+</header>
+<main class="wrap">
+  <nav class="toc">
+    <h2>目录</h2>
+    <ol>
+      <li><a href="#s1">Prompt 到底还要不要学？</a></li>
+      <li><a href="#s2">skills 装不装、做不做？</a></li>
+      <li><a href="#s3">harness 追不追新？</a></li>
+      <li><a href="#s4">结论</a></li>
+    </ol>
+  </nav>
+
+  <p>曾经在 OpenAI 的模型指南里读到一组数字：他们内部 coding agent 评测时把 system prompt 精简了，结果分数反而提高了十几个百分点，token 消耗少了一半，成本降低了三分之一到三分之二。官方建议，可以试着逐组删掉重复指令、示例和无关的工具说明，然后重新跑代表性任务看看。</p>
+
+  <p>删东西，性能变好？</p>
+
+  <p>一年前，满世界都还在教怎么写咒语：角色设定、思维链、少样本、输出格式约束，一个提示词模板动不动两千字，社群里还有人卖 Prompt 大全。现在官方评测却表明，精简 prompt，效果反而更好。</p>
+
+  <p>那日常工作里，prompt 技巧还要不要学？进一步地，skills 还要不要装、要不要做？以及别人换了新 harness，要不要跟着换？</p>
+
+  <p>这三个问题困扰了我很久。</p>
+
+  <p>刚刚抽空用 agent 收集了 14 个一手来源研究，有 Anthropic 和 OpenAI 的工程博客，有 METR 的评测方法说明，还有两篇专门做脚手架消融的预印本，并总结了一下，结果发现：网上那些"Prompt 工程已死"和"Agent 时代人人都要会搭脚手架"，各自只说出了一半真相：</p>
+
+  <div class="key">如果只看固定任务、固定质量标准，顶级模型需要的 prompt 确实更少。但如果看的是能长期跑、跨工具跑，并留下审计痕迹的 Agent 系统，那 skills 和脚手架总量是在上升的。</div>
+
+  <p>减少的是每次你亲手喂给模型的显式指挥。知识、约束和验证本身没少，只不过部分被模型内化了，部分从聊天框搬到了仓库、skill 和代码里。</p>
+
+  <p>也就是说，前台在变薄，后台在变厚。</p>
+
+  <h2 id="s1">那么Prompt 到底还要不要学？</h2>
+
+  <p>答案是要学，但内容变了。</p>
+
+  <p>以前学 prompt，学的是怎么把每一步措辞写对，怎么堆少样本、怎么设角色。现在顶级模型内化了部分规划、长上下文和自检能力，你再手把手从外部教它，反而可能带来内外规则矛盾，搞得模型不得不去调和，额外浪费算力，甚至引起降智。</p>
+
+  <p>Anthropic 有一组跨了好几代模型的连续案例。Sonnet 4.5 的时候，长任务跑着跑着上下文就糊了，得做 context reset重置。到 Opus 4.5，这个需求基本消失。再到 Opus 4.6，连 sprint 分解都能删掉，那个负责打分的 evaluator，在模型能力范围内的任务上，已经变成纯粹的额外开销。</p>
+
+  <p>那些为旧模型补窟窿的巧妙控制流，下一代模型上来就成累赘了。</p>
+
+  <p>如今的 prompt 能力只剩三件事：写清楚目标，给够上下文，明确硬约束和完成标准。剩下的重复规则、没实测收益的人设、过度分步、无关工具说明，都该删。少背模板，多学着写你想要什么、边界在哪、怎样算做完。模型越强，越不需要你教它怎么想，越需要你给对目标和边界。</p>
+
+  <h2 id="s2">skills 装不装、做不做？</h2>
+
+  <p>要，但只留确实值得的。</p>
+
+  <p>skill 解决的是模型参数里不可能知道、或者需要确定性脚本的东西。公司的报销流程、团队的品牌规范、某冷门工具的正确调用姿势，这些再聪明的模型也不可能凭空变出来。</p>
+
+  <p>2025 年，Anthropic 把 Agent Skills 做成了跨平台标准，核心机制叫渐进披露，启动时只载入几十个 token 的名字和描述，任务命中了才逐层加载全文。skills 库存因此几乎可以无限扩张，平时只占一点上下文，用到才展开。</p>
+
+  <p>OpenAI 用 Codex 做 agent 化改造，耗时大约五个月，1500 个 PR，上百万行代码，根目录 AGENTS.md 却只有大约 100 行，仅作地图用。真正撑住系统的，是背后的结构化知识库、可观测性、隔离工作树、linters、结构测试，还有一个专门维护文档的 agent。</p>
+
+  <p>入口短得像便签，背后却是一整套基础设施。</p>
+
+  <p>装 skills、做 skills 都值得，但别为了囤而囤。删掉一个 skill 后，哪个任务会变差？答不上来就别留。一段流程是不是近期反复在用，用就做成 skill，而不是去装一堆用不上的花活。</p>
+
+  <h2 id="s3">harness 追不追新？</h2>
+
+  <p>别追新，追刚好覆盖你风险的那个。</p>
+
+  <p>有一篇叫 The Scaffold Effect的研究，发现固定两个模型，在三个开源 harness、50 个任务上跑 300 次，不同 harness 之间，每解一题消耗的 token 最多能差 40 倍，但配对通过率只差 0 到 8 个百分点，而且会出现可以复现的、某个 harness 特有的失败模式。</p>
+
+  <p>另一篇叫 Harness-Bench的研究则发现，106 个离线任务、5194 条轨迹，可配置 harness 的聚合分数能差出 23.8 分，同时它还证明，模型越强，跨 harness 的方差越低，也就是更能容忍不同的 prompt、工具接口和状态设计。</p>
+
+  <p>这两个研究说明，脚手架决定的，是成本、等待时间、失败方式和监督成本，但它不能让模型更聪明。它不一定让 agent 更会做事，却强烈决定会花多少钱、等多久以及用什么姿势翻车。</p>
+
+  <p>那是不是多 agent 就更好？不一定。Anthropic 的内部评测里，多 agent 系统比单 agent 的 Opus 4 高了 90.2 个百分点，代价是大约 15 倍于普通聊天的 token。它适合可并行的广度研究，不适合依赖强、共享上下文多的任务。2024 年 Anthropic 就提醒过，简单可组合的模式往往优于复杂的框架，这条经验今天还成立。</p>
+
+  <h2 id="s4">结论</h2>
+
+  <p>总起来说吧，模型越聪明，逐步 prompt 越该删，skills 和脚手架越该往后台沉。脚手架还得用，只是干的活变了：从前是教模型怎么想，现在是要给模型提供特殊知识，替它的自主行为兜底。</p>
+
+  <p>上面这些证据大多来自编码和浏览研究，还有所局限，谈判、组织管理或者高语境专业工作不能直接套用。如果哪天最强模型用极简 loop 就能在固定长时任务上，把完整系统的成功率、成本、安全和可审计性全都比下去，那"后台变厚"这件事可能就要进入新阶段了。</p>
+
+  <section class="sources">
+    <h2>材料来源</h2>
+    <ul>
+      <li><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">Anthropic, Building effective agents（2024-12-19）</a></li>
+      <li><a href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener">OpenAI, Harness engineering（2026-02-11）</a></li>
+      <li><a href="https://www.anthropic.com/engineering/harness-design-long-running-apps" target="_blank" rel="noopener">Anthropic, Harness design for long-running application development（2026-03-24）</a></li>
+      <li><a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" target="_blank" rel="noopener">Anthropic, Equipping agents for the real world with Agent Skills（2025-10-16）</a></li>
+      <li><a href="https://developers.openai.com/api/docs/guides/latest-model" target="_blank" rel="noopener">OpenAI, Model guidance（GPT-5.6，持续更新）</a></li>
+      <li><a href="https://arxiv.org/abs/2607.22585" target="_blank" rel="noopener">Vats &amp; Golev, The Scaffold Effect in Coding Agents（2026-06-08，预印本）</a></li>
+      <li><a href="https://arxiv.org/abs/2605.27922" target="_blank" rel="noopener">Yao et al., Harness-Bench（2026-05-27，预印本）</a></li>
+      <li><a href="https://www.anthropic.com/engineering/multi-agent-research-system" target="_blank" rel="noopener">Anthropic, How we built our multi-agent research system（2025-06-13）</a></li>
+      <li><a href="https://evals.alignment.org/time-horizons/" target="_blank" rel="noopener">METR, Task-Completion Time Horizons of Frontier AI Models（持续更新）</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p><a class="back" href="../index.html">← 返回首页</a></p>
+  </footer>
+</main>
+</body>
+</html>
