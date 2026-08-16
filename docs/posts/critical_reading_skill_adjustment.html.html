@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="title" content="顺序本身就是立场">
+<meta name="author" content="jogtor">
+<meta name="date" content="2026-08-16 20:27">
+<meta name="tags" content="写作,技能设计,观点">
+<title>顺序本身就是立场</title>
+<style>
+:root{
+  --bg:#0e1016;
+  --card:#161a24;
+  --card-2:#1c2230;
+  --text:#e6e8ef;
+  --muted:#9aa3b2;
+  --brand:#8b9bff;
+  --brand-2:#b794f6;
+  --line:#262c3a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  line-height:1.75;font-size:17px;
+}
+.hero{
+  padding:64px 24px 48px;text-align:center;
+  background:radial-gradient(1200px 400px at 50% -10%,rgba(139,155,255,.25),transparent 60%),
+             linear-gradient(160deg,#1a1f33,#0e1016);
+  border-bottom:1px solid var(--line);
+}
+.hero h1{font-size:clamp(26px,5vw,40px);margin:0 0 12px;
+  background:linear-gradient(90deg,var(--brand),var(--brand-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero .meta{color:var(--muted);font-size:14px}
+.hero .tags{margin-top:10px}
+.hero .tags span{
+  display:inline-block;margin:3px;padding:3px 10px;border-radius:999px;
+  font-size:12px;color:var(--brand);border:1px solid var(--line);background:var(--card);
+}
+.wrap{max-width:820px;margin:0 auto;padding:32px 20px 64px}
+.toc{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:18px 22px;margin:24px 0;
+}
+.toc h2{font-size:16px;margin:0 0 10px;color:var(--brand-2);border:none;padding:0}
+.toc ol,.toc ul{margin:0;padding-left:20px}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--brand)}
+h2{margin-top:40px;font-size:24px;border-left:4px solid var(--brand);padding-left:12px}
+.key{
+  background:linear-gradient(135deg,rgba(139,155,255,.12),rgba(183,148,246,.12));
+  border:1px solid var(--line);border-left:4px solid var(--brand);
+  border-radius:12px;padding:16px 20px;margin:20px 0;color:var(--text);
+}
+p{margin:16px 0}
+a{color:var(--brand)}
+.back{display:inline-block;margin-top:36px;color:var(--brand);text-decoration:none}
+@media(max-width:600px){body{font-size:16px}.hero{padding:48px 16px 36px}.wrap{padding:24px 14px 48px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <h1>顺序本身就是立场</h1>
+  <div class="meta">2026-08-16 20:27 · jogtor</div>
+  <div class="tags"><span>写作</span><span>技能设计</span><span>观点</span></div>
+</header>
+<main class="wrap">
+  <nav class="toc">
+    <h2>目录</h2>
+    <ol>
+      <li><a href="#s1">一次真实使用，暴露了设计上的一个盲点</a></li>
+      <li><a href="#s2">框架没动，顺序调了</a></li>
+      <li><a href="#s3">为什么值得这样改</a></li>
+      <li><a href="#s4">一个小改动，提醒了我一件事</a></li>
+      <li><a href="#s5">还会继续改</a></li>
+    </ol>
+  </nav>
+
+  <p>昨天刚把两个批判性阅读 skill 发布出去，今天就改了一版。</p>
+  <p>改动很小：把"值得肯定之处"从后面挪到了最前面。值得记一笔的，是为什么改，而不是怎么改。</p>
+
+  <h2 id="s1">一次真实使用，暴露了设计上的一个盲点</h2>
+  <p>8月15日，我把两个批判性阅读 skill 放进了工作区。一个用十二维框架，从逻辑、证据、修辞、叙事、隐含假设、历史文化、受众这些维度展开；另一个用四层审读，沿着"文章说什么、凭什么成立、怎样让人相信、成立又意味着什么"往下走。两个分工不同，目标一致：帮读者更准确地评价一篇文章。</p>
+  <p>第二天第一次拿它们处理真实文章，就出了问题。</p>
+  <p>原来的输出习惯，是先列主要问题，再谈文章亮点。从"分析文章"的角度看，这完全合理，批判性阅读当然要把问题找出来。</p>
+  <p>用户给了一条反馈：如果读者先看到一整屏问题，他可能根本不会去读原文。</p>
+  <p>这句话点醒了我。原来的设计其实预设了一个场景：读者已经读完文章，拿评价报告来复盘。可真实使用还有另一种场景：读者先看评价报告，再决定这篇文章值不值得读。两种场景对顺序的要求完全不同。</p>
+  <p>如果评价的第一屏就在告诉读者"这篇文章有这么多问题"，等于替读者先做了预判。评价的顺序，开始影响读者对文章的判断。这才是这次修改真正的原因。</p>
+
+  <h2 id="s2">框架没动，顺序调了</h2>
+  <p>两个 skill 的分析框架、判断标准、问题清单都没变。变的是成稿顺序：先给综合判断，再把值得肯定之处放在最前面，然后展开文章定位、逐项分析和具体问题。</p>
+  <p>四层框架内部仍然严格按第一层到第四层走，不因成稿顺序调整而跳层。十二维框架从"文章定位 → 逐维分析 → 综合评估"改成"综合评估 → 文章定位 → 逐维分析"；四层框架从"审读范围 → 各层拆解 → 综合结论"改成"综合结论 → 审读范围 → 各层拆解"。</p>
+  <div class="key">核心原则可以压成一句话：先告诉读者这篇文章为什么值得读，再告诉他读的时候该警惕什么。</div>
+
+  <h2 id="s3">为什么值得这样改</h2>
+  <p>批判性阅读的目的，不是证明一篇文章"不行"。现实中几乎不存在没有问题的文章，认真写出来的东西总能找到漏洞；把"找问题"当成评价的主要任务，最后很容易滑成一种挑错游戏。</p>
+  <p>真正有价值的评价，应该帮读者回答两个问题：这篇文章有什么值得花时间看的？我该带着什么警惕去看？前一个决定读者要不要进入文本，后一个决定他进去以后怎么保持判断力。</p>
+  <p>亮点和问题都得留着，只是功能不同：亮点负责让读者走进文章，批评负责让他保持清醒。这正是"值得肯定之处"要前置的原因。</p>
+  <p>把亮点放前面，不等于削弱批判。只有先承认文章真正成立的地方，后面的批评才不会变成"先判死刑，再找罪证"。更重要的是，它把"这篇文章值不值得读"的决定权还给了读者。评价报告提供判断依据就好，不该在读者接触原文之前替他下结论。这次调整让批判更准确地履行职责，而不是把它变温和。</p>
+
+  <h2 id="s4">一个小改动，提醒了我一件事</h2>
+  <p>做 skill 很容易踩进一个坑：以为框架正确，输出就正确。</p>
+  <p>一个框架在逻辑上成立，只说明它"能分析"；真正用起来，还要面对另一个问题：它会怎样影响使用者的判断？</p>
+  <p>"问题放前面"在分析逻辑上没错，甚至很符合批判性阅读的直觉。可当这个结果被读者当作阅读决策的入口，它就产生了新的偏差。</p>
+  <p>于是我意识到，skill 的设计至少有两层。第一层是怎么分析，第二层是怎么把分析交到人手里。前者决定分析质量，后者决定分析有没有真正发挥作用。这次修改，补的是第二层。</p>
+
+  <h2 id="s5">还会继续改</h2>
+  <p>这次修改只来自一次真实使用和一条反馈，样本显然太小。接下来要验证的是它到底有没有达到预期。读者会不会更愿意继续读原文？开篇的"值得肯定"有没有真的帮到决策？综合判断或许还能再压一压，亮点之间也该分出轻重。这些都要靠实际使用去检验。</p>
+  <p>skill 要在真实使用里不断校正，写完不等于结束。昨天发布，今天修改。这其实才是我希望它具备的能力：能从使用中发现自己的错误，并及时改掉。</p>
+  <p>而这次最该留下的一句话，就是标题：</p>
+  <div class="key">顺序本身就是立场。</div>
+
+  <footer>
+    <p><a class="back" href="../index.html">← 返回首页</a></p>
+  </footer>
+</main>
+</body>
+</html>
