@@ -1,0 +1,59 @@
+/* Shared navigation for otherwise self-contained article pages. */
+.site-home-button,
+a[href="../index.html"] {
+  position: fixed !important;
+  right: max(1rem, env(safe-area-inset-right)) !important;
+  bottom: max(1rem, env(safe-area-inset-bottom)) !important;
+  z-index: 2147483647 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  min-height: 44px !important;
+  margin: 0 !important;
+  padding: 0.65rem 1rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 999px !important;
+  color: #fff !important;
+  background: rgba(22, 28, 45, 0.92) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: transform 160ms ease, background-color 160ms ease, box-shadow 160ms ease !important;
+}
+
+.site-home-button:hover,
+a[href="../index.html"]:hover {
+  color: #fff !important;
+  background: rgba(37, 48, 77, 0.98) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3) !important;
+  transform: translateY(-2px) !important;
+}
+
+.site-home-button:focus-visible,
+a[href="../index.html"]:focus-visible {
+  outline: 3px solid #7dd3fc !important;
+  outline-offset: 3px !important;
+}
+
+@media (max-width: 600px) {
+  .site-home-button,
+  a[href="../index.html"] {
+    right: max(0.75rem, env(safe-area-inset-right)) !important;
+    bottom: max(0.75rem, env(safe-area-inset-bottom)) !important;
+    padding: 0.65rem 0.85rem !important;
+  }
+}
+
+@media print {
+  .site-home-button,
+  a[href="../index.html"] {
+    display: none !important;
+  }
+}

@@ -44,7 +44,10 @@ function createFixture({ posts = { 'article.html': postHtml() }, css = true, doc
   for (const [file, content] of Object.entries(posts)) {
     fs.writeFileSync(path.join(root, 'posts', file), content, 'utf8');
   }
-  if (css) fs.writeFileSync(path.join(root, 'docs-src', 'site.css'), 'body { color: #111; }\n', 'utf8');
+  if (css) {
+    fs.writeFileSync(path.join(root, 'docs-src', 'site.css'), 'body { color: #111; }\n', 'utf8');
+    fs.writeFileSync(path.join(root, 'docs-src', 'post-controls.css'), 'a[href="../index.html"] { position: fixed; }\n', 'utf8');
+  }
 
   for (const [file, content] of Object.entries(docs)) {
     const target = path.join(root, 'docs', file);
@@ -197,13 +200,28 @@ test('invalid post metadata fails before changing the last complete docs directo
   assert.deepEqual(manifest(path.join(root, 'docs')), before);
 });
 
-test('articles and stylesheet are copied byte for byte', () => {
+test('article sources stay unchanged while generated posts receive shared navigation', () => {
   const source = postHtml({ title: '逐字节', tags: '测试' }) + '\n<!-- exact bytes -->\n';
   const root = createFixture({ posts: { 'exact.html': source } });
+  const sourceHash = hash(path.join(root, 'posts', 'exact.html'));
   quietBuild(root);
+  const generated = fs.readFileSync(path.join(root, 'docs', 'posts', 'exact.html'), 'utf8');
 
-  assert.equal(hash(path.join(root, 'posts', 'exact.html')), hash(path.join(root, 'docs', 'posts', 'exact.html')));
+  assert.equal(hash(path.join(root, 'posts', 'exact.html')), sourceHash);
+  assert.match(generated, /<link rel="stylesheet" href="\.\.\/assets\/post-controls\.css">/);
+  assert.match(generated, /class="site-home-button" href="\.\.\/index\.html"/);
+  assert.match(generated, /<!-- exact bytes -->/);
   assert.equal(hash(path.join(root, 'docs-src', 'site.css')), hash(path.join(root, 'docs', 'assets', 'site.css')));
+  assert.equal(hash(path.join(root, 'docs-src', 'post-controls.css')), hash(path.join(root, 'docs', 'assets', 'post-controls.css')));
+});
+
+test('existing home links are reused instead of duplicated', () => {
+  const source = postHtml().replace('</body>', '<a href="../index.html">返回首页</a></body>');
+  const root = createFixture({ posts: { 'existing.html': source } });
+  quietBuild(root);
+  const generated = fs.readFileSync(path.join(root, 'docs', 'posts', 'existing.html'), 'utf8');
+
+  assert.equal((generated.match(/href="\.\.\/index\.html"/g) || []).length, 1);
 });
 
 test('build marks the published site as static HTML', () => {

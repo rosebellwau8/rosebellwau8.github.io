@@ -5,6 +5,7 @@ const path = require('path');
 
 const DEFAULT_ROOT = path.resolve(__dirname, '..');
 const SITE_NAME = 'jogtor的博客';
+const POST_CONTROLS_STYLESHEET = '../assets/post-controls.css';
 const META_TAG_PATTERN = /<meta\b(?:[^>"']|"[^"]*"|'[^']*')*>/gi;
 const ATTRIBUTE_PATTERN = /([^\s=/>]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g;
 
@@ -129,12 +130,16 @@ function validatePost(file, html) {
 function collectSite(root) {
   const postsDir = path.join(root, 'posts');
   const cssSource = path.join(root, 'docs-src', 'site.css');
+  const postControlsCssSource = path.join(root, 'docs-src', 'post-controls.css');
 
   if (!fs.existsSync(postsDir) || !fs.statSync(postsDir).isDirectory()) {
     throw new Error(`Missing posts directory: ${postsDir}`);
   }
   if (!fs.existsSync(cssSource) || !fs.statSync(cssSource).isFile()) {
     throw new Error(`Missing required stylesheet: ${cssSource}`);
+  }
+  if (!fs.existsSync(postControlsCssSource) || !fs.statSync(postControlsCssSource).isFile()) {
+    throw new Error(`Missing required stylesheet: ${postControlsCssSource}`);
   }
 
   const files = fs.readdirSync(postsDir)
@@ -158,7 +163,33 @@ function collectSite(root) {
     }
   }
 
-  return { root, postsDir, cssSource, files, posts, tagMap };
+  return { root, postsDir, cssSource, postControlsCssSource, files, posts, tagMap };
+}
+
+function enhancePostHtml(html) {
+  let output = html;
+
+  if (!output.includes(`href="${POST_CONTROLS_STYLESHEET}"`)) {
+    if (!/<\/head\s*>/i.test(output)) {
+      throw new Error('Post HTML is missing a closing </head> tag');
+    }
+    output = output.replace(
+      /<\/head\s*>/i,
+      `<link rel="stylesheet" href="${POST_CONTROLS_STYLESHEET}">\n</head>`,
+    );
+  }
+
+  if (!/href\s*=\s*(["'])\.\.\/index\.html(?:[?#][^"']*)?\1/i.test(output)) {
+    if (!/<\/body\s*>/i.test(output)) {
+      throw new Error('Post HTML is missing a closing </body> tag');
+    }
+    output = output.replace(
+      /<\/body\s*>/i,
+      '<a class="site-home-button" href="../index.html" aria-label="返回首页">← 返回首页</a>\n</body>',
+    );
+  }
+
+  return output;
 }
 
 function renderPostList(posts, prefix) {
@@ -245,8 +276,10 @@ function writeOutput(site, outputDir) {
 
   fs.writeFileSync(resolveInside(outputDir, '.nojekyll'), '', 'utf8');
   fs.copyFileSync(site.cssSource, resolveInside(assetsOutput, 'site.css'));
+  fs.copyFileSync(site.postControlsCssSource, resolveInside(assetsOutput, 'post-controls.css'));
   for (const file of site.files) {
-    fs.copyFileSync(path.join(site.postsDir, file), resolveInside(postsOutput, file));
+    const html = fs.readFileSync(path.join(site.postsDir, file), 'utf8');
+    fs.writeFileSync(resolveInside(postsOutput, file), enhancePostHtml(html), 'utf8');
   }
   fs.writeFileSync(resolveInside(outputDir, 'index.html'), renderIndex(site.posts), 'utf8');
 
@@ -308,6 +341,7 @@ if (require.main === module) {
 module.exports = {
   build,
   collectSite,
+  enhancePostHtml,
   escapeHtml,
   extractMeta,
   isValidDate,

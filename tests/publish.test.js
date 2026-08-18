@@ -40,6 +40,7 @@ function createFixture() {
   fs.mkdirSync(path.join(root, 'docs-src'), { recursive: true });
   fs.mkdirSync(path.join(root, 'incoming'), { recursive: true });
   fs.writeFileSync(path.join(root, 'docs-src', 'site.css'), 'body { color: #111; }\n', 'utf8');
+  fs.writeFileSync(path.join(root, 'docs-src', 'post-controls.css'), 'a[href="../index.html"] { position: fixed; }\n', 'utf8');
   return root;
 }
 
