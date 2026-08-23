@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="title" content="PatternXI开发阶段性记录">
+<meta name="author" content="jogtor">
+<meta name="date" content="2026-08-24 05:49">
+<meta name="tags" content="开发记录,PatternXI,进度">
+<title>PatternXI开发阶段性记录</title>
+<style>
+:root{
+  --bg:#0e1016;
+  --card:#161a24;
+  --card-2:#1c2230;
+  --text:#e6e8ef;
+  --muted:#9aa3b2;
+  --brand:#8b9bff;
+  --brand-2:#b794f6;
+  --line:#262c3a;
+  --ok:#5fd39a;
+  --no:#ff7a90;
+  --warn:#ffcf6b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  line-height:1.75;font-size:17px;
+}
+.hero{
+  padding:64px 24px 48px;text-align:center;
+  background:radial-gradient(1200px 400px at 50% -10%,rgba(139,155,255,.25),transparent 60%),
+             linear-gradient(160deg,#1a1f33,#0e1016);
+  border-bottom:1px solid var(--line);
+}
+.hero h1{font-size:clamp(26px,5vw,40px);margin:0 0 12px;
+  background:linear-gradient(90deg,var(--brand),var(--brand-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero .meta{color:var(--muted);font-size:14px}
+.hero .tags{margin-top:10px}
+.hero .tags span{
+  display:inline-block;margin:3px;padding:3px 10px;border-radius:999px;
+  font-size:12px;color:var(--brand);border:1px solid var(--line);background:var(--card);
+}
+.wrap{max-width:820px;margin:0 auto;padding:32px 20px 64px}
+.toc{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:18px 22px;margin:24px 0;
+}
+.toc h2{font-size:16px;margin:0 0 10px;color:var(--brand-2)}
+.toc ol,.toc ul{margin:0;padding-left:20px}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--brand)}
+h2{margin-top:40px;font-size:24px;border-left:4px solid var(--brand);padding-left:12px}
+h3.lead{margin-top:28px;font-size:19px;color:var(--brand-2);
+  border-left:3px solid var(--brand-2);padding-left:10px}
+.key{
+  background:linear-gradient(135deg,rgba(139,155,255,.12),rgba(183,148,246,.12));
+  border:1px solid var(--line);border-left:4px solid var(--brand);
+  border-radius:12px;padding:16px 20px;margin:20px 0;color:var(--text);
+}
+p{margin:16px 0}
+a{color:var(--brand)}
+code{background:var(--card-2);padding:2px 6px;border-radius:6px;font-size:.92em}
+.flow{
+  display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+  background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:18px;margin:20px 0;font-size:13.5px;line-height:1.6;
+}
+.flow .node{
+  background:var(--card-2);border:1px solid var(--line);border-radius:8px;
+  padding:7px 10px;color:var(--text);white-space:nowrap;
+}
+.flow .arrow{color:var(--brand-2);font-weight:700}
+.flow .final{
+  background:linear-gradient(90deg,var(--brand),var(--brand-2));
+  color:#0e1016;font-weight:700;border:none;
+}
+table{width:100%;border-collapse:collapse;margin:20px 0;background:var(--card);
+  border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:10px 14px;text-align:left;vertical-align:middle}
+th{background:var(--card-2);color:var(--brand-2)}
+.bar{position:relative;height:9px;border-radius:999px;background:var(--line);overflow:hidden;min-width:90px}
+.bar > i{position:absolute;left:0;top:0;bottom:0;border-radius:999px;
+  background:linear-gradient(90deg,var(--brand),var(--brand-2))}
+.pct{font-variant-numeric:tabular-nums;color:var(--muted);font-size:14px;white-space:nowrap}
+.note{font-size:14px;color:var(--muted);background:var(--card);
+  border:1px dashed var(--line);border-radius:10px;padding:12px 16px;margin:20px 0}
+.back{display:inline-block;margin-top:36px;color:var(--brand);text-decoration:none}
+@media(max-width:600px){body{font-size:16px}.hero{padding:48px 16px 36px}.wrap{padding:24px 14px 48px}
+  .flow{font-size:12px}.flow .node{padding:6px 8px}}
+</style>
+<link rel="stylesheet" href="../assets/post-controls.css">
+</head>
+<body>
+<header class="hero">
+  <h1>PatternXI开发阶段性记录</h1>
+  <div class="meta">2026-08-24 05:49 · jogtor</div>
+  <div class="tags"><span>开发记录</span><span>PatternXI</span><span>进度</span></div>
+</header>
+<main class="wrap">
+  <nav class="toc">
+    <h2>目录</h2>
+    <ol>
+      <li><a href="#s1">当前阶段与总体完成度</a></li>
+      <li><a href="#s2">已经真正完成的部分</a></li>
+      <li><a href="#s3">尚未完成的主要部分</a></li>
+      <li><a href="#s4">总体进度的粗略拆分</a></li>
+      <li><a href="#s5">按最初目标看：进度与收工</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">当前阶段与总体完成度</h2>
+  <p>Pattern XI 已经从「方案设计期」跨进了「可信发布内核已跑通，剩余主要是生产化与展示化」的阶段。当前总体完成度估在约 55%–65%。如果只看最难、最容易返工的「规则与可信链路」，完成度更高，大约 70%–80%；如果看「真正上线并开始 90 天倒计时」，还差持久化、公开读取、部署和运营闭环，所以不能估得太乐观。</p>
+
+  <h2 id="s2">已经真正完成的部分</h2>
+  <p>最核心的一条链已经闭合：</p>
+  <div class="flow">
+    <span class="node">私人生产结果</span><span class="arrow">→</span>
+    <span class="node">Transfer Boundary</span><span class="arrow">→</span>
+    <span class="node">签名 publication package</span><span class="arrow">→</span>
+    <span class="node">Evidence</span><span class="arrow">→</span>
+    <span class="node">独立验证</span><span class="arrow">→</span>
+    <span class="node">final cutoff</span><span class="arrow">→</span>
+    <span class="node">public_pick_id</span><span class="arrow">→</span>
+    <span class="node">official_at</span><span class="arrow">→</span>
+    <span class="node final">OFFICIAL</span>
+  </div>
+  <p>这很重要，因为这不是页面原型，而是定义了可信内核。而且每个阶段都有独立 checkpoint、CI、tag 和回退点。</p>
+  <p>现在已经有：</p>
+  <ul>
+    <li>Stage 1 合同基线；</li>
+    <li>PRICE001；</li>
+    <li>Transfer Boundary offline slice；</li>
+    <li>Evidence vertical slice；</li>
+    <li>Publication Core vertical slice；</li>
+    <li>GitHub Actions CI；</li>
+    <li>多个不可移动 checkpoint tag；</li>
+    <li>生产侧一键流程和 Crown FT AH enrichment；</li>
+    <li>生产侧结构化 public export。</li>
+  </ul>
+  <p>这意味着最容易出现概念错位的部分（价格语义、Pattern历史、结算边界、Evidence语义、OFFICIAL时机）都已经被真实数据撞过一轮，且修正后冻结。</p>
+
+  <h2 id="s3">尚未完成的主要部分</h2>
+  <p>剩下的工作大致可以分成四块。</p>
+  <h3 class="lead">第一块：生产级持久化</h3>
+  <p>目前 Publication Core 仍然依赖 test-only file store。真正上线前，需要把状态、Official records、幂等、序列、outbox 等搬到正式 PostgreSQL / 生产级存储。</p>
+  <h3 class="lead">第二块：公网接收与公开读取</h3>
+  <p>现在核心链路能「证明一条 review 成为 OFFICIAL」，但还没有真正的 public receiver、read model、Today / Track Record / Pick Detail 等页面。</p>
+  <h3 class="lead">第三块：部署与恢复</h3>
+  <p>Vercel / 服务器、数据库、独立 public-records repo、备份恢复、监控、Assume-Breach 这些还没有真正落地。</p>
+  <h3 class="lead">第四块：Settlement + 90-Day runtime</h3>
+  <p>结算规则已经定义，但还没接入正式运行链；90-Day clock、Shadow Run、Daily Manifest、正式 Day 1 也都还没开始。</p>
+  <div class="key">所以当前状态可以概括为：「可信推荐发布内核完成，产品外壳与生产运行层尚未完成。」</div>
+
+  <h2 id="s4">总体进度的粗略拆分</h2>
+  <p>以下不是工时百分比，而是「该模块离可正式使用还有多远」。</p>
+  <table>
+    <thead>
+      <tr><th>模块</th><th style="width:120px">当前估计</th><th style="width:160px">完成度</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>规则 / 合同 / 价格语义</td><td class="pct">95%</td><td><div class="bar"><i style="width:95%"></i></div></td></tr>
+      <tr><td>私人生产端降档</td><td class="pct">85%</td><td><div class="bar"><i style="width:85%"></i></div></td></tr>
+      <tr><td>Transfer Boundary</td><td class="pct">90%</td><td><div class="bar"><i style="width:90%"></i></div></td></tr>
+      <tr><td>Evidence</td><td class="pct">85%</td><td><div class="bar"><i style="width:85%"></i></div></td></tr>
+      <tr><td>Publication Core</td><td class="pct">85%</td><td><div class="bar"><i style="width:85%"></i></div></td></tr>
+      <tr><td>生产级持久化</td><td class="pct">20%</td><td><div class="bar"><i style="width:20%"></i></div></td></tr>
+      <tr><td>Public read model / 网站</td><td class="pct">15%</td><td><div class="bar"><i style="width:15%"></i></div></td></tr>
+      <tr><td>Settlement runtime</td><td class="pct">30%</td><td><div class="bar"><i style="width:30%"></i></div></td></tr>
+      <tr><td colspan="3" style="color:var(--muted);font-size:14px">部署 / 监控 / 恢复：15%　|　Shadow Run / Day 1：0%</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="s5">按最初目标看：进度与收工</h2>
+  <p>如果按最初「8–10 个开发日进入 Shadow Run」的目标看，今天这轮推进其实比预期更扎实，但也说明原先的 8–10 天是偏乐观的时间盒，而不是可靠工期。前几天大量时间花在了真实合同冲突的发现与纠正，这是值得的，因为这些问题一旦进入数据库和公网 Evidence，再改会贵很多。</p>
+  <p>现在反而进入了相对更机械的阶段：</p>
+  <p>把已正确的内核搬进正式 persistence → 接 public read model → 接最小 UI → 接 settlement → 部署 → Shadow Run</p>
+  <p>如果继续严格不扩范围，距离「可以开始 Shadow Run」大概还需要 5–8 个高质量开发日；距离真正 Day 1，大概还要再加至少 7 天 Shadow Run。</p>
+  <p>最烧脑的那一半基本过去了，后面更多是工程落地。</p>
+  <div class="key">当前 main、CI、tag、工作树都干净，没有半截任务悬着，明天可以从一个很清晰的 checkpoint 继续。</div>
+
+  <footer>
+    <p><a class="back" href="../index.html">← 返回首页</a></p>
+  </footer>
+</main>
+</body>
+</html>
