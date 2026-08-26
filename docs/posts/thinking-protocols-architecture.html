@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 元数据：构建程序读取以下 meta 生成首页列表 -->
+<meta name="title" content="把喜欢的 Prompt 用起来：Thinking Protocols 从架构到 12 个协议">
+<meta name="author" content="jogtor">
+<meta name="date" content="2026-08-26 20:32">
+<meta name="tags" content="技术,AI,开源">
+<title>把喜欢的 Prompt 用起来：Thinking Protocols 从架构到 12 个协议</title>
+<style>
+:root{
+  --bg:#0e1016;
+  --card:#161a24;
+  --card-2:#1c2230;
+  --text:#e6e8ef;
+  --muted:#9aa3b2;
+  --brand:#8b9bff;
+  --brand-2:#b794f6;
+  --line:#262c3a;
+  --ok:#5fd39a;
+  --no:#ff7a90;
+  --warn:#ffcf6b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  line-height:1.75;font-size:17px;
+}
+.hero{
+  padding:64px 24px 48px;text-align:center;
+  background:radial-gradient(1200px 400px at 50% -10%,rgba(139,155,255,.25),transparent 60%),
+             linear-gradient(160deg,#1a1f33,#0e1016);
+  border-bottom:1px solid var(--line);
+}
+.hero h1{font-size:clamp(26px,5vw,40px);margin:0 0 12px;
+  background:linear-gradient(90deg,var(--brand),var(--brand-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero .meta{color:var(--muted);font-size:14px}
+.hero .tags{margin-top:10px}
+.hero .tags span{
+  display:inline-block;margin:3px;padding:3px 10px;border-radius:999px;
+  font-size:12px;color:var(--brand);border:1px solid var(--line);background:var(--card);
+}
+.wrap{max-width:820px;margin:0 auto;padding:32px 20px 64px}
+.toc{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:18px 22px;margin:24px 0;
+}
+.toc h2{font-size:16px;margin:0 0 10px;color:var(--brand-2)}
+.toc ol,.toc ul{margin:0;padding-left:20px}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--brand)}
+.toc ol ol{margin-top:6px}
+h2{margin-top:40px;font-size:24px;border-left:4px solid var(--brand);padding-left:12px}
+h3{margin-top:30px;font-size:19px;color:var(--brand-2);
+  border-left:3px solid var(--brand-2);padding-left:10px}
+.key{
+  background:linear-gradient(135deg,rgba(139,155,255,.12),rgba(183,148,246,.12));
+  border:1px solid var(--line);border-left:4px solid var(--brand);
+  border-radius:12px;padding:16px 20px;margin:20px 0;color:var(--text);
+}
+p{margin:16px 0}
+a{color:var(--brand)}
+code{background:var(--card-2);padding:2px 6px;border-radius:6px;font-size:.92em}
+pre{background:var(--card-2);border:1px solid var(--line);border-radius:12px;
+  padding:16px;overflow:auto}
+pre code{background:none;padding:0}
+table{width:100%;border-collapse:collapse;margin:20px 0;background:var(--card);
+  border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:10px 14px;text-align:left}
+th{background:var(--card-2);color:var(--brand-2)}
+blockquote{margin:18px 0;padding:12px 18px;border-left:4px solid var(--brand-2);
+  background:var(--card);color:var(--muted);border-radius:0 10px 10px 0}
+.note{font-size:14px;color:var(--muted);background:var(--card);
+  border:1px dashed var(--line);border-radius:10px;padding:12px 16px;margin:20px 0}
+.cite{font-size:.7em;vertical-align:super;color:var(--brand);text-decoration:none}
+/* 返回首页：固定悬浮按钮（右下角，移动端适配安全区，打印隐藏） */
+.site-home-button{
+  position:fixed;right:20px;bottom:20px;z-index:99;
+  background:linear-gradient(135deg,var(--brand),var(--brand-2));
+  color:#0e1016;font-weight:600;font-size:14px;
+  padding:10px 16px;border-radius:999px;text-decoration:none;
+  box-shadow:0 6px 20px rgba(139,155,255,.35);
+}
+@media(max-width:600px){
+  body{font-size:16px}.hero{padding:48px 16px 36px}.wrap{padding:24px 14px 48px}
+  .site-home-button{right:12px;bottom:calc(12px + env(safe-area-inset-bottom))}
+}
+@media print{.site-home-button{display:none}}
+</style>
+<link rel="stylesheet" href="../assets/post-controls.css">
+</head>
+<body>
+<a class="site-home-button" href="../index.html">← 返回首页</a>
+<header class="hero">
+  <h1>把喜欢的 Prompt 用起来：Thinking Protocols 从架构到 12 个协议</h1>
+  <div class="meta">2026-08-26 20:32 · jogtor</div>
+  <div class="tags"><span>技术</span><span>AI</span><span>开源</span></div>
+</header>
+<main class="wrap">
+  <nav class="toc">
+    <h2>目录</h2>
+    <ol>
+      <li><a href="#s1">缘起：好的思考方式被困在静态文本里</a></li>
+      <li><a href="#s2">核心架构：Protocol、Artifact 与 Adapter</a>
+        <ol>
+          <li><a href="#s3">Protocol（协议）</a></li>
+          <li><a href="#s4">Artifact（结构化交付物）</a></li>
+          <li><a href="#s5">Conservative Router（保守调度器）</a></li>
+          <li><a href="#s6">Adapter（跨平台适配器）</a></li>
+        </ol>
+      </li>
+      <li><a href="#s7">从 4 个试点走到 12 个协议</a></li>
+      <li><a href="#s8">细节决定可靠性</a></li>
+      <li><a href="#s9">快速上手与开源信息</a>
+        <ol>
+          <li><a href="#s9a">直接使用</a></li>
+          <li><a href="#s9b">开发者调试与扩展</a></li>
+        </ol>
+      </li>
+      <li><a href="#s10">总结</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">缘起：好的思考方式被困在静态文本里</h2>
+  <p>前阵子读了数字生命卡兹克那篇分享 12 个常用 Prompt 的文章。文章里提的那些思考方式很打动人，它不教 AI 怎么编造套话，而是帮你理清模糊概念、拆解事实与立场、做正反论证以及设计最小可行实验。它把 AI 当成了"思考外骨骼"。</p>
+  <p>但现实很残酷：收藏 ≠ 会用。</p>
+  <p>好的 Prompt 存进收藏夹后，往往就死在了里面。每次遇到问题，光是翻收藏、找文本、复制粘贴、补上下文就足够折磨；换到 Claude 或 Codex 环境还要重新适配。更糟的是，简单问题（比如"Python 3.11 能用吗"）根本不需要庞大的思考框架，直接回答就好。</p>
+  <p>我不满意的是"好的思考方式被困在了静态文本里"。去市场上看了一圈：</p>
+  <ul>
+    <li>Prompt 合集：换汤不换药，全靠人工硬记。</li>
+    <li>重型 Agent 框架：动辄搞引擎、数据库、复杂工作流，太笨重。</li>
+    <li>特定平台 Skill：强绑定某种环境，缺乏通用性。</li>
+  </ul>
+  <p>我想要的不是第 13 个 Prompt，而是一个机制：思考方法在需要时自动触发、不需要时悄然隐退、跨平台通用，且步骤间能传递结构化数据。</p>
+  <p>这就是开源项目 Thinking Protocols 的由来。</p>
+
+  <h2 id="s2">核心架构：Protocol、Artifact 与 Adapter</h2>
+  <p>为了解决 Prompt 难以工程化和标准化的问题，我拆出了三个核心概念：</p>
+  <pre><code>+-------------------------------------------------------------+
+|                      Protocol (协议)                         |
+|  - 机器读: YAML 元数据 (触发条件/输入输出/边界)                  |
+|  - 人类读: Markdown 思考流程                                  |
++-------------------------------------------------------------+
+                              │
+                              ▼
++-------------------------------------------------------------+
+|                     Artifact (交付物)                        |
+|  - 结构化 JSON (如 verified_claims.v1, decision_memo.v1)     |
+|  - 作为 API 接口在不同 Protocol 间无缝流通                      |
++-------------------------------------------------------------+
+                              │
+                              ▼
++-------------------------------------------------------------+
+|                     Adapter (平台编译)                      |
+|  - 保持语义与边界完全一致                                      |
+|  - 编译输出为 Generic Markdown / Codex Skill 等不同格式       |
++-------------------------------------------------------------+</code></pre>
+
+  <h3 id="s3">Protocol（协议）</h3>
+  <p>不要把 Prompt 看作给 AI 演戏的咒语，真正有价值的是思考规则。 Protocol 是单事实源文件（protocols/&lt;id&gt;/PROTOCOL.md），头部是机器可读的 YAML 元数据（明确输入、输出、阶段、能力要求与终止条件），尾部是人类可读的 Markdown 过程。</p>
+  <div class="key">区别：Prompt 关注"一句话怎么写"，Protocol 关注"一次认知工作如何可靠发生"。</div>
+
+  <h3 id="s4">Artifact（结构化交付物）</h3>
+  <p>传统的 Agent 流水线直接把上一句的自然语言长文本丢给下一步，极其脆弱且难以预测。</p>
+  <p>Thinking Protocols 引入了 Artifact，要求每个思考阶段必须产出强类型的结构化数据（如澄清问题的 <code>clarified_problem.v1</code>、事实核查的 <code>verified_claims.v1</code>）。不同 Protocol 之间不看对方的推导过程，只通过标准 API（Artifact）交换数据。</p>
+  <p>比如：先用 <code>steelman-both-sides</code> 做出决策备忘录，直接把产出的 <code>decision_memo.v1</code> 喂给 <code>minimum-experiment</code> 自动设计一个 14 天的小试验。</p>
+
+  <h3 id="s5">Conservative Router（保守调度器）</h3>
+  <p>很多 Agent 恨不得用户问什么都开个十人圆桌会议。Thinking Protocols 的 Router 极度保守：</p>
+  <ul>
+    <li>用户指定了 Protocol 就严格照办；</li>
+    <li>简单问题直接回答，绝不过度卷入；</li>
+    <li>只有确实需要时，才匹配能产出对应 Artifact 的最小 Protocol；</li>
+    <li>缺乏联网能力（如缺少 web.search）时直接阻断并告知用户，绝不拿着模型记忆冒充实时检索；</li>
+    <li>设置 routing_priority 优先级，但优先级决不能越过用户指令和安全边界。</li>
+  </ul>
+
+  <h3 id="s6">Adapter（跨平台适配器）</h3>
+  <p>为了防止同一个方法在不同平台演化出不同版本（代码漂移），Adapter 充当了"编译器"的角色。</p>
+  <ul>
+    <li>允许改变文件名、语法包装和工具绑定方式；</li>
+    <li>严禁修改语义：阶段顺序、停止条件、安全边界必须百分百一致。通过 Conformance 校验和摘要比对，一旦发现偷偷改动语义直接报错阻断。</li>
+  </ul>
+
+  <h2 id="s7">从 4 个试点走到 12 个协议</h2>
+  <p>v0.1.0 先落地 4 个协议（socratic-questioning、fact-checking、steelman-both-sides、minimum-experiment）证明了骨架能跑起来，但它们还只是代表性试点。真正的难题不是把清单填满，而是把另外 8 种常见、又容易被滥用的思考方式，逐个翻译成同一份合同：它们什么时候介入，依赖什么证据，最多走几步，什么时候必须停。</p>
+  <p>v0.2.0 没有把 8 段 Prompt 原文搬进来，而是根据公开描述的方法、目标和边界独立重写。现在 12 个协议都各自住在 <code>protocols/&lt;id&gt;/PROTOCOL.md</code>，有自己的 examples 和 evals；Registry、Generic 输出和 Codex Skill 都从这些单一真源生成。目录变长了，语义反而更收敛。</p>
+  <table>
+    <thead><tr><th>Protocol</th><th>它解决什么问题</th><th>边界</th></tr></thead>
+    <tbody>
+      <tr><td><code>socratic-questioning</code></td><td>把模糊、带假设的问题问清楚</td><td>最多 6 轮，缺乏新信息就停</td></tr>
+      <tr><td><code>fact-checking</code></td><td>核验可外部检查的主张</td><td>区分事实、推断、立场；没有证据能力就阻断</td></tr>
+      <tr><td><code>steelman-both-sides</code></td><td>为至少两个可信选项建立最强论证</td><td>不制造机械对称，也不替用户拍板</td></tr>
+      <tr><td><code>minimum-experiment</code></td><td>把不确定性变成低成本、可逆的小试验</td><td>必须有假设、指标、预算和止损线</td></tr>
+      <tr><td><code>dual-layer-explanation</code></td><td>同一主题同时给直观层与机制层解释</td><td>两层事实一致，不用错误类比换易懂</td></tr>
+      <tr><td><code>reverse-engineering</code></td><td>从结果倒推组成、约束、机制和重建路径</td><td>默认 bounded workflow；外部对象按需取证</td></tr>
+      <tr><td><code>horizontal-vertical-analysis</code></td><td>沿时间纵轴和当下横截面做研究</td><td>需要 research intent；记录 cutoff、来源和冲突</td></tr>
+      <tr><td><code>expert-panel</code></td><td>让多个分析视角围绕同一证据真正分歧</td><td>角色不是虚构专家，不能替代现实证据</td></tr>
+      <tr><td><code>first-principles</code></td><td>拆掉未经验证的惯例，从约束和目标重新推导</td><td>不确定的基础事实必须标注假设或取证</td></tr>
+      <tr><td><code>cross-domain-transfer</code></td><td>寻找可迁移的机制，而不是漂亮的表面类比</td><td>要检验结构相似、边界和失效条件</td></tr>
+      <tr><td><code>talent-discovery</code></td><td>从真实行为中形成待验证的能力兴趣假设</td><td>允许跳过敏感问题，不做诊断，默认不持久化</td></tr>
+      <tr><td><code>life-design</code></td><td>把现实约束转成可执行的人生设计实验</td><td>不生成终身标签，不替代医疗、法律或财务意见</td></tr>
+    </tbody>
+  </table>
+  <p>其中最容易被误解的是自我探索和研究这两组。自我探索不是给人贴标签，研究协议也不是让模型凭记忆写一篇“看起来很完整”的报告。<code>talent-discovery</code> 和 <code>life-design</code> 都把结论写成现实待验证的假设，允许跳过敏感问题，并设置最大问题数和 early stop；<code>horizontal-vertical-analysis</code> 与 <code>cross-domain-transfer</code> 则把证据日期、来源适用范围、冲突处理和迁移失效条件写进流程。这样做有点不浪漫，却能防止思考工具越聪明，越替人胡编。</p>
+
+  <h2 id="s8">细节决定可靠性</h2>
+  <ul>
+    <li>跨平台一致性：对文件执行 LF 换行归一化，解决 Windows 与 Linux 摘要算法不一致的问题。</li>
+    <li>严苛测试：不仅测试正确的 Artifact 样例，还专门针对缺少字段、类型错误、证据冲突、缺少必需 capability、consent gate 和误触发编写拒收测试。全库最终达到 110 个测试通过、90.59% 的覆盖率。</li>
+    <li>最小扩展：12 个协议仍复用原有 7 个 Artifact，没有为了“看起来正式”而制造敏感持久化数据。新增协议的最终结果如果没有后续消费者，就明确声明为 terminal output。</li>
+    <li>行为一致：Router 仍然优先 direct answer，默认最多一个主 Protocol；普通解释不会因为多了 <code>dual-layer-explanation</code> 就被强行升级，研究协议没有 research intent 不会自动启动，<code>talent-discovery</code> 和 <code>life-design</code> 没有同意不会自动运行。</li>
+  </ul>
+
+  <h2 id="s9">快速上手与开源信息</h2>
+  <p>项目采用 Apache-2.0 协议开源，未直接复制原文章或 Prompt 原文，仅保留相关元数据与重写抽象。</p>
+  <p>代码仓库：<a href="https://github.com/rosebellwau8/thinking-protocols" target="_blank" rel="noopener">rosebellwau8/thinking-protocols</a></p>
+  <p>Release 发布：<a href="https://github.com/rosebellwau8/thinking-protocols/releases" target="_blank" rel="noopener">v0.2.0 Releases</a></p>
+
+  <h3 id="s9a">直接使用</h3>
+  <p>不用跑代码，进入 dist/ 目录即可：</p>
+  <ul>
+    <li>通用 Markdown：直接复制 dist/generic/ 目录下的 .md 文件，作为 System Prompt 发给任意大模型即可使用。</li>
+    <li>Codex：将 dist/codex/skills/ 下的文件夹放入 Codex 的 skills 目录即可完成注册。</li>
+  </ul>
+
+  <h3 id="s9b">开发者调试与扩展</h3>
+  <pre><code># 克隆与环境配置
+git clone https://github.com/rosebellwau8/thinking-protocols.git
+cd thinking-protocols
+python -m venv .venv
+
+# 激活环境 (Windows: .venv\Scripts\Activate.ps1 | Linux/macOS: source .venv/bin/activate)
+pip install -e '.[dev]'
+
+# 校验与构建
+thinking-protocols validate
+thinking-protocols build-registry
+thinking-protocols build --adapter generic
+thinking-protocols build --adapter codex
+pytest</code></pre>
+  <p>编写自定义 Protocol 时，请遵循先写测试用例（evals.yaml），再写实现的顺序。先写反例，才能逼自己厘清这个思考工具"什么时候不该出现"。</p>
+
+  <h2 id="s10">总结</h2>
+  <div class="key">真正的认知系统，重点不在于多频繁地发表意见，而在于知道何时介入、何时止步、何时承认无能为力，以及何时把控制权还给人类。</div>
+  <p>从 v0.1.0 的 4 个代表性试点，到现在完整的 12-Protocol library，变化并不在于“AI 会想更多”，而在于每一种思考方式都知道自己的入口、证据、产物和出口。它们可以被调用，也可以被拒绝；可以跨平台生成，也必须接受同一套 conformance 检查。</p>
+  <p>我越来越觉得，好的认知工具不是替人做决定的机器，而是一组边界清楚、知道何时介入又知道何时退后的协议。Prompt 终于不再只是收藏夹里的文字，而成了可以被验证、被复用、也可以被人随时关掉的工程。</p>
+</main>
+</body>
+</html>
