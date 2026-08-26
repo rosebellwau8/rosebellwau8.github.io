@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="title" content="思想框架极简使用案例：去老人味调研的 skill 编排">
+<meta name="author" content="jogtor">
+<meta name="date" content="2026-08-26 21:08">
+<meta name="tags" content="技术,AI,方法论">
+<title>思想框架极简使用案例：去老人味调研的 skill 编排</title>
+<style>
+:root{
+  --bg:#0e1016;
+  --card:#161a24;
+  --card-2:#1c2230;
+  --text:#e6e8ef;
+  --muted:#9aa3b2;
+  --faint:#6f7789;
+  --brand:#8b9bff;
+  --brand-2:#b794f6;
+  --line:#262c3a;
+  --ok:#5fd39a;
+  --no:#ff7a90;
+  --warn:#ffcf6b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  line-height:1.78;font-size:17px;
+}
+.hero{
+  padding:64px 24px 48px;text-align:center;
+  background:radial-gradient(1200px 400px at 50% -10%,rgba(139,155,255,.25),transparent 60%),
+             linear-gradient(160deg,#1a1f33,#0e1016);
+  border-bottom:1px solid var(--line);
+}
+.hero h1{font-size:clamp(24px,4.6vw,38px);margin:0 0 12px;line-height:1.3;
+  background:linear-gradient(90deg,var(--brand),var(--brand-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero .sub{color:var(--muted);font-size:15px;max-width:680px;margin:0 auto 14px}
+.hero .meta{color:var(--muted);font-size:14px}
+.hero .tags{margin-top:10px}
+.hero .tags span{
+  display:inline-block;margin:3px;padding:3px 10px;border-radius:999px;
+  font-size:12px;color:var(--brand);border:1px solid var(--line);background:var(--card);
+}
+.wrap{max-width:840px;margin:0 auto;padding:32px 20px 80px}
+.toc{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:18px 22px;margin:24px 0;
+}
+.toc h2{font-size:16px;margin:0 0 10px;color:var(--brand-2)}
+.toc ol,.toc ul{margin:0;padding-left:20px}
+.toc li{margin:5px 0}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--brand)}
+.toc ul a{color:var(--muted);font-size:15px}
+h2{margin-top:44px;font-size:23px;border-left:4px solid var(--brand);padding-left:12px}
+h3.lead{margin-top:26px;font-size:18px;color:var(--brand-2);
+  border-left:3px solid var(--brand-2);padding-left:10px}
+.key{
+  background:linear-gradient(135deg,rgba(139,155,255,.12),rgba(183,148,246,.12));
+  border:1px solid var(--line);border-left:4px solid var(--brand);
+  border-radius:12px;padding:16px 20px;margin:20px 0;color:var(--text);
+}
+p{margin:16px 0}
+a{color:var(--brand)}
+code{background:var(--card-2);padding:2px 6px;border-radius:6px;font-size:.92em}
+pre{background:var(--card-2);border:1px solid var(--line);border-radius:12px;
+  padding:16px;overflow:auto}
+pre code{background:none;padding:0}
+table{width:100%;border-collapse:collapse;margin:20px 0;background:var(--card);
+  border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:10px 14px;text-align:left;vertical-align:top}
+th{background:var(--card-2);color:var(--brand-2)}
+blockquote{margin:18px 0;padding:12px 18px;border-left:4px solid var(--brand-2);
+  background:var(--card);color:var(--muted);border-radius:0 10px 10px 0}
+.note{font-size:14px;color:var(--muted);background:var(--card);
+  border:1px dashed var(--line);border-radius:10px;padding:12px 16px;margin:20px 0}
+.back{display:inline-block;margin-top:36px;color:var(--brand);text-decoration:none}
+
+/* 对话布局 */
+.turn{
+  border-radius:14px;padding:18px 20px;margin:18px 0;
+  background:var(--card);border:1px solid var(--line);position:relative;
+}
+.turn.user{border-left:3px solid var(--brand-2)}
+.turn.agent{border-left:3px solid var(--brand)}
+.role{font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:700;margin-bottom:8px}
+.turn.user .role{color:var(--brand-2)}
+.turn.agent .role{color:var(--brand)}
+.turn .body p:first-child{margin-top:0}
+.turn .body p:last-child{margin-bottom:0}
+.sysnote{font-size:13.5px;color:var(--warn);background:rgba(255,207,107,.08);
+  border:1px solid rgba(255,207,107,.3);border-radius:10px;padding:10px 14px;margin-bottom:14px}
+.sysnote b{color:var(--warn)}
+
+/* skill 条目 */
+.skills{list-style:none;padding:0;margin:14px 0}
+.skills li{padding:12px 14px;margin:10px 0;border-radius:10px;
+  background:var(--card-2);border:1px solid var(--line)}
+.skills .nm{color:var(--brand);font-weight:700;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.skills .ds{color:var(--text);display:block;margin-top:4px}
+
+/* /goal 任务书卡片 */
+.goal{margin:10px 0 4px;border-radius:14px;
+  background:linear-gradient(180deg,#10131f,#0d0f18);
+  border:1px solid var(--line);padding:22px 24px}
+.goal .cmd{display:inline-block;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  color:var(--brand);background:#0a0c15;padding:6px 14px;border-radius:8px;
+  border:1px solid var(--line);margin-bottom:16px;font-size:15px}
+.goal h3{margin:22px 0 8px;font-size:17px;color:var(--brand-2);
+  border-bottom:1px solid var(--line);padding-bottom:6px}
+.goal h4{margin:16px 0 6px;font-size:15px;color:var(--muted)}
+.goal ul,.goal ol{margin:8px 0;padding-left:22px}
+.goal li{margin:7px 0}
+.goal .sc{list-style:none;padding:0;margin:8px 0}
+.goal .sc li{padding:9px 13px;margin:8px 0;border-radius:9px;
+  background:var(--card-2);border:1px solid var(--line)}
+.goal .sc .nm{color:var(--brand);font-weight:700}
+
+.site-home-button{
+  position:fixed;right:22px;bottom:22px;z-index:50;
+  display:inline-flex;align-items:center;gap:7px;
+  padding:10px 16px;border-radius:999px;text-decoration:none;
+  background:linear-gradient(90deg,var(--brand),var(--brand-2));
+  color:#0e1016;font-weight:700;font-size:14px;
+  box-shadow:0 8px 26px rgba(139,155,255,.35);
+}
+.site-home-button:hover{filter:brightness(1.08)}
+@media(max-width:600px){
+  body{font-size:16px}
+  .hero{padding:48px 16px 36px}
+  .wrap{padding:24px 14px 64px}
+  .site-home-button{right:14px;bottom:14px;padding:9px 14px}
+  .goal{padding:18px 16px}
+}
+@media print{
+  .site-home-button{display:none}
+  body{background:#fff;color:#111}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <h1>思想框架极简使用案例：去老人味调研的 skill 编排</h1>
+  <div class="sub">一段两轮对话，演示如何把"研究去老人味的方法与产品"拆成可执行的 skill 组合，再用 leader 写成一份可粘贴的 /goal 任务书。</div>
+  <div class="meta">2026-08-26 21:08 · jogtor</div>
+  <div class="tags"><span>技术</span><span>AI</span><span>方法论</span></div>
+</header>
+<main class="wrap">
+  <nav class="toc">
+    <h2>目录</h2>
+    <ol>
+      <li><a href="#t1">对话一：研究任务该怎么拆</a></li>
+      <li><a href="#t2">对话二：leader 写成 /goal 任务书</a>
+        <ul>
+          <li><a href="#g-bg">背景与假设</a></li>
+          <li><a href="#g-skills">必须调用的 skills</a></li>
+          <li><a href="#g-scope">研究范围</a></li>
+          <li><a href="#g-evidence">来源与证据要求</a></li>
+          <li><a href="#g-output">输出内容</a></li>
+          <li><a href="#g-safety">安全与边界</a></li>
+          <li><a href="#g-accept">验收标准</a></li>
+        </ul>
+      </li>
+    </ol>
+  </nav>
+
+  <h2 id="t1">对话一：研究任务该怎么拆</h2>
+
+  <div class="turn user">
+    <div class="role">用户</div>
+    <div class="body">
+      <p>要你研究一下，市面上真正方便使用又有效的"去老人味"的方法或产品，你会调用哪些 skills 进行研究？</p>
+    </div>
+  </div>
+
+  <div class="turn agent">
+    <div class="role">Agent</div>
+    <div class="body">
+      <p>这个问题既涉及真实产品调研，也涉及"老人味"可能由清洁、衣物、口腔、皮肤或健康因素造成的区别。我会先按研究型任务组合技能：先找市场资料和产品，再用事实核查筛掉夸大宣传，最后把安全边界和可执行方案分开。先读取相关技能规范，确认研究流程。</p>
+      <p>我会按这个顺序调用：</p>
+      <ul class="skills">
+        <li><span class="nm">1. agent-reach</span><span class="ds">搜集真实在售产品、官方说明、用户反馈、价格与购买便利性。重点查电商、品牌官网、专业机构和实际使用讨论。</span></li>
+        <li><span class="nm">2. Market Research</span><span class="ds">建立比较维度：去味机制、使用方便度、持续时间、适用场景、刺激风险、价格、复购和证据质量。</span></li>
+        <li><span class="nm">3. fact-checking</span><span class="ds">核验"分解老人味""抗菌""长效""安全无刺激"等宣传，区分实验依据、用户体验和营销话术。</span></li>
+        <li><span class="nm">4. horizontal-vertical-analysis</span><span class="ds">如果产品类别较多，用横向比较不同方案，纵向看成分、产品形态和市场演化；同时记录研究 cutoff 和来源日期。</span></li>
+        <li><span class="nm">5. first-principles</span><span class="ds">先拆分气味来源：皮肤、衣物、口腔、居住环境，以及可能的健康因素，避免把所有问题都归结为"买除臭剂"。</span></li>
+        <li><span class="nm">6. minimum-experiment</span><span class="ds">最后设计一个低成本、可逆的试用方案，例如先处理衣物/床品，再处理皮肤和环境，设置观察指标和停止条件。</span></li>
+      </ul>
+      <p>最终会把结果分成：</p>
+      <ul>
+        <li>最方便、最值得先试的方案；</li>
+        <li>对不同气味来源的产品组合；</li>
+        <li>不推荐或证据不足的产品；</li>
+        <li>何时应考虑就医，而不是继续加大除臭强度。</li>
+      </ul>
+      <p>我不会调用 SEO、blog-writer 之类与研究无关的技能，也不会把"老人味"当作医学诊断。</p>
+    </div>
+  </div>
+
+  <h2 id="t2">对话二：leader 写成 /goal 任务书</h2>
+
+  <div class="turn user">
+    <div class="role">用户</div>
+    <div class="body">
+      <p>› 好的。调用 leader 技能，把它写成一个 goal。</p>
+    </div>
+  </div>
+
+  <div class="turn agent">
+    <div class="role">Agent</div>
+    <div class="body">
+      <p>我会调用 leader skill，把"去老人味"调研拆成一份可直接粘贴到 /goal 执行的任务书，包含研究边界、来源白名单、比较框架、验收标准和安全红线。先读取该 skill 的完整规范，再输出最终 goal。</p>
+    </div>
+  </div>
+
+  <div class="goal" id="goal">
+    <span class="cmd">/goal</span>
+    <p>研究市面上真正方便使用且有效的"去老人味"方法与产品，并输出一份有证据、可执行、不过度营销的决策报告。</p>
+
+    <h3 id="g-bg">背景与假设</h3>
+    <ul>
+      <li>"老人味"仅作为俗称，不预设单一成因。</li>
+      <li>默认研究中国大陆普通消费者可购买或可获得的方案；若产品只在海外销售，单独标注。</li>
+      <li>研究截止时间：2026-08-26。</li>
+      <li>目标不是推荐最贵产品，而是找出便利性、有效性、安全性和性价比都合理的首选方案。</li>
+    </ul>
+
+    <h3 id="g-skills">必须调用的 skills</h3>
+    <ol class="sc">
+      <li><span class="nm">1. agent-reach</span>：检索品牌官网、电商平台、专业机构、真实用户反馈和产品可得性。</li>
+      <li><span class="nm">2. Market Research</span>：建立统一比较框架，分析价格、便利性、复购和适用场景。</li>
+      <li><span class="nm">3. fact-checking</span>：核验"分解老人味、抗菌、长效、安全无刺激"等宣传。</li>
+      <li><span class="nm">4. horizontal-vertical-analysis</span>：横向比较不同产品/方法，纵向分析成分和方案演化；记录来源日期与研究 cutoff。</li>
+      <li><span class="nm">5. first-principles</span>：把问题拆为皮肤、衣物/床品、口腔、居住环境及可能的健康因素。</li>
+      <li><span class="nm">6. minimum-experiment</span>：设计低成本、可逆、分阶段的实际试用方案。</li>
+    </ol>
+
+    <h3 id="g-scope">研究范围</h3>
+    <ul>
+      <li><b>A. 身体与皮肤</b>：清洁、保湿、除味/抑味、衣物接触部位处理。</li>
+      <li><b>B. 衣物与床品</b>：洗涤、浸泡、烘干、织物喷雾、被褥和枕品处理。</li>
+      <li><b>C. 居住环境</b>：通风、空气净化、表面清洁、卫生间/卧室异味控制。</li>
+      <li><b>D. 口腔及其他常见来源</b>：仅讨论一般护理；涉及疾病可能性时不得自行诊断。</li>
+      <li><b>E. 方法与产品形态</b>：现成产品、家庭可执行方法、组合方案。</li>
+    </ul>
+
+    <h3 id="g-evidence">来源与证据要求</h3>
+    <ul>
+      <li>优先品牌官方成分/使用说明、政府或医院/大学资料、专业医学或皮肤科机构、标准/检测资料。</li>
+      <li>电商评论只能作为使用便利性和体验线索，不能单独证明疗效。</li>
+      <li>每个关键结论附来源 URL、来源日期、适用范围和证据等级。</li>
+      <li>明确区分事实、推断、用户体验和营销主张。</li>
+      <li>记录互相冲突的来源，并解释采用哪一方及原因。</li>
+      <li>不得用模型记忆冒充最新价格、库存、法规或产品效果。</li>
+    </ul>
+
+    <h3 id="g-output">输出内容</h3>
+    <ol>
+      <li>先解释"老人味"可能的来源及判断路径。</li>
+      <li>给出产品/方法比较表，至少包含：名称与类别、主要机制或成分、适用部位/场景、使用步骤与频率、见效预期、便利性、价格区间与购买渠道、刺激/过敏/误用风险、证据等级、来源链接。</li>
+      <li>给出三档建议：最省事的首选方案、性价比优先方案、气味顽固或多来源时的组合方案。</li>
+      <li>给出 7至14 天 minimum experiment：每阶段只改变一个主要变量；观察指标包括气味强度、持续时间、复发位置、皮肤反应和维护成本；设置停止条件和替代方案。</li>
+      <li>单独列出"不建议购买/证据不足/容易误用"的产品或方法。</li>
+      <li>单独列出需要咨询医生、牙科或其他专业人员的红旗情况。</li>
+      <li>最后给出简短结论：普通家庭应先做什么、不要做什么、何时升级处理。</li>
+    </ol>
+
+    <h3 id="g-safety">安全与边界</h3>
+    <ul>
+      <li>不进行疾病、人格或衰老状态诊断。</li>
+      <li>不把香味覆盖当作去除异味。</li>
+      <li>不推荐把消毒剂、漂白剂、精油或强酸碱直接用于皮肤。</li>
+      <li>涉及老人、慢性病、皮肤破损、过敏、失禁、口腔疾病时，明确降低风险并建议专业咨询。</li>
+      <li>不把少量用户反馈写成确定性疗效。</li>
+      <li>不默认推荐复杂设备或长期订阅。</li>
+    </ul>
+
+    <h3 id="g-accept">验收标准</h3>
+    <ul>
+      <li>至少覆盖 4 类来源场景和 8 个以上具体产品/方法。</li>
+      <li>每个核心结论都有可点击来源。</li>
+      <li>至少包含 3 个证据冲突或营销夸大案例。</li>
+      <li>至少包含 1 个缺少可靠证据的反例。</li>
+      <li>至少包含 1 个 missing-input 情况：用户未说明气味来源时，先给分流问题而非武断推荐。</li>
+      <li>报告能让用户在 10 分钟内选出一个低风险首选方案。</li>
+      <li>不得出现无法追溯的"专家说""研究表明"。</li>
+      <li>完成后列出实际使用的 skills、搜索范围、研究 cutoff、来源数量和仍无法确定的问题。</li>
+      <li>如联网或某平台不可用，保留失败记录并用其他白名单来源补足，不得伪造结果。</li>
+    </ul>
+  </div>
+
+  <p style="margin-top:28px"><a class="back" href="../index.html">← 返回首页</a></p>
+</main>
+<a class="site-home-button" href="../index.html">← 返回首页</a>
+</body>
+</html>
