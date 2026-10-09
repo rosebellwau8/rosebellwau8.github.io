@@ -1,0 +1,928 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="title" content="从性格到模式"><meta name="author" content="jogtor"><meta name="date" content="2026-10-09 07:52"><meta name="tags" content="心理,科普"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><link rel="stylesheet" href="../assets/post-controls.css">
+</head><body>
+<title>从性格到模式</title>
+<style>
+/* 布局：单栏长文，像博客。顶部吸附导航，正文 46rem；工作台是文中唯一的大型交互区。
+   配色隐喻：校对用的红笔（旧说法）与蓝铅笔（改写）。 */
+:root {
+  --bg: #EEF1F5;
+  --surface: #FFFFFF;
+  --field: #F5F7FA;
+  --fg: #14213D;
+  --muted: #53607A;
+  --line: #C9D1DE;
+  --red: #C73A26;
+  --red-soft: #F8E1DC;
+  --blue: #2956A8;
+  --blue-soft: #DCE6F8;
+  --ok: #2C7A4B;
+  --warn-soft: #FBEBD3;
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "Noto Serif CJK SC", "SimSun", serif;
+  --sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1621; --surface: #171F2D; --field: #1D2636; --fg: #E7ECF4; --muted: #9AA7BD;
+    --line: #2E3A4E; --red: #FF8B77; --red-soft: #3A2220; --blue: #8DB4FF; --blue-soft: #1C2B47; --ok: #6BCB93; --warn-soft: #3A2E1A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1621; --surface: #171F2D; --field: #1D2636; --fg: #E7ECF4; --muted: #9AA7BD;
+  --line: #2E3A4E; --red: #FF8B77; --red-soft: #3A2220; --blue: #8DB4FF; --blue-soft: #1C2B47; --ok: #6BCB93; --warn-soft: #3A2E1A;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--sans); font-size: 16px; line-height: 1.85;
+  -webkit-text-size-adjust: 100%;
+}
+a { color: var(--blue); text-underline-offset: 3px; }
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--serif); text-wrap: balance; margin: 0; line-height: 1.3; }
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; }
+.wrap { max-width: 46rem; margin-inline: auto; padding-inline: 16px; padding-block: 0 4rem; }
+section { scroll-margin-top: 3.6rem; padding-top: 3.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+section > h2 { font-size: 1.6rem; font-weight: 600; }
+.tag { font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.small { font-size: .875rem; color: var(--muted); line-height: 1.7; }
+.lead { color: var(--muted); }
+
+/* nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+.nav-in { max-width: 46rem; margin-inline: auto; padding: 0 16px; display: flex; gap: 1.25rem; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+.nav-in::-webkit-scrollbar { display: none; }
+.nav a { color: var(--muted); text-decoration: none; font-size: .875rem; padding: .7rem 0; border-bottom: 2px solid transparent; }
+.nav a:hover { color: var(--fg); border-bottom-color: var(--blue); }
+
+/* hero */
+.hero { padding-top: 3.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+.hero h1 { font-size: clamp(2.5rem, 9vw, 3.9rem); font-weight: 900; letter-spacing: .02em; }
+.byline { font-family: var(--mono); font-size: .8rem; color: var(--muted); letter-spacing: .02em; margin-top: .2rem; }
+.seed { font-family: var(--serif); font-size: clamp(1.25rem, 4.6vw, 1.7rem); font-weight: 600; line-height: 1.7; }
+del { text-decoration: line-through; text-decoration-color: var(--red); text-decoration-thickness: .1em; color: var(--muted); }
+ins { text-decoration: none; color: var(--blue); background: var(--blue-soft); padding: 0 .2em; border-radius: 2px; }
+
+/* story & points */
+.story p { font-size: 1.04rem; line-height: 1.95; }
+.story { gap: 1.1rem; }
+.points { list-style: none; display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.points li { padding: 1rem 0; border-bottom: 1px solid var(--line); }
+.points b { font-weight: 700; }
+
+/* ladder */
+.ladder { display: flex; flex-direction: column; border: 1px solid var(--line); background: var(--surface); }
+.rung { display: grid; grid-template-columns: 6.5rem 1fr; gap: 1rem; padding: .85rem 1rem; align-items: baseline; }
+.rung + .rung { border-top: 1px solid var(--line); }
+.rung .tag { color: var(--muted); }
+.rung:last-child p { color: var(--blue); font-weight: 500; }
+@media (max-width: 560px) { .rung { grid-template-columns: 1fr; gap: .1rem; } }
+
+/* stats */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); border: 1px solid var(--line); background: var(--surface); }
+.stat { padding: 1.1rem 1.1rem 1.25rem; display: flex; flex-direction: column; gap: .5rem; min-width: 0; }
+.stat + .stat { border-left: 1px solid var(--line); }
+@media (max-width: 640px) { .stat + .stat { border-left: 0; border-top: 1px solid var(--line); } }
+.big { font-family: var(--serif); font-weight: 900; font-size: 2.6rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.stat p { font-size: .9rem; line-height: 1.7; }
+
+/* cards */
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: 1rem; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1.1rem 1.2rem 1.25rem; display: flex; flex-direction: column; gap: .7rem; min-width: 0; }
+.card h3 { font-size: 1.15rem; font-weight: 600; }
+.card .ev { font-size: .85rem; color: var(--muted); line-height: 1.7; }
+.card .use { font-size: .92rem; border-top: 1px dashed var(--line); padding-top: .7rem; }
+.use b { color: var(--blue); font-weight: 700; }
+
+/* lexicon */
+.pairs { display: flex; flex-direction: column; border: 1px solid var(--line); background: var(--surface); }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: .8rem 1rem; align-items: baseline; }
+.pair + .pair { border-top: 1px solid var(--line); }
+.pair .to { color: var(--blue); }
+@media (max-width: 560px) { .pair { grid-template-columns: 1fr; gap: .15rem; } }
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+.chip { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: .3rem .95rem; font-size: .92rem; line-height: 1.5; }
+.chip:hover { border-color: var(--blue); }
+.chip[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.lexpanel { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1.2rem; display: flex; flex-direction: column; gap: 1rem; min-height: 8rem; }
+.lexhead { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; display: flex; gap: .6rem; align-items: baseline; flex-wrap: wrap; }
+.lexhead .arrow { color: var(--muted); font-family: var(--sans); font-size: .9rem; font-weight: 400; }
+.rows { display: flex; flex-direction: column; }
+.row { display: grid; grid-template-columns: 6.2rem 1fr; gap: .8rem; padding: .7rem 0; border-top: 1px solid var(--line); }
+.row .tag { padding-top: .35rem; color: var(--blue); }
+@media (max-width: 520px) { .row { grid-template-columns: 1fr; gap: .1rem; } }
+.lexpanel h4 { margin: 0; font-size: .95rem; }
+.lexpanel ul { padding-left: 1.2rem; display: flex; flex-direction: column; gap: .25rem; }
+.exp { background: var(--blue-soft); border-radius: 4px; padding: .75rem .95rem; font-size: .95rem; }
+.exp b { color: var(--blue); }
+.note { background: var(--red-soft); border-radius: 4px; padding: .6rem .95rem; font-size: .9rem; }
+.btn { background: var(--fg); color: var(--bg); border: 1px solid var(--fg); border-radius: 4px; padding: .5rem 1rem; font-size: .92rem; font-weight: 500; align-self: flex-start; }
+.btn:hover { opacity: .88; }
+.btn.ghost { background: transparent; color: var(--fg); border-color: var(--line); }
+.btn.ghost:hover { border-color: var(--fg); opacity: 1; }
+.btn[disabled] { opacity: .45; cursor: default; }
+
+/* bench */
+.bench { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.banner { display: flex; gap: .8rem; align-items: center; justify-content: space-between; flex-wrap: wrap; padding: .75rem 1.2rem; background: var(--blue-soft); font-size: .9rem; }
+.banner[hidden] { display: none; }
+.banner .btn { padding: .35rem .8rem; font-size: .85rem; }
+.steps { display: grid; grid-template-columns: repeat(5, 1fr); border-bottom: 1px solid var(--line); background: var(--field); }
+.stepbtn { background: transparent; border: 0; border-right: 1px solid var(--line); padding: .65rem .2rem; display: flex; flex-direction: column; align-items: center; gap: .1rem; font-size: .8rem; line-height: 1.4; color: var(--muted); border-bottom: 3px solid transparent; }
+.stepbtn:last-child { border-right: 0; }
+.stepbtn .n { font-family: var(--mono); font-size: .75rem; }
+.stepbtn[aria-selected="true"] { color: var(--fg); background: var(--surface); border-bottom-color: var(--blue); font-weight: 700; }
+.stepbtn.done .n::after { content: " ●"; color: var(--ok); }
+.panel { padding: 1.2rem; display: flex; flex-direction: column; gap: 1rem; }
+.panel[hidden] { display: none; }
+.panel h3 { font-size: 1.15rem; font-weight: 600; }
+label.fl { display: flex; flex-direction: column; gap: .3rem; font-size: .92rem; font-weight: 500; }
+label.fl .hint { font-weight: 400; color: var(--muted); font-size: .82rem; }
+textarea, input[type="text"], input[type="date"] { width: 100%; background: var(--field); border: 1px solid var(--line); border-radius: 4px; padding: .55rem .7rem; line-height: 1.6; resize: vertical; }
+textarea { min-height: 3.6rem; }
+textarea:focus, input[type="text"]:focus, input[type="date"]:focus { border-color: var(--blue); outline: none; box-shadow: 0 0 0 2px var(--blue-soft); }
+.sl { display: flex; flex-direction: column; gap: .25rem; }
+.sl .ends { display: flex; justify-content: space-between; gap: 1rem; font-size: .8rem; color: var(--muted); }
+.sl .nm { font-weight: 700; font-size: .92rem; }
+input[type="range"] { width: 100%; accent-color: var(--red); }
+.meter { display: flex; flex-direction: column; gap: .45rem; padding: .9rem 1rem; background: var(--field); border-radius: 4px; }
+.mrow { display: grid; grid-template-columns: 3.2rem 1fr 2.6rem; gap: .6rem; align-items: center; font-size: .85rem; }
+.track { height: .55rem; background: var(--line); border-radius: 2px; overflow: hidden; }
+.fill { height: 100%; background: var(--red); transition: width .2s; }
+.mrow .val { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; color: var(--muted); }
+.verdict { font-size: .95rem; }
+.verdict b { color: var(--red); }
+.levers { display: grid; grid-template-columns: repeat(5, 1fr); gap: .4rem; }
+@media (max-width: 520px) { .levers { grid-template-columns: repeat(3, 1fr); } }
+.lever { background: var(--field); border: 1px solid var(--line); border-radius: 4px; padding: .45rem .2rem; display: flex; flex-direction: column; align-items: center; line-height: 1.4; font-size: .92rem; }
+.lever span { font-size: .72rem; color: var(--muted); }
+.lever[aria-pressed="true"] { border-color: var(--blue); background: var(--blue-soft); font-weight: 700; }
+.techs { display: flex; flex-direction: column; gap: .5rem; }
+.tech { display: grid; grid-template-columns: auto 1fr; gap: .7rem; padding: .7rem .8rem; border: 1px solid var(--line); border-radius: 4px; cursor: pointer; background: var(--field); }
+.tech:has(input:checked) { border-color: var(--blue); background: var(--blue-soft); }
+.tech input { margin-top: .45rem; accent-color: var(--blue); }
+.tech b { font-weight: 700; }
+.tech .d { font-size: .9rem; }
+.tech .e { font-size: .8rem; color: var(--muted); line-height: 1.6; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+@media (max-width: 560px) { .two { grid-template-columns: 1fr; } }
+.ifthen { font-family: var(--serif); font-size: 1.05rem; padding: .7rem .95rem; background: var(--blue-soft); border-radius: 4px; color: var(--fg); }
+.stat3 { display: flex; gap: .6rem; flex-wrap: wrap; }
+.stat3 div { flex: 1; min-width: 6rem; background: var(--field); border-radius: 4px; padding: .5rem .8rem; font-size: .82rem; color: var(--muted); }
+.stat3 strong { display: block; font-size: 1.5rem; line-height: 1.3; color: var(--fg); font-variant-numeric: tabular-nums; }
+.progress { height: .6rem; border-radius: 2px; background: var(--line); overflow: hidden; }
+.progress > div { height: 100%; background: var(--ok); transition: width .2s; }
+.days { display: grid; grid-template-columns: repeat(7, 1fr); gap: .35rem; }
+.day { background: var(--field); border: 1px solid var(--line); border-radius: 4px; padding: .4rem 0; font-size: .72rem; display: flex; flex-direction: column; align-items: center; line-height: 1.35; min-width: 0; }
+.day .dn { font-family: var(--mono); font-weight: 500; }
+.day .dd { color: var(--muted); font-size: .68rem; }
+.day .m { font-size: .95rem; height: 1.3rem; line-height: 1.3rem; }
+.day[data-s="1"] { background: var(--ok); border-color: var(--ok); color: var(--bg); }
+.day[data-s="1"] .dd { color: var(--bg); }
+.day[data-s="2"] { background: var(--warn-soft); border-color: var(--red); }
+.checks { display: flex; flex-direction: column; gap: .3rem; font-size: .92rem; }
+.checks label { display: flex; gap: .55rem; align-items: baseline; }
+.checks input { accent-color: var(--blue); }
+.out { white-space: pre-wrap; background: var(--field); border: 1px dashed var(--line); border-radius: 4px; padding: .9rem 1rem; font-size: .9rem; line-height: 1.75; overflow-wrap: anywhere; }
+.nav2 { display: flex; justify-content: space-between; gap: .6rem; padding: 0 1.2rem 1.2rem; flex-wrap: wrap; }
+.status { font-size: .85rem; color: var(--ok); min-height: 1.4em; }
+.btnrow { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; }
+
+/* limits & sources */
+.defs { display: flex; flex-direction: column; border-top: 1px solid var(--line); margin: 0; }
+.def { display: grid; grid-template-columns: 8.5rem 1fr; gap: 1rem; padding: .9rem 0; border-bottom: 1px solid var(--line); }
+.def dt { font-weight: 700; margin: 0; }
+.def dd { margin: 0; }
+@media (max-width: 560px) { .def { grid-template-columns: 1fr; gap: .15rem; } }
+.src { list-style: none; display: flex; flex-direction: column; gap: .55rem; font-size: .9rem; line-height: 1.65; }
+.src li { padding-left: 1rem; position: relative; }
+.src li::before { content: "·"; position: absolute; left: 0; color: var(--muted); }
+.src .k { font-family: var(--mono); font-size: .75rem; color: var(--muted); }
+footer { margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .fill, .progress > div { transition: none; } }
+</style>
+
+<nav class="nav" aria-label="章节">
+  <div class="nav-in">
+    <a href="#story">引子</a>
+    <a href="#summary">要点</a>
+    <a href="#premise">性格能变吗</a>
+    <a href="#why">六条线索</a>
+    <a href="#lexicon">换词表</a>
+    <a href="#bench">工作台</a>
+    <a href="#limits">边界</a>
+    <a href="#sources">延伸阅读</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="hero">
+    <p class="tag">科普 · 可交互</p>
+    <h1>从性格到模式</h1>
+    <p class="byline">作者：jogtor ｜ 写作时间：2026-10-09 07:52</p>
+  </header>
+
+  <section id="story" class="story">
+    <p>“我这个人，性格比较懒散。”这样的话，你大概说过，也听过。它顺口、省事，一句话交代了原因，顺便免去了追问。</p>
+    <p>可仔细看，这句话同时宣布了两件事：这就是我，而且没法改。说完之后，连“下一步做什么”都没有留下。</p>
+    <p>换一个说法试试：“我这个人，行为模式比较懒散。”只换了两个字，意思就变了。“性格”像一张身份证，写的是你是谁；“模式”像一份行车记录，写的是你在什么路况下怎么开。身份证改不了，行车记录却可以复盘、调整。</p>
+    <p>但这会不会只是文字游戏？性格真的改不了吗？“成长型思维”“习得性乐观”这些常被引用的概念，证据到底有多硬？积极心理学又该怎么看？</p>
+    <p>本文把心理学里的相关研究梳理了一遍，每条结论都标明了证据的强弱，最后附一个可以动手的工作台。</p>
+  </section>
+
+  <section id="summary">
+    <h2>先看要点</h2>
+    <ul class="points">
+      <li><b>性格可变，只是太慢。</b>对的是“性格”这个词确实会设限；错的是“性格改不了”。特质会变，只是慢，以月和年计。“性格”的问题在于把一种倾向说成了本质：既没说它在哪发生，也没留下下一步。</li>
+      <li><b>“模式”好用，因为自带三个抓手。</b>它限定情境，能拆成触发、想法、情绪、行为、后果几个环节，还指出了可以先动的那一环。</li>
+      <li><b>只改词不够，还得配上动作。</b>证据最扎实的是小而具体的行为改变，比如“如果……那么……”计划。改说法的作用，是让这些动作更容易开始，也少一点自责。</li>
+      <li><b>名词和动词要分开用。</b>想强化的身份用名词（“我是个会照顾身体的人”），想松动的倾向用动词加情境（“晚上回家后我常刷手机到很晚”）。</li>
+      <li><b>也有边界。</b>有些特点是偏好或气质，不必改；也不是每件事都能算在“想法不对”头上。见“边界”一节。</li>
+    </ul>
+  </section>
+
+  <section id="premise">
+    <h2>性格到底能不能变？</h2>
+    <p>先澄清一个常见误解。心理学里的“特质”，是对一个人长期倾向的概括，描述的是“通常怎样”，并没有断言“只能这样”。人们常说的“相对稳定”，指的是排名稳定：内向的人多年后通常仍比多数人内向。但个人和平均水平都会移动，比如从青年到中年，尽责性和情绪稳定性平均会上升（Roberts 等 2006 的综述†）。下面三项研究最有代表性。</p>
+    <div class="stats">
+      <div class="stat">
+        <span class="tag">Roberts 等 2017</span>
+        <span class="big">207</span>
+        <p>项干预研究的系统综述。平均约 24 周，情绪稳定性变化最明显，平均效应约 0.37（小到中等），随访中大体保持。多数研究来自心理治疗场景。</p>
+      </div>
+      <div class="stat">
+        <span class="tag">Hudson 等</span>
+        <span class="big">15 周</span>
+        <p>377 名学生每周从 50 个小挑战里挑几个，做与目标特质一致的事。完成得越多，越朝想要的方向变；只想改、只做计划则不够；选了却没完成的人，反而朝相反方向漂了一点（相关数据，不能证明因果）。</p>
+      </div>
+      <div class="stat">
+        <span class="tag">Lally 等 2010</span>
+        <span class="big">66 天</span>
+        <p>96 人追踪 84 天，其中 39 人的数据可估算出行为变自动化所需的时间，范围 18 到 254 天，中位数 66 天。单日漏做的影响很小。</p>
+      </div>
+    </div>
+    <p>小结：特质相对稳定，但可以移动，移动的主要通道是长期重复的行为。“行为模式”这个说法的价值，就在于它指向了这条通道。</p>
+    <p>“说法”本身也可以排成一道四级阶梯。越往下，越具体，越能被观察、被检验、被改动。</p>
+    <div class="ladder" role="list" aria-label="从身份判断到行动假设">
+      <div class="rung" role="listitem"><span class="tag">身份判断</span><p><del>“我这个人，性格懒散。”</del></p></div>
+      <div class="rung" role="listitem"><span class="tag">模式描述</span><p>“我经常拖延要做的事。”</p></div>
+      <div class="rung" role="listitem"><span class="tag">情境分析</span><p>“晚上回到家、已经有点累的时候，我会先刷手机。”</p></div>
+      <div class="rung" role="listitem"><span class="tag">行动假设</span><p>“如果回到家换好鞋之后先做两分钟，我可能更容易开始。”</p></div>
+    </div>
+    <p class="small">好的自我描述，应当尽量可观察、可解释、可干预、可验证。下面的工作台走的就是这四级。</p>
+  </section>
+
+  <section id="why">
+    <h2>措辞为什么会设限：六条线索</h2>
+    <p>下面六条线索，分别说明措辞怎样限制人，以及可以怎么用。每一条都附了证据的现状。</p>
+    <div class="grid2">
+      <article class="card">
+        <span class="tag">Seligman · 解释风格</span>
+        <h3>持久、普遍、不可控</h3>
+        <p>Seligman 把人解释坏事的方式分成三个维度：原因是否持久，是否到处如此，是否可控。“我性格懒散”三项都偏悲观：一直如此，什么都这样，天生如此。</p>
+        <p class="ev">Seligman 报告：学生学会识别并质疑自己的自动解释后，抑郁发生率在约两年内接近减半。后来的重复研究效果较小且不一致，宜保守看待。</p>
+        <p class="use"><b>怎么用：</b>对任何标签问三句：最近有没有一次不是这样？哪些领域不是这样？哪个条件变了会不同？</p>
+      </article>
+      <article class="card">
+        <span class="tag">Dweck · 成长型思维</span>
+        <h3>“我不行”与“我还没学会”</h3>
+        <p>把能力和特质看成可发展的，人在受挫后更愿意继续；看成固定的，容易把一次失败读成“我不行”。Mueller 与 Dweck 1998† 的实验里，被夸“聪明”的孩子之后更爱选容易的题，失败后表现也更差。</p>
+        <p class="ev">Yeager 等 2019 在全美代表性样本里，用不到一小时的线上课程让低成绩学生成绩提高、进阶数学选课增加，且效果取决于学校环境是否支持。整体效应不大（Sisk 等 2018 的元分析†），不是万能药。</p>
+        <p class="use"><b>怎么用：</b>把“我不行”换成“我还没……”之后，立刻补一句下一步。没有下一步的乐观只是口号。</p>
+      </article>
+      <article class="card">
+        <span class="tag">Bryan 等 · 名词与动词</span>
+        <h3>“做一个投票者”与“去投票”</h3>
+        <p>两句话意思几乎一样，但名词版把行为变成了“我是谁”的证据。</p>
+        <p class="ev">Bryan 等 2011：88 名加州选民中，名词版 95.5% 去投票，动词版 81.8%；214 名新泽西选民中为 89.9% 对 79.0%。样本不大，而且投票本来就是多数人认同的好事。</p>
+        <p class="use"><b>怎么用：</b>名词是双刃的。想要的身份用名词，每次做到都成为证据；想松动的标签若用名词（“我是个懒人”），每次偷懒也成为证据。所以想强化的用名词，想松动的用动词加情境。</p>
+      </article>
+      <article class="card">
+        <span class="tag">Fleeson · Mischel 与 Shoda</span>
+        <h3>状态的分布与情境签名</h3>
+        <p>同一个人在不同时刻、不同情境下的表现，波动相当大，常与人与人之间的差异同量级（Fleeson†）。稳定的是“如果在 X 情境，就做 Y”这种个人签名（Mischel 与 Shoda†）。</p>
+        <p class="ev">这两条引自记忆，没有逐条回查原文。方向被广泛接受，细节请以原文为准。</p>
+        <p class="use"><b>怎么用：</b>不问“我是不是懒”，问“我在什么情境下懒，什么情境下不懒”。例外是线索，不是对你的反驳。</p>
+      </article>
+      <article class="card">
+        <span class="tag">Bandura · 自我效能</span>
+        <h3>先有完成，后有信心</h3>
+        <p>Bandura 认为，人对“我做得成”的信心，最可靠的来源是亲身完成过。泛泛的“我可以的”自我暗示，作用有限†。</p>
+        <p class="ev">这一条同样引自记忆（Bandura 1977、1997），没有回查原文。</p>
+        <p class="use"><b>怎么用：</b>把目标缩到一定能完成的大小，并把完成记下来。信心是攒出来的。</p>
+      </article>
+      <article class="card">
+        <span class="tag">Hayes · Beck · 认知解离</span>
+        <h3>“我很懒”只是一个想法</h3>
+        <p>接纳承诺疗法（ACT）把“我很懒”看作“我脑中出现了‘我很懒’这个想法”。想法还在，但对行为的自动支配会松一点†。Beck 的认知疗法则关注“贴标签”“过度概括”这类自动思维†。</p>
+        <p class="ev">同样引自记忆。两种疗法在临床上研究较多，但针对日常小标签的直接证据，目前没有查到。</p>
+        <p class="use"><b>怎么用：</b>在句子前面加一句“我脑中出现了这样一个想法：”，读一遍，看感觉有没有松动。</p>
+      </article>
+    </div>
+
+    <h3 style="margin-top:1rem">积极心理学是什么？</h3>
+    <p>说到“习得性乐观”，就绕不开积极心理学。它到底是什么，又该怎么看？</p>
+    <dl class="defs">
+      <div class="def"><dt>出处</dt><dd>Seligman 在 1998 年任美国心理学会主席期间倡导，2000 年与 Csikszentmihalyi 发表奠基文章†：研究对象从“修复问题”扩展到“让生活更好”。</dd></div>
+      <div class="def"><dt>常见框架</dt><dd>习得性乐观（即上面的解释风格）；VIA 品格优势，共 24 项（Peterson 与 Seligman 2004†）；PERMA，即积极情绪、投入、关系、意义、成就（Seligman 2011†）。</dd></div>
+      <div class="def"><dt>效果</dt><dd>感恩信、“三件好事”、使用个人优势等练习，元分析多显示小到中等的正面效果；对发表偏倚做修正后的重新分析（White 等 2019†）把估计值下调了。结论是：有用，但别神化。</dd></div>
+      <div class="def"><dt>和本文的关系</dt><dd>它里面“可学习”的部分（解释风格、优势、习惯）与本文是同一个思路：把“我是怎样的人”变成“我怎样想、怎样做”。改写不是粉饰，写下真实的困难是前提。</dd></div>
+    </dl>
+  </section>
+
+  <section id="lexicon">
+    <h2>换词表：少说什么，多说什么</h2>
+    <p>先看一张换词对照。</p>
+    <div class="pairs" role="table" aria-label="换词对照">
+      <div class="pair" role="row"><span role="cell"><del>我是个懒人</del></span><span class="to" role="cell">晚上回家后，我常常先刷手机</span></div>
+      <div class="pair" role="row"><span role="cell"><del>我天生焦虑</del></span><span class="to" role="cell">遇到不确定的事，我的身体先紧起来，接着我开始往坏处想</span></div>
+      <div class="pair" role="row"><span role="cell"><del>我就是这样</del></span><span class="to" role="cell">我目前习惯这样，还没找到别的办法</span></div>
+      <div class="pair" role="row"><span role="cell"><del>我不是做这个的料</del></span><span class="to" role="cell">这一部分我还没学会，下一步是……</span></div>
+      <div class="pair" role="row"><span role="cell"><del>我脾气不好</del></span><span class="to" role="cell">被打断时，我会很快提高音量</span></div>
+    </div>
+    <p>改写之后，可以用三个问题检验：能不能被摄像机拍到（可观察）？写出了什么情境（有范围）？有没有一个可以动的环节（可改）？</p>
+    <p class="lead">再看九个常见说法，每个都拆成行为、思维、情绪三类。点一个试试。这些只是示例，请换成你自己的情境再用。</p>
+    <div class="chips" id="chips" role="group" aria-label="常见说法"></div>
+    <div class="lexpanel" id="lexpanel" aria-live="polite">
+      <p class="small">选一个说法。</p>
+    </div>
+  </section>
+
+  <section id="bench">
+    <h2>工作台：改写那一句</h2>
+    <p>这是一套完整的流程：写下原话，自查它有多“设限”，拆开模式，生成改写句和一个 14 天的小实验，两周后回来复盘。里面先放了一个“懒散”的示例，你可以直接看，也可以清空后写自己的。内容只保存在你这个浏览器里，不会同步到别的设备。</p>
+    <div class="bench">
+      <div class="banner" id="banner">
+        <span>现在填的是一个示例。</span>
+        <button class="btn ghost" id="clear0" type="button">清空示例，写你自己的</button>
+      </div>
+      <div class="steps" role="tablist" aria-label="工作台步骤">
+        <button class="stepbtn" role="tab" id="tab0" aria-selected="true" aria-controls="p0" type="button"><span class="n">1</span>原话</button>
+        <button class="stepbtn" role="tab" id="tab1" aria-selected="false" aria-controls="p1" type="button"><span class="n">2</span>自查</button>
+        <button class="stepbtn" role="tab" id="tab2" aria-selected="false" aria-controls="p2" type="button"><span class="n">3</span>拆解</button>
+        <button class="stepbtn" role="tab" id="tab3" aria-selected="false" aria-controls="p3" type="button"><span class="n">4</span>实验</button>
+        <button class="stepbtn" role="tab" id="tab4" aria-selected="false" aria-controls="p4" type="button"><span class="n">5</span>复盘</button>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p0" aria-labelledby="tab0">
+        <h3>你对自己说的那句话</h3>
+        <label class="fl">原话
+          <span class="hint">照原样写，不用修饰。</span>
+          <textarea id="s1" data-f="s1" rows="2" placeholder="例：我这个人，性格比较懒散。"></textarea>
+        </label>
+        <p class="small">没想好？回到上面的“换词表”，点一个说法，再点“带进工作台”。</p>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p1" aria-labelledby="tab1" hidden>
+        <h3>这句话有多“设限”</h3>
+        <p class="small">凭第一感觉拖动。这是自查用的小工具，不是量表。</p>
+        <div class="sl"><span class="nm">持久</span>
+          <input type="range" min="0" max="4" step="1" value="2" id="r_t" data-f="r_t" aria-label="持久：从只是最近到一直如此">
+          <div class="ends"><span>只是最近、偶尔</span><span>一直如此</span></div></div>
+        <div class="sl"><span class="nm">普遍</span>
+          <input type="range" min="0" max="4" step="1" value="2" id="r_p" data-f="r_p" aria-label="普遍：从只在某些场合到什么事都这样">
+          <div class="ends"><span>只在某些场合</span><span>什么事都这样</span></div></div>
+        <div class="sl"><span class="nm">控制</span>
+          <input type="range" min="0" max="4" step="1" value="2" id="r_c" data-f="r_c" aria-label="控制：从我能影响它到天生如此没办法">
+          <div class="ends"><span>我能影响它</span><span>天生如此，没办法</span></div></div>
+        <div class="meter" aria-live="polite">
+          <div class="mrow"><span>持久</span><div class="track"><div class="fill" id="m_t"></div></div><span class="val" id="v_t"></span></div>
+          <div class="mrow"><span>普遍</span><div class="track"><div class="fill" id="m_p"></div></div><span class="val" id="v_p"></span></div>
+          <div class="mrow"><span>控制</span><div class="track"><div class="fill" id="m_c"></div></div><span class="val" id="v_c"></span></div>
+        </div>
+        <p class="verdict" id="verdict"></p>
+        <label class="fl">找一个例外
+          <span class="hint">最近一次不是这样的时刻。当时多了什么，少了什么？一次就够。</span>
+          <textarea id="s2ex" data-f="s2ex" rows="3" placeholder="例：上周四有人约好一起做，我提前一小时就开始了。"></textarea>
+        </label>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p2" aria-labelledby="tab2" hidden>
+        <h3>把这个模式拆开</h3>
+        <p class="small">想一次最近的具体场景，按下面五格填。行为那一格，写到“摄像机能拍到”的程度。</p>
+        <label class="fl">情境与触发<span class="hint">什么时候、在哪、之前发生了什么？</span>
+          <textarea id="s3a" data-f="s3a" rows="2" placeholder="例：晚上 8 点下班回到家，一进门就很累。"></textarea></label>
+        <label class="fl">自动冒出的想法
+          <textarea id="s3b" data-f="s3b" rows="2" placeholder="例：先歇一会儿再说，反正今天已经很累了。"></textarea></label>
+        <label class="fl">情绪与身体感受
+          <textarea id="s3c" data-f="s3c" rows="2" placeholder="例：烦躁，肩膀沉，不想动。"></textarea></label>
+        <label class="fl">行为<span class="hint">做了什么？</span>
+          <textarea id="s3d" data-f="s3d" rows="2" placeholder="例：坐到沙发上刷手机，一个半小时。"></textarea></label>
+        <label class="fl">后果<span class="hint">短期得到什么，长期付出什么？</span>
+          <textarea id="s3e" data-f="s3e" rows="2" placeholder="例：短期不用面对任务；长期睡得晚，事情堆着，更焦虑。"></textarea></label>
+
+        <h3>选一个杠杆</h3>
+        <p class="small">五个环节里挑一个先动。不确定就选“行为”，它的证据最扎实。</p>
+        <div class="levers" id="levers" role="group" aria-label="杠杆"></div>
+        <div class="techs" id="techs" role="radiogroup" aria-label="具体做法"></div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p3" aria-labelledby="tab3" hidden>
+        <h3>改写这句话</h3>
+        <label class="fl">改写句
+          <span class="hint">限定情境，写行为，留出例外。可以直接改。</span>
+          <textarea id="s4a" data-f="s4a" rows="3"></textarea>
+        </label>
+        <button class="btn ghost" id="gen" type="button">根据前两步重新生成</button>
+        <div class="checks" id="chk" aria-label="自检"></div>
+
+        <h3>一个 14 天实验</h3>
+        <p class="small">这不是人格测验，只记录一项具体行动哪几天发生了。先观察，再解释。</p>
+        <div class="two">
+          <label class="fl">如果（触发）<input type="text" id="s4t" data-f="s4t" placeholder="例：回到家换好鞋之后"></label>
+          <label class="fl">那么我就（最小动作）<input type="text" id="s4m" data-f="s4m" placeholder="例：先做两分钟要做的事"></label>
+        </div>
+        <p class="ifthen" id="ifthen"></p>
+        <label class="fl">起始日期<input type="date" id="start" data-f="start"></label>
+        <div class="stat3">
+          <div>完成<strong id="n_done">0</strong></div>
+          <div>未完成<strong id="n_miss">0</strong></div>
+          <div>已记录<strong id="n_rec">0/14</strong></div>
+        </div>
+        <div class="progress" aria-hidden="true"><div id="bar" style="width:0%"></div></div>
+        <p class="small">点每一天依次切换：未记录、完成、未完成。未记录不等于失败，漏一天就第二天接着做，不补，也不重来。Lally 等的数据里，单日漏做对自动化的影响很小。</p>
+        <div class="days" id="days"></div>
+
+        <h3>我的卡片</h3>
+        <div class="out" id="out" tabindex="0"></div>
+        <div class="btnrow">
+          <button class="btn" id="copy" type="button">复制</button>
+          <button class="btn ghost" id="clear" type="button">清空全部</button>
+          <span class="status" id="status" role="status"></span>
+        </div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p4" aria-labelledby="tab4" hidden>
+        <h3>两周后回来复盘</h3>
+        <p class="small">不问“我是不是懒人”，只问你是否更懂得行为是怎么发生的。</p>
+        <label class="fl">1. 哪些情境下我更容易做成？
+          <textarea id="rv1" data-f="rv1" rows="3"></textarea></label>
+        <label class="fl">2. 哪些障碍反复出现？
+          <textarea id="rv2" data-f="rv2" rows="3"></textarea></label>
+        <label class="fl">3. 下一轮我保留、删掉或修改什么？
+          <textarea id="rv3" data-f="rv3" rows="3"></textarea></label>
+        <p class="small">复盘会并入第 4 步的“我的卡片”。</p>
+
+        <h3>备份与迁移</h3>
+        <p class="small">内容只存在这个浏览器里，清除站点数据或换浏览器就看不到了。需要换设备时，点“生成备份文本”，把整段文字存到备忘录；之后粘贴回下面的框，点“恢复”。</p>
+        <textarea id="bk" rows="4" placeholder="备份文本会出现在这里；要恢复时，把备份文本粘贴到这里。" aria-label="备份文本"></textarea>
+        <div class="btnrow">
+          <button class="btn ghost" id="mkbk" type="button">生成备份文本</button>
+          <button class="btn ghost" id="rsbk" type="button">恢复</button>
+          <span class="status" id="status2" role="status"></span>
+        </div>
+      </div>
+
+      <div class="nav2">
+        <button class="btn ghost" id="prev" type="button">上一步</button>
+        <button class="btn" id="next" type="button">下一步</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="limits">
+    <h2>边界：这套方法什么时候会失灵</h2>
+    <dl class="defs">
+      <div class="def"><dt>只换词不动手</dt><dd>说法只是起点。Hudson 等的数据里，选了挑战却没完成的人反而朝反方向漂移，虽然只是相关，也值得当作提醒。</dd></div>
+      <div class="def"><dt>不是所有特点都要改</dt><dd>内向、敏感多半是偏好或气质。要改的是“想要却没做到”的那一部分，不是整个人。接纳与改变可以并行，这也是接纳承诺疗法的核心之一†。</dd></div>
+      <div class="def"><dt>别把一切都算在想法上</dt><dd>拖延和无力，也可能来自任务设计不合理、疲劳、资源不足、疾病、环境，或者这个目标本身不值得投入。应当先排除这些，再谈模式。</dd></div>
+      <div class="def"><dt>别把“可改”变成新的自责</dt><dd>改得慢是常态，干预研究以几十周计。“你没改，是你不够努力”不是这个方向的结论。</dd></div>
+      <div class="def"><dt>气质有生物基础</dt><dd>多数情况下，改变是调整表达方式和应对方式，不是改写底色。</dd></div>
+      <div class="def"><dt>需要专业评估的情形</dt><dd>如果无力、兴趣丧失、睡眠或食欲明显变化已持续两周以上，就别只当成“懒散”，可以找医生或心理咨询师评估。</dd></div>
+    </dl>
+  </section>
+
+  <section id="closing" class="story">
+    <h2>回到开头那句话</h2>
+    <p>回到开头那句话。改写之后，它可以是这样的：“晚上回到家、已经有点累的时候，我常常先刷手机，一个多小时后才想起要做的事。我打算试一试：回到家换好鞋之后，先做两分钟。”</p>
+    <p>比“性格比较懒散”啰嗦得多，但它给出了一个明天就能做的动作，也可以被检验：两周之后，打钩的日子会替你回答它有没有用。把你自己的那句话，拿到上面的工作台里改一遍吧。</p>
+  </section>
+
+  <section id="sources">
+    <h2>来源与延伸阅读</h2>
+    <ul class="src">
+      <li><span class="k">已核对</span> Roberts 等 2017，A systematic review of personality trait change through intervention，Psychological Bulletin。<a href="https://pubmed.ncbi.nlm.nih.gov/28054797/" target="_blank" rel="noopener">PubMed</a></li>
+      <li><span class="k">已核对</span> Hudson 等，关于主动改变人格特质与“完成度”的研究。<a href="https://bps.org.uk/research-digest/merely-desiring-alter-your-personality-not-enough-and-may-backfire-unless-you-take" target="_blank" rel="noopener">BPS Research Digest 报道</a></li>
+      <li><span class="k">已核对</span> Lally 等 2010，How are habits formed，European Journal of Social Psychology。<a href="https://bps.org.uk/research-digest/how-form-habit" target="_blank" rel="noopener">BPS Research Digest 报道</a></li>
+      <li><span class="k">已核对</span> Yeager 等 2019，A national experiment reveals where a growth mindset improves achievement，Nature。<a href="https://www.hks.harvard.edu/publications/national-experiment-reveals-where-growth-mindset-improves-achievement" target="_blank" rel="noopener">哈佛肯尼迪学院页面</a></li>
+      <li><span class="k">已核对</span> Bryan 等 2011，Motivating voter turnout by invoking the self，PNAS。<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3150938" target="_blank" rel="noopener">PMC 全文</a></li>
+      <li><span class="k">二手</span> Gollwitzer 与 Sheeran 2006，Implementation intentions and goal achievement 的元分析（94 项检验，d≈0.65）。<a href="https://goalsandprogress.com/implementation-intentions-research/" target="_blank" rel="noopener">综述页面</a></li>
+      <li><span class="k">二手</span> Kross 等关于称名、第三人称自我对话的研究。<a href="https://bigthink.com/neuropsych/talking-to-yourself-in-the-third-person-can-lower-stress-and-negative-emotions/" target="_blank" rel="noopener">Big Think 报道</a></li>
+      <li><span class="k">二手</span> Seligman 的解释风格与习得性乐观。<a href="https://www.npr.org/transcripts/859713746" target="_blank" rel="noopener">NPR 访谈文字稿</a></li>
+      <li><span class="k">†</span> 引自记忆、没有逐条回查原文的：Roberts、Walton 与 Viechtbauer 2006；Mueller 与 Dweck 1998；Sisk 等 2018；Fleeson 2001；Mischel 与 Shoda 1995；Bandura 1977、1997；Hayes 等的接纳承诺疗法；Beck 的认知疗法；de Shazer 的“例外”技术；Lieberman 等 2007（情绪命名）；Wood 2019（习惯与情境）；Neff（自我关怀）；Seligman 与 Csikszentmihalyi 2000；Peterson 与 Seligman 2004；White 等 2019；Sirois 与 Pychyl（拖延与情绪）。</li>
+      <li><span class="k">书</span> Dweck《终身成长》；Seligman《活出最乐观的自己》；Harris《幸福的陷阱》；Clear《掌控习惯》；Kross，Chatter；Neff，Self-Compassion；Wood，Good Habits, Bad Habits。</li>
+    </ul>
+    <footer class="small">本文为科普性质的整理，不构成医疗或心理治疗建议。工具仅供个人观察，不是心理诊断，也不是经过验证的测评量表。</footer>
+  </section>
+</main>
+
+<script>
+(function () {
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  /* 字体改为页面加载后异步引入，字体站点不通时不会拖慢正文，系统字体兜底 */
+  try {
+    var fl = document.createElement("link");
+    fl.rel = "stylesheet";
+    fl.href = "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;900&display=swap";
+    document.head.appendChild(fl);
+  } catch (e) {}
+
+  /* ---------- 数据：词汇迁移 ---------- */
+  var LEX = [
+    { label: "懒散", old: "我性格懒散", seed: "我这个人，性格比较懒散。",
+      behavior: "晚上回家后，我常常先瘫在沙发上刷手机，一两个小时后才想起要做的事。",
+      thinking: "一想到“开始”，我就预估会很累；任务一模糊，我就觉得无从下手。",
+      feeling: "面对大而模糊的任务，我会烦躁、有压力，躲开能让这种感觉暂时松一点。",
+      ask: ["什么时候我不这样？（有截止日、有人在场、做喜欢的事时）", "我通常卡在哪一步：开始、持续，还是收尾？", "卡住前一刻，我在想什么，身体是什么感觉？"],
+      exp: "把想做的事缩成两分钟版本，绑定一个固定触发：“回到家换好鞋之后，先做两分钟。”", note: "" },
+    { label: "拖延", old: "我是个拖延的人", seed: "我这个人，做事总爱拖延。",
+      behavior: "有截止日期的任务，我常常到前一晚才开始。",
+      thinking: "我觉得得等状态好了才能开始，或者做不好还不如不做。",
+      feeling: "一想到任务就焦虑、内疚；逃开后先松一口气，随后更焦虑。研究者倾向于把拖延看成对不适感的短期调节（Sirois 与 Pychyl†），而不只是时间管理问题。",
+      ask: ["哪一类任务最容易拖：不确定的、会被评价的，还是无聊的？", "拖的时候我实际在做什么？", "一旦开始，大约多久会进入状态？"],
+      exp: "只承诺开始 10 分钟，并允许自己 10 分钟后停下。", note: "" },
+    { label: "内向", old: "我天生内向", seed: "我这个人，天生内向。",
+      behavior: "人多的聚会里我话比较少，更爱一对一或小范围的交流。",
+      thinking: "开口之前我会反复预演，担心说得不合适。",
+      feeling: "长时间社交后我的能量会下降，需要独处恢复。",
+      ask: ["哪些社交场合我反而觉得舒服？", "我想少说话，是偏好安静，还是怕被评价？这两件事不同。", "我想增加的具体是哪一种联系？"],
+      exp: "每周向一个人发起一次一对一的邀约。", note: "偏好安静未必需要改，值得改的是“想要却没做到”的那一部分。" },
+    { label: "胆小", old: "我胆子小", seed: "我这个人，胆子比较小。",
+      behavior: "需要当众发言或尝试新事物时，我常找理由推掉。",
+      thinking: "我预计自己会出丑，而且后果会很严重、持续很久。",
+      feeling: "临近时心跳加快、胃发紧，很想逃开。",
+      ask: ["我最怕的具体画面是什么？", "过去真的发生过吗？当时后果有多大，持续多久？", "哪个版本的难度最低？"],
+      exp: "列 5 级难度的阶梯，今天只做第 1 级（比如会议上说一句简短的话）。", note: "" },
+    { label: "脾气急", old: "我脾气不好", seed: "我这个人，脾气不太好。",
+      behavior: "被打断或事情不顺时，我会提高音量，说出事后后悔的话。",
+      thinking: "“他是故意的”“这不应该发生”这类硬性要求会很快冒出来。",
+      feeling: "身体先热起来（胸口、脸、拳头），几秒内就到了爆发的边缘。",
+      ask: ["爆发前，身体最早的信号是什么？", "什么状态下更容易：饿、累、睡眠不足？", "事后我希望自己当时做了什么？"],
+      exp: "信号一出现，先做一次长呼气，说一句“我先停一下”，回头再谈。", note: "" },
+    { label: "没毅力", old: "我没有毅力", seed: "我这个人，没什么毅力。",
+      behavior: "新计划坚持几天后一旦中断，就不再继续。",
+      thinking: "“断了一次就等于失败”，全有或全无。",
+      feeling: "中断后的内疚，让重新开始变得更难。",
+      ask: ["通常第几天断？断在什么情形下？", "计划一开始是不是就太大了？", "中断之后，我对自己说了什么？"],
+      exp: "把目标缩到“差点做不到也能做到”的大小，并提前写好“断了之后的第一步”。Lally 等的数据里，漏一天影响很小。", note: "" },
+    { label: "没天赋", old: "我没有数学天赋", seed: "我这个人，没有数学天赋。",
+      behavior: "遇到难题，我很快翻答案或直接放弃。",
+      thinking: "把“现在做不出来”读成了“我不行”。",
+      feeling: "卡住时的羞愧让我想马上离开。",
+      ask: ["具体卡在哪个知识点？", "有没有哪样东西，我起初学得慢，后来会了？", "我现在缺的是知识、练习量，还是方法？"],
+      exp: "把“我不行”改成“我还没学会 X”，并写下 X 的最小下一步。", note: "" },
+    { label: "敏感", old: "我很敏感", seed: "我这个人，比较敏感。",
+      behavior: "被批评后，我会反复回想，影响之后几个小时的状态。",
+      thinking: "我常把一句具体的评价，扩大成对整个人的判断。",
+      feeling: "对别人的情绪和语气反应很强烈。",
+      ask: ["哪类话最容易戳到我？", "反复回想通常持续多久？", "敏感给我带来过哪些好处：体察、细致、共情？"],
+      exp: "下次被批评后，用三栏分开记：事实 / 对方的评价 / 我的解读。", note: "敏感也是一种资源，目标是调节它，不是抹掉它。" },
+    { label: "完美主义", old: "我是完美主义者", seed: "我这个人，是个完美主义者。",
+      behavior: "交付前反复修改，或因为“还不够好”而迟迟不交。",
+      thinking: "“必须无可挑剔，否则就是失败。”",
+      feeling: "对瑕疵感到羞愧、不安。",
+      ask: ["这个标准是谁定的？", "“够好”具体是什么样？能被检验吗？", "做到 80 分和做到 100 分，各自的代价是什么？"],
+      exp: "先交一个明确标注“草稿”的版本，并给自己设一个时间盒。", note: "" }
+  ];
+
+  /* ---------- 数据：杠杆与做法 ---------- */
+  var LEVERS = [
+    { k: "situation", name: "情境", sub: "改环境", techs: [
+      { n: "给不想要的行为加阻力", d: "手机放到另一个房间，删掉快捷入口。", e: "Wood 对习惯的研究强调情境线索与阻力†。", t: "开始做事之前", a: "把手机放到另一个房间，设 25 分钟" },
+      { n: "把想做的事摆到眼前", d: "提前把书、运动鞋、要写的文档放在显眼处。", e: "同上†。", t: "前一天睡前", a: "把明天要用的东西摆在最显眼的地方" },
+      { n: "找一个人在场", d: "约人同时开工，或视频陪伴。", e: "实务做法，直接证据有限。", t: "约定的时间到了", a: "和朋友同时开工，25 分钟后互相报一句" }
+    ] },
+    { k: "thinking", name: "想法", sub: "换问法", techs: [
+      { n: "找例外", d: "最近一次不是这样，是什么时候？当时多了什么，少了什么？", e: "来自焦点解决短期治疗的“例外”技术†。", t: "我想到“我就是这样”的时候", a: "写下最近一次不是这样的时刻，以及当时多了什么" },
+      { n: "把想法当作想法", d: "在句子前加一句“我脑中出现了这样一个想法：”，再读一遍。", e: "接纳承诺疗法的认知解离†，针对日常小标签的直接证据有限。", t: "我想到“我就是懒”的时候", a: "在心里补一句“我脑中出现了‘我就是懒’这个想法”，然后做最小动作" },
+      { n: "称名自我对话", d: "用自己的名字问自己：“某某为什么这会儿想躲开？”", e: "Kross 等的研究：第三人称自我对话能较快降低情绪反应，且不比第一人称更费力；仍需更多研究。", t: "我想躲开的时候", a: "用自己的名字问一句“为什么这会儿想躲开”，写下一个原因" },
+      { n: "写下预测再验证", d: "先写“我预计这件事有多难（1 到 10）”，做完对照实际。", e: "认知行为治疗里的行为实验†。", t: "开始之前", a: "先写下预计有多难，做完再写实际多难" }
+    ] },
+    { k: "emotion", name: "情绪", sub: "调节感受", techs: [
+      { n: "给情绪命名", d: "用一个词说出此刻的感受：“烦躁”“怕被评价”。", e: "Lieberman 等 2007 的情绪标注研究†。", t: "感到烦躁、发紧或想逃时", a: "用一个词给它命名，写下来" },
+      { n: "允许它在场两分钟", d: "找到它在身体的位置，不赶走它，再做最小的动作。", e: "接纳承诺疗法的做法†。", t: "那种感觉出现时", a: "找到它在身体的位置，呼吸三次，再做最小动作" },
+      { n: "说一句朋友会说的话", d: "想象朋友遇到同样的事，你会怎么对他说。", e: "Neff 的自我关怀，研究以相关证据居多†。", t: "我开始责备自己时", a: "写下一句朋友会对我说的话，读一遍" }
+    ] },
+    { k: "behavior", name: "行为", sub: "动作", techs: [
+      { n: "如果—那么计划", d: "把触发和动作绑在一起：“如果……，那么我就……”。", e: "Gollwitzer 与 Sheeran 2006：94 项检验，效应约 d=0.65。对“开始一件事”最有效，对需长期维持的目标较弱，且前提是你确实想做。", t: "回到家换好鞋之后", a: "先做两分钟要做的事（打开文档，写一句话）" },
+      { n: "缩到两分钟版本", d: "把动作缩到几乎不可能失败，先让它发生。", e: "实务做法，直接证据较少。Lally 等的参与者是在固定情境下每天重复。", t: "晚饭后", a: "只做最小版本：写一行、穿上运动鞋、读一页" },
+      { n: "漏了就接着做", d: "预先说好：漏一天不补，也不重新计数。", e: "Lally 等 2010：单日漏做对自动化的影响很小。", t: "发现自己漏了一天", a: "第二天照常做最小版本，不补，不重来" }
+    ] },
+    { k: "result", name: "后果", sub: "结果", techs: [
+      { n: "做完立刻给小奖励", d: "完成后马上做一件自己喜欢的小事。", e: "行为学习的基本原理：即时后果比远期后果更影响行为†。", t: "做完最小版本之后", a: "立刻做一件自己喜欢的小事" },
+      { n: "让进度看得见", d: "日历上打钩，或在纸上划线。", e: "Bandura 的自我效能理论：亲身完成的经验是信心最可靠的来源†。", t: "做完的那一刻", a: "在日历上打一个勾" },
+      { n: "向一个人报告", d: "做完给朋友发一句：“今天做了。”", e: "实务做法。", t: "做完之后", a: "给一位朋友发一句：今天做了" }
+    ] }
+  ];
+  var LEVER_KEYS = ["situation", "thinking", "emotion", "behavior", "result"];
+  var CHECKS = ["能被摄像机拍到（写的是行为，不是评价）", "写出了情境（什么时候、在哪、什么触发）", "有一个能动的环节（想法、情绪、行为、环境或后果之一）"];
+  var DEFAULT_SEED = "我这个人，性格比较懒散。";
+
+  /* ---------- 状态 ---------- */
+  function iso() {
+    var d = new Date();
+    return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
+  }
+  var FIELDS = ["s1", "r_t", "r_p", "r_c", "s2ex", "s3a", "s3b", "s3c", "s3d", "s3e", "s4a", "s4t", "s4m", "start", "rv1", "rv2", "rv3"];
+  var BLANK = { s1: "", r_t: "2", r_p: "2", r_c: "2", s2ex: "", s3a: "", s3b: "", s3c: "", s3d: "", s3e: "", s4a: "", s4t: "", s4m: "", start: "", rv1: "", rv2: "", rv3: "" };
+  var EXAMPLE = {
+    s1: DEFAULT_SEED, r_t: "3", r_p: "2", r_c: "3",
+    s2ex: "上周四朋友约好一起各做各的事，我提前一小时就坐下来开始了。多出来的是有人在场，还有一个明确的开始时间。",
+    s3a: "晚上八点下班回到家，换完鞋，一进门就很累。",
+    s3b: "先歇一会儿再说，今天已经够累了。",
+    s3c: "烦躁，肩膀发沉，不想动。",
+    s3d: "坐到沙发上刷手机，一个半小时，期间想起要做的事好几次，都没起身。",
+    s3e: "短期不用面对任务；长期睡得晚，事情越堆越多，越焦虑。",
+    s4a: "在晚上回到家、已经有点累的时候，我常常先坐到沙发上刷手机一个多小时，才想起要做的事。也有不是这样的时候：上周四朋友约好一起各做各的事，我提前一小时就开始了。",
+    s4t: "回到家换好鞋之后", s4m: "先做两分钟要做的事（打开文档，写一句话）", start: "", rv1: "", rv2: "", rv3: ""
+  };
+  function copyObj(o) { var n = {}; for (var k in o) n[k] = o[k]; return n; }
+  function fresh(example) {
+    var f = copyObj(example ? EXAMPLE : BLANK); f.start = iso();
+    return { f: f, days: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], lever: "behavior", tech: example ? 0 : -1,
+             chk: [false, false, false], step: 0, touched: { s4t: false, s4m: false }, example: !!example };
+  }
+  function adopt(o) {
+    var n = fresh(false);
+    FIELDS.forEach(function (k) { if (typeof o.f[k] === "string") n.f[k] = o.f[k]; });
+    n.days = o.days.map(function (x) { x = +x; return (x === 1 || x === 2) ? x : 0; });
+    n.lever = LEVER_KEYS.indexOf(o.lever) >= 0 ? o.lever : "behavior";
+    n.tech = (typeof o.tech === "number" && o.tech >= -1 && o.tech < 8) ? o.tech : -1;
+    n.chk = Array.isArray(o.chk) ? [!!o.chk[0], !!o.chk[1], !!o.chk[2]] : [false, false, false];
+    n.step = (typeof o.step === "number" && o.step >= 0 && o.step <= 4) ? o.step : 0;
+    n.touched = { s4t: !!(o.touched && o.touched.s4t), s4m: !!(o.touched && o.touched.s4m) };
+    n.example = !!o.example;
+    return n;
+  }
+  function valid(o) { return o && typeof o === "object" && o.f && typeof o.f === "object" && Array.isArray(o.days) && o.days.length === 14; }
+
+  var KEY = "pattern-words-v2";
+  var S = fresh(true);
+  try {
+    var raw = localStorage.getItem(KEY);
+    if (raw) { var o = JSON.parse(raw); if (valid(o)) S = adopt(o); }
+  } catch (e) {}
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+
+  /* ---------- 词汇迁移面板 ---------- */
+  var chips = $("#chips"), lexpanel = $("#lexpanel");
+  LEX.forEach(function (e, i) {
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.textContent = e.label; b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function () { showLex(i); });
+    chips.appendChild(b);
+  });
+  function showLex(i) {
+    var e = LEX[i];
+    $$(".chip").forEach(function (c, j) { c.setAttribute("aria-pressed", j === i ? "true" : "false"); });
+    lexpanel.innerHTML = '<div class="lexhead"><del>' + e.old + '</del><span class="arrow">可以这样拆</span></div>' +
+      '<div class="rows">' +
+      '<div class="row"><span class="tag">行为模式</span><p>' + e.behavior + '</p></div>' +
+      '<div class="row"><span class="tag">思维模式</span><p>' + e.thinking + '</p></div>' +
+      '<div class="row"><span class="tag">情绪反应模式</span><p>' + e.feeling + '</p></div></div>' +
+      '<div><h4>可以追问自己</h4><ul>' + e.ask.map(function (q) { return "<li>" + q + "</li>"; }).join("") + '</ul></div>' +
+      '<div class="exp"><b>小实验：</b>' + e.exp + '</div>' +
+      (e.note ? '<div class="note">' + e.note + '</div>' : "") +
+      '<button class="btn" type="button" id="bring">带进工作台</button><span class="small" id="bringmsg"></span>';
+    $("#bring").addEventListener("click", function () { bring(e); });
+  }
+  function setField(k, v) {
+    S.f[k] = v;
+    var el = document.querySelector('[data-f="' + k + '"]');
+    if (el) el.value = v;
+  }
+  function empty(k) { return !(S.f[k] || "").trim(); }
+  function bring(e) {
+    var wasExample = S.example;
+    if (wasExample) { var keep = S.f.start; S.f = copyObj(BLANK); S.f.start = keep; S.tech = -1; S.touched = { s4t: false, s4m: false }; hydrateFields(); }
+    S.example = false;
+    if (empty("s1") || S.f.s1 === DEFAULT_SEED) setField("s1", e.seed);
+    if (empty("s3d")) setField("s3d", e.behavior);
+    if (empty("s3b")) setField("s3b", e.thinking);
+    if (empty("s3c")) setField("s3c", e.feeling);
+    save(); refresh();
+    $("#bringmsg").textContent = wasExample ? " 已带入工作台（示例已清掉）。" : " 已带入工作台里空着的框。";
+    go(0);
+    $("#bench").scrollIntoView({ block: "start" });
+  }
+
+  /* ---------- 步骤 ---------- */
+  function go(n) {
+    S.step = Math.max(0, Math.min(4, n));
+    for (var i = 0; i < 5; i++) {
+      var on = i === S.step;
+      $("#tab" + i).setAttribute("aria-selected", on ? "true" : "false");
+      $("#p" + i).hidden = !on;
+    }
+    $("#prev").disabled = S.step === 0;
+    $("#next").disabled = S.step === 4;
+    if (S.step === 3 && empty("s4a")) genRewrite();
+    save(); refresh();
+  }
+  for (var i = 0; i < 5; i++) { (function (n) { $("#tab" + n).addEventListener("click", function () { go(n); }); })(i); }
+  $("#prev").addEventListener("click", function () { go(S.step - 1); });
+  $("#next").addEventListener("click", function () { go(S.step + 1); });
+
+  /* ---------- 表单绑定 ---------- */
+  function hydrateFields() {
+    $$("[data-f]").forEach(function (el) {
+      var k = el.getAttribute("data-f");
+      el.value = S.f[k] !== undefined ? S.f[k] : "";
+    });
+  }
+  $$("[data-f]").forEach(function (el) {
+    var k = el.getAttribute("data-f");
+    el.addEventListener("input", function () {
+      S.f[k] = el.value;
+      S.example = false;
+      if (k === "s4t" || k === "s4m") S.touched[k] = true;
+      save(); refresh();
+    });
+  });
+
+  /* ---------- 杠杆与做法 ---------- */
+  var leversEl = $("#levers"), techsEl = $("#techs");
+  LEVERS.forEach(function (lv) {
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "lever"; b.setAttribute("data-k", lv.k);
+    b.innerHTML = lv.name + "<span>" + lv.sub + "</span>";
+    b.addEventListener("click", function () { S.lever = lv.k; S.tech = -1; S.example = false; save(); renderLevers(); refresh(); });
+    leversEl.appendChild(b);
+  });
+  function curLever() { return LEVERS.filter(function (l) { return l.k === S.lever; })[0] || LEVERS[3]; }
+  function renderLevers() {
+    $$(".lever").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-k") === S.lever ? "true" : "false"); });
+    var lv = curLever();
+    techsEl.innerHTML = "";
+    lv.techs.forEach(function (t, i) {
+      var l = document.createElement("label"); l.className = "tech";
+      var r = document.createElement("input"); r.type = "radio"; r.name = "tech"; r.checked = S.tech === i;
+      r.addEventListener("change", function () {
+        S.tech = i; S.example = false;
+        if (!S.touched.s4t) setField("s4t", t.t);
+        if (!S.touched.s4m) setField("s4m", t.a);
+        save(); refresh();
+      });
+      var d = document.createElement("div");
+      d.innerHTML = "<b></b><div class='d'></div><div class='e'></div>";
+      d.children[0].textContent = t.n; d.children[1].textContent = t.d; d.children[2].textContent = t.e;
+      l.appendChild(r); l.appendChild(d); techsEl.appendChild(l);
+    });
+  }
+
+  /* ---------- 自检与打卡 ---------- */
+  var chkEl = $("#chk");
+  CHECKS.forEach(function (c, i) {
+    var l = document.createElement("label");
+    var cb = document.createElement("input"); cb.type = "checkbox";
+    cb.addEventListener("change", function () { S.chk[i] = cb.checked; save(); });
+    l.appendChild(cb); l.appendChild(document.createTextNode(c)); chkEl.appendChild(l);
+  });
+  var daysEl = $("#days");
+  for (var d = 0; d < 14; d++) {
+    (function (i) {
+      var b = document.createElement("button"); b.type = "button"; b.className = "day";
+      b.innerHTML = "<span class='dn'></span><span class='dd'></span><span class='m'></span>";
+      b.addEventListener("click", function () { S.days[i] = (S.days[i] + 1) % 3; S.example = false; save(); refresh(); });
+      daysEl.appendChild(b);
+    })(d);
+  }
+  function dateAt(i) {
+    var p = (S.f.start || iso()).split("-").map(Number);
+    var v = new Date(p[0], p[1] - 1, p[2] + i);
+    return (v.getMonth() + 1) + "/" + v.getDate();
+  }
+
+  /* ---------- 生成 ---------- */
+  function trim(s) { return (s || "").trim().replace(/[。.；;]+$/, ""); }
+  function genRewrite() {
+    var sit = trim(S.f.s3a), beh = trim(S.f.s3d), ex = trim(S.f.s2ex);
+    var t = "在" + (sit || "【什么情境】") + "，我常常" + (beh || "【做了什么】") + "。";
+    if (ex) t += "也有不是这样的时候：" + ex + "。";
+    setField("s4a", t); save(); refresh();
+  }
+  $("#gen").addEventListener("click", function () { S.example = false; genRewrite(); });
+
+  function scores() { return [+S.f.r_t || 0, +S.f.r_p || 0, +S.f.r_c || 0]; }
+  function ifThen() {
+    return "如果" + (trim(S.f.s4t) || "……") + "，那么我就" + (trim(S.f.s4m) || "……") + "。";
+  }
+  function counts() {
+    var a = S.days.filter(function (x) { return x === 1; }).length;
+    var b = S.days.filter(function (x) { return x === 2; }).length;
+    return [a, b, 14 - a - b];
+  }
+  function cardText() {
+    var sc = scores(), c = counts(), lines = [];
+    lines.push("【原话】" + (trim(S.f.s1) || "（未填）") + "。");
+    lines.push("【设限自查】持久 " + sc[0] + "/4 · 普遍 " + sc[1] + "/4 · 控制 " + sc[2] + "/4");
+    if (trim(S.f.s2ex)) lines.push("【例外】" + trim(S.f.s2ex) + "。");
+    var parts = [["情境", S.f.s3a], ["想法", S.f.s3b], ["情绪", S.f.s3c], ["行为", S.f.s3d], ["后果", S.f.s3e]]
+      .filter(function (p) { return trim(p[1]); }).map(function (p) { return p[0] + "：" + trim(p[1]); });
+    if (parts.length) lines.push("【拆解】" + parts.join("；") + "。");
+    lines.push("【改写】" + (trim(S.f.s4a) ? trim(S.f.s4a) + "。" : "（未填）"));
+    lines.push("【实验】" + ifThen() + "（14 天，从 " + dateAt(0) + " 开始：完成 " + c[0] + " 天，未完成 " + c[1] + " 天，未记录 " + c[2] + " 天）");
+    var rv = [["有利情境", S.f.rv1], ["反复出现的障碍", S.f.rv2], ["下一轮调整", S.f.rv3]]
+      .filter(function (p) { return trim(p[1]); }).map(function (p) { return p[0] + "：" + trim(p[1]); });
+    if (rv.length) lines.push("【复盘】" + rv.join("；") + "。");
+    return lines.join("\n");
+  }
+
+  /* ---------- 刷新 ---------- */
+  var DIM = [
+    { tip: "先找例外：在第 2 步下面的框里写下最近一次不是这样的时刻。一次就够，它说明这不是“一直”。" },
+    { tip: "先划范围：列出 3 个你不这样的领域或场合。范围缩小后，问题常常只剩一两个情境。" },
+    { tip: "先找杠杆：写下一个能让它轻一点的条件，比如有人在场、事情更小、时间更早。" }
+  ];
+  function refresh() {
+    var sc = scores(), total = sc[0] + sc[1] + sc[2];
+    ["t", "p", "c"].forEach(function (k, i) {
+      $("#m_" + k).style.width = (sc[i] / 4 * 100) + "%";
+      $("#v_" + k).textContent = sc[i] + "/4";
+    });
+    var top = 0; for (var i = 1; i < 3; i++) if (sc[i] > sc[top]) top = i;
+    var v = total <= 4 ? "这句话已经比较具体，可以直接用。" :
+            total <= 8 ? "这句话有一部分在把倾向当成本质。" :
+            "<b>三项都偏高</b>，这是典型的把倾向当成本质。";
+    $("#verdict").innerHTML = v + (total > 4 ? " " + DIM[top].tip : "");
+    $("#ifthen").textContent = ifThen();
+    var c = counts();
+    $$(".day").forEach(function (b, i) {
+      var s = S.days[i];
+      b.setAttribute("data-s", s);
+      b.children[0].textContent = "D" + (i + 1);
+      b.children[1].textContent = dateAt(i);
+      b.children[2].textContent = s === 1 ? "✓" : s === 2 ? "—" : "○";
+      b.setAttribute("aria-label", "第" + (i + 1) + "天，" + dateAt(i) + "，" + (s === 1 ? "已完成" : s === 2 ? "未完成" : "未记录") + "，点击切换");
+    });
+    $("#n_done").textContent = c[0]; $("#n_miss").textContent = c[1]; $("#n_rec").textContent = (c[0] + c[1]) + "/14";
+    $("#bar").style.width = (c[0] / 14 * 100) + "%";
+    $("#out").textContent = cardText();
+    $("#banner").hidden = !S.example;
+    $("#tab0").classList.toggle("done", !empty("s1"));
+    $("#tab1").classList.toggle("done", !empty("s2ex"));
+    $("#tab2").classList.toggle("done", ["s3a", "s3b", "s3c", "s3d", "s3e"].some(function (k) { return !empty(k); }));
+    $("#tab3").classList.toggle("done", !empty("s4a"));
+    $("#tab4").classList.toggle("done", ["rv1", "rv2", "rv3"].some(function (k) { return !empty(k); }));
+    $$("#chk input").forEach(function (cb, i) { cb.checked = !!S.chk[i]; });
+  }
+
+  /* ---------- 复制、清空、备份 ---------- */
+  function say(el, t) { el.textContent = t; }
+  function copyText(txt, selTarget, statusEl) {
+    function fallback() {
+      try {
+        if (selTarget.select) { selTarget.select(); }
+        else { var r = document.createRange(); r.selectNodeContents(selTarget); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); }
+      } catch (e) {}
+      say(statusEl, "已选中，请手动复制。");
+    }
+    try { navigator.clipboard.writeText(txt).then(function () { say(statusEl, "已复制。"); }, fallback); }
+    catch (e) { fallback(); }
+  }
+  $("#copy").addEventListener("click", function () { copyText(cardText(), $("#out"), $("#status")); });
+
+  var armed = null, armedTimer = null;
+  function twoClick(btn, label, action) {
+    if (armed === btn) { clearTimeout(armedTimer); armed = null; btn.textContent = label; action(); return; }
+    if (armed) { armed.textContent = armed.getAttribute("data-label"); clearTimeout(armedTimer); }
+    armed = btn; btn.setAttribute("data-label", label); btn.textContent = "再点一次确认";
+    armedTimer = setTimeout(function () { btn.textContent = label; armed = null; }, 4000);
+  }
+  function hydrateAll() { hydrateFields(); renderLevers(); go(S.step); }
+  function doClear() { S = fresh(false); save(); hydrateAll(); go(0); say($("#status"), "已清空。"); }
+  $("#clear").addEventListener("click", function () { twoClick($("#clear"), "清空全部", doClear); });
+  $("#clear0").addEventListener("click", function () { twoClick($("#clear0"), "清空示例，写你自己的", doClear); });
+
+  $("#mkbk").addEventListener("click", function () {
+    var txt = JSON.stringify({ format: "pattern-words", version: 2, data: S });
+    $("#bk").value = txt;
+    copyText(txt, $("#bk"), $("#status2"));
+  });
+  function doRestore() {
+    try {
+      var v = JSON.parse($("#bk").value);
+      if (!v || v.format !== "pattern-words" || !valid(v.data)) throw new Error("格式不对");
+      S = adopt(v.data); save(); hydrateAll(); say($("#status2"), "已恢复。");
+    } catch (e) { say($("#status2"), "恢复失败：备份文本不完整或格式不对。"); }
+  }
+  $("#rsbk").addEventListener("click", function () { twoClick($("#rsbk"), "恢复", doRestore); });
+
+  /* ---------- 初始化 ---------- */
+  hydrateFields();
+  renderLevers();
+  go(S.step || 0);
+  showLex(0);
+})();
+</script>
+
+<a class="site-home-button" href="../index.html" aria-label="返回首页">← 返回首页</a>
+</body></html>
